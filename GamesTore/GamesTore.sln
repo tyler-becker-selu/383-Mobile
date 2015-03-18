@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamesTore", "GamesTore\GamesTore.csproj", "{324381C6-6653-4097-BCA8-78910EB21251}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStorePortal", "GameStorePortal\GameStorePortal.csproj", "{0EDCEBA6-4BB2-488F-B748-7A78176E7243}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{324381C6-6653-4097-BCA8-78910EB21251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{324381C6-6653-4097-BCA8-78910EB21251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{324381C6-6653-4097-BCA8-78910EB21251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{324381C6-6653-4097-BCA8-78910EB21251}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EDCEBA6-4BB2-488F-B748-7A78176E7243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EDCEBA6-4BB2-488F-B748-7A78176E7243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EDCEBA6-4BB2-488F-B748-7A78176E7243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EDCEBA6-4BB2-488F-B748-7A78176E7243}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
