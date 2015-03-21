@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace GameStorePortal
+namespace EmployeeClient
 {
     public class FilterConfig
     {

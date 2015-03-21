@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+
+<div class="container">
+    <form class="form-group">
+        <label for="email" class="sr-only">Email Address</label>
+        <input type="email" id="email" placeholder="Email" required />
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" placeholder="Password" required />
+        <button class="btn-primary" id="submit">Sign In</button>
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/CustomScripts/Login.js"></script>
+}
