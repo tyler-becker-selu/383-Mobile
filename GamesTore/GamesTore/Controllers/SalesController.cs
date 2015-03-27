@@ -209,6 +209,7 @@ namespace GamesTore.Controllers
                         foreach (var item in checkout.Games)
                         {
                             newSale.Total += item.Price;
+                            item.InventoryStock -= 1;
                         }
                         try
                         {
