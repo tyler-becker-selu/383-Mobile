@@ -4,13 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GamesTore.Models;
+using RestSharp;
+using System.Net;
+using System.Web.Helpers;
 
 namespace EmployeeClient.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string bruh)
         {
+            ViewBag.Message = bruh;
             return View();
         }
 
@@ -33,17 +37,24 @@ namespace EmployeeClient.Controllers
             return View();
         }
 
-        public ApiKey CheckCredentials(string email, string password)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string email, string password)
         {
-            var restClient = new RestSharp.RestClient("http://localhost:12932/");
-            var request = new RestSharp.RestRequest(RestSharp.Method.GET);
+            var client = new RestClient("http://localhost:12932/api");
+            var request = new RestRequest("ApiKey?email={email}&password={password}", Method.GET);
+            request.AddUrlSegment("email", email);
+            request.AddUrlSegment("password", password);
+            
+            var response = client.Execute(request);
 
-            request.AddParameter("email", email);
-            request.AddParameter("password", password);
+          //  if (response.StatusCode == HttpStatusCode.OK)
+            //{
+            return RedirectToAction("Index", new {bruh= response.StatusCode.ToString() });
+          //  }
 
-            var response = restClient.Execute<ApiKey>(request);
-
-            return response.Data;
+           // return HttpNotFound();
         }
+
     }
 }
