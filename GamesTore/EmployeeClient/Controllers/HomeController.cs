@@ -12,9 +12,8 @@ namespace EmployeeClient.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string bruh)
+        public ActionResult Index()
         {
-            ViewBag.Message = bruh;
             return View();
         }
 
@@ -48,12 +47,12 @@ namespace EmployeeClient.Controllers
             
             var response = client.Execute(request);
 
-          //  if (response.StatusCode == HttpStatusCode.OK)
-            //{
-            return RedirectToAction("Index", new {bruh= response.StatusCode.ToString() });
-          //  }
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return RedirectToAction("Index");
+            }
 
-           // return HttpNotFound();
+            return RedirectToAction("Login");
         }
 
     }
