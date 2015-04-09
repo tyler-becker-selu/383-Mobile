@@ -64,75 +64,94 @@ namespace GamesTore.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage PutCartModel(int id, [FromBody]string game)
+        public HttpResponseMessage PutCartModel(int id, [FromBody]List<SetGameDTO> game)
         {
-            if (game == null)
+            if (!ModelState.IsValid)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
-            var original = db.Carts.FirstOrDefault(m => m.User_Id == id);
-
-            if (original != null)
+            try
             {
-                var Game = db.Games.FirstOrDefault(m => m.GameName == game);
-                if (Game == null)
+
+
+                var original = db.Carts.FirstOrDefault(m => m.User_Id == id);
+
+                if (original != null)
                 {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Game could not be read");
-                }
-                var QueryString = Request.RequestUri.ParseQueryString();
-                if (!(QueryString.Count < 1))
-                {
-                    var remove = QueryString["remove"];
-                    if (remove == "true")
+                    foreach (var item in game)
                     {
-                        original.Games.Remove(Game);
-                        db.Entry(original).CurrentValues.SetValues(original);
+                        GameModel ParsedGame = Factory.Parse(item);
+                        var Game = db.Games.FirstOrDefault(m => m.GameName == ParsedGame.GameName);
+                        if (Game == null)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, "Game could not be read");
+                        }
+                        var QueryString = Request.RequestUri.ParseQueryString();
+                        if (!(QueryString.Count < 1))
+                        {
+                            var remove = QueryString["remove"];
+                            if (remove == "true")
+                            {
+                                if (original.Games.Contains(Game))
+                                {
+                                    original.Games.Remove(Game);
+                                    db.Entry(original).CurrentValues.SetValues(original);
+                                }
+
+                            }
+                            else if (remove == "false")
+                            {
+                                original.Games.Add(Game);
+                                db.Entry(original).CurrentValues.SetValues(original);
+                            }
+                            else
+                            {
+                                return Request.CreateResponse(HttpStatusCode.BadRequest, "You need to type true or false for remove in query string since I couldn't get it working with routes");
+                            }
+
+
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, "You need to type true or false for remove in query string since I couldn't get it working with routes");
+
+                        }
                     }
-                    else if(remove == "false")
+
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Cart not found");
+                }
+
+                try
+                {
+                    db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, Factory.Create(original));
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    if (!CartModelExists(id))
                     {
-                        original.Games.Add(Game);
-                        db.Entry(original).CurrentValues.SetValues(original);
+                        return Request.CreateResponse(HttpStatusCode.NotFound);
                     }
                     else
                     {
-                        return Request.CreateResponse(HttpStatusCode.BadRequest, "You need to type true or false for remove in query string since I couldn't get it working with routes");
+                        return Request.CreateResponse(HttpStatusCode.NoContent, ex.Message);
                     }
-
-
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "You need to type true or false for remove in query string since I couldn't get it working with routes");
-
                 }
             }
-            else
+            catch
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, "Cart not found");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Game could not be read from body of request");
             }
 
-            try
-            {
-                db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, Factory.Create(original));
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                if (!CartModelExists(id))
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.NoContent, ex.Message);
-                }
-            }
         }
 
         // POST api/Cart
         [HttpPost]
-        public HttpResponseMessage PostCartModel([FromBody]List<string> games)
+        public HttpResponseMessage PostCartModel([FromBody]List<SetGameDTO> games)
         {
             if (ModelState.IsValid)
             {
@@ -145,10 +164,19 @@ namespace GamesTore.Controllers
                         List<GameModel> gamelist = new List<GameModel>();
                         foreach (var item in games)
                         {
-                            var game = db.Games.FirstOrDefault(m => m.GameName == item);
+                            GameModel TheGame;
+                            try
+                            {
+                                TheGame = Factory.Parse(item);
+                            }
+                            catch
+                            {
+                                return Request.CreateResponse(HttpStatusCode.BadRequest, "Coud not read one or more games from body of request");
+                            }
+                            var game = db.Games.FirstOrDefault(m => m.GameName == TheGame.GameName);
                             if (game == null)
                             {
-                                return Request.CreateResponse(HttpStatusCode.BadRequest, "One or more games could not be read");
+                                return Request.CreateResponse(HttpStatusCode.BadRequest, "One or more games could not be found");
                             }
                             gamelist.Add(game);
                         }

@@ -40,10 +40,7 @@ namespace GamesToreAPI.Controllers
                             try
                             {
                                 user.ApiKey = GetApiKey();
-                                db.Users.Attach(user);
-                                var entry = db.Entry(user);
-                                entry.State = EntityState.Modified;
-                                entry.Property(e => e.Password).IsModified = false;
+                                db.Entry(user).CurrentValues.SetValues(user);
                                 db.SaveChanges();
                             }catch(DbUpdateConcurrencyException)
                             {

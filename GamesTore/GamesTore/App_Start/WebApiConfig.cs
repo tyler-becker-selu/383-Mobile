@@ -99,6 +99,13 @@ namespace GamesTore
                 constraints: null,
                 handler: authRouteHandler
             );
+            config.Routes.MapHttpRoute(
+                name: "CartRoute",
+                routeTemplate: "api/Carts/{id}",
+                defaults: new { id = RouteParameter.Optional },
+                constraints: null,
+                handler: authRouteHandler
+            );
         }
     }
 }

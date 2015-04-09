@@ -38,7 +38,7 @@ namespace GamesTore.AuthenticationStuff
             {
                 var apiKey = headers.Where(m => m.Key == "xcmps383authenticationkey").FirstOrDefault().Value.FirstOrDefault();
                 var userID = Convert.ToInt32(headers.Where(m => m.Key == "xcmps383authenticationid").First().Value.First());
-                var user = db.Users.Find(userID);
+                var user = db.Users.FirstOrDefault(m => m.Id == userID);
                 return (user != null && user.ApiKey == apiKey);
             }
             return false;

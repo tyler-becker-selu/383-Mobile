@@ -127,18 +127,13 @@ namespace GamesTore.Controllers
 
         // PUT api/Sales/5
         [HttpPut]
-        public HttpResponseMessage PutSalesModel(int id, [FromBody]SalesModel editedSale)
+        public HttpResponseMessage PutSalesModel(int id, [FromBody]SetSalesDTO editedSale)
         {
             if (IsAuthorized(Request, new List<Roles> { Roles.Admin }))
             {
-                if (editedSale == null)
+                if (!ModelState.IsValid)
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-
-                if (id != editedSale.Id)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
 
                 var original = db.Sales.Find(id);
@@ -146,11 +141,12 @@ namespace GamesTore.Controllers
                 if (original != null)
                 {
                     original.SalesDate = editedSale.SalesDate;
-                    original.Cart = editedSale.Cart;
-                    foreach (var item in editedSale.Cart.Games)
-                    {
-                        original.Total += item.Price;
-                    }
+                    //TODO Fix editing cart in editing sale
+                    //
+                    //foreach (var item in editedSale.Cart.Games)
+                    //{
+                    //    original.Total += item.Price;
+                    //}
                     db.Entry(original).CurrentValues.SetValues(original);
                     try
                     {
@@ -185,54 +181,64 @@ namespace GamesTore.Controllers
 
         // POST api/Sales
         [HttpPost]
-        public HttpResponseMessage PostSale([FromBody]CartModel cart)
+        public HttpResponseMessage PostSale([FromBody]SetCartDTO cart)
         {
             if (IsAuthorized(Request, new List<Roles>() { Roles.Admin, Roles.Employee }))
             {
                 if (ModelState.IsValid)
                 {
                     {
-                        var employId = Convert.ToInt32(Request.Headers.Where(m => m.Key == "xcmps383authenticationid").First().Value.First());
+                        try
+                        {
+                            var employId = Convert.ToInt32(Request.Headers.Where(m => m.Key == "xcmps383authenticationid").First().Value.First());
 
-                        var checkout = db.Carts.FirstOrDefault(m => m.Id == cart.Id);
-                        if (checkout == null)
-                        {
-                            return Request.CreateResponse(HttpStatusCode.NotFound, "Could not find cart");
+                            var checkout = db.Carts.FirstOrDefault(m => m.Id == cart.Id);
+                            if (checkout == null)
+                            {
+                                return Request.CreateResponse(HttpStatusCode.NotFound, "Could not find cart");
+                            }
+                            if (checkout.User_Id != cart.User_Id)
+                            {
+                                return Request.CreateResponse(HttpStatusCode.BadRequest, "User id given does not match user id found in database");
+                            }
+                            SalesModel newSale = new SalesModel()
+                            {
+                                SalesDate = DateTime.Now,
+                                Cart = checkout,
+                                User = db.Users.FirstOrDefault(m => m.Id == checkout.User_Id),
+                                EmployeeId = employId
+                            };
+                            foreach (var item in checkout.Games)
+                            {
+                                newSale.Total += item.Price;
+                            }
+                            try
+                            {
+                                checkout.CheckoutReady = false;
+                                db.Entry(checkout).CurrentValues.SetValues(checkout);
+                                db.SaveChanges();
+                            }
+                            catch (DbUpdateConcurrencyException ex)
+                            {
+                                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                            }
+                            try
+                            {
+                                db.Sales.Add(newSale);
+                                db.SaveChanges();
+                                return Request.CreateResponse(HttpStatusCode.Created, cart);
+                            }
+                            catch (DbUpdateConcurrencyException ex)
+                            {
+                                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+                            }
                         }
-                        SalesModel newSale = new SalesModel()
+                        catch
                         {
-                            SalesDate = DateTime.Now,
-                            Cart = checkout,
-                            User = db.Users.FirstOrDefault(m => m.Id == checkout.User_Id),
-                            EmployeeId = employId
-                        };
-                        foreach (var item in checkout.Games)
-                        {
-                            newSale.Total += item.Price;
-                            item.InventoryStock -= 1;
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, "Employee Id cannot be found");
                         }
-                        try
-                        {
-                            checkout.CheckoutReady = false;
-                            db.Entry(checkout).CurrentValues.SetValues(checkout);
-                            db.SaveChanges();
-                        }
-                        catch (DbUpdateConcurrencyException ex)
-                        {
-                            return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
-                        }
-                        try
-                        {
-                            db.Sales.Add(newSale);
-                            db.SaveChanges();
-                            return Request.CreateResponse(HttpStatusCode.Created, cart);
-                        }
-                        catch (DbUpdateConcurrencyException ex)
-                        {
-                            return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
-                        }
+
                     }
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Employee Id cannot be found");
                 }
                 else
                 {

@@ -14,23 +14,22 @@ namespace GamesTore.Models.Data_Transfer_Objects
 
         ApiDbContext db = new ApiDbContext();
 
-        public DTOFactory (HttpRequestMessage request)
-	    {
+        public DTOFactory(HttpRequestMessage request)
+        {
             urlHelper = new UrlHelper(request);
-	    }
+        }
 
         public GetUserDTO Create(UserModel user)
         {
             return new GetUserDTO()
             {
                 URL = urlHelper.Link("GamesToreApi", new { id = user.Id }),
-                Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
                 Role = user.Role
             };
-            
+
         }
 
         public GetGameDTO Create(GameModel game)
@@ -38,11 +37,10 @@ namespace GamesTore.Models.Data_Transfer_Objects
             GetGameDTO retu = new GetGameDTO()
             {
                 URL = urlHelper.Link("GameRoute", new { id = game.Id }),
-                Id = game.Id,
                 GameName = game.GameName,
                 ReleaseDate = game.ReleaseDate,
                 Price = game.Price,
-                InventoryStock = game.InventoryStock                
+                InventoryStock = game.InventoryStock
             };
 
             if (game.Genres != null)
@@ -63,7 +61,6 @@ namespace GamesTore.Models.Data_Transfer_Objects
             return new GetGenreDTO()
             {
                 URL = urlHelper.Link("GenreRoute", new { id = genres.Id }),
-                Id = genres.Id,
                 Name = genres.Name
             };
         }
@@ -73,7 +70,6 @@ namespace GamesTore.Models.Data_Transfer_Objects
             return new GetTagDTO()
             {
                 URL = urlHelper.Link("TagRoute", new { id = tags.Id }),
-                Id = tags.Id,
                 Name = tags.Name
             };
         }
@@ -91,7 +87,7 @@ namespace GamesTore.Models.Data_Transfer_Objects
         {
             GetCartDTO retu = new GetCartDTO()
             {
-                URL = urlHelper.Link("GamesToreApi", new { id = cart.Id }),
+                URL = urlHelper.Link("CartRoute", new { id = cart.Id }),
                 Id = cart.Id,
                 CheckoutReady = cart.CheckoutReady,
                 User_Id = cart.User_Id,
@@ -110,14 +106,89 @@ namespace GamesTore.Models.Data_Transfer_Objects
             return new GetSalesDTO()
             {
                 URL = urlHelper.Link("GamesToreApi", new { id = sale.Id }),
-                Id = sale.Id,
                 SalesDate = sale.SalesDate,
                 Total = sale.Total,
                 Cart = Create(sale.Cart)
             };
         }
-    }
-   
 
+        public UserModel Parse(SetUserDTO user)
+        {
+            return new UserModel()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Password = user.Password,
+                Email = user.Email,
+                Role = user.Role
+            };
+        }
+
+        public GenreModel Parse(SetGenreDTO genre)
+        {
+            return new GenreModel()
+            {
+                Name = genre.Name
+            };
+        }
+
+        public TagModel Parse(SetTagDTO genre)
+        {
+            return new TagModel()
+            {
+                Name = genre.Name
+            };
+        }
+
+        public GameModel Parse(SetGameDTO game)
+        {
+            GameModel ret = new GameModel()
+            {
+                GameName = game.GameName,
+                ReleaseDate = game.ReleaseDate,
+                InventoryStock = game.InventoryStock,
+                Price = game.Price,
+                Genres = new List<GenreModel>(),
+                Tags = new List<TagModel>()
+            };
+
+            foreach (var item in game.Genres)
+            {
+                ret.Genres.Add(Parse(item));
+            }
+
+            foreach (var item in game.Tags)
+            {
+                ret.Tags.Add(Parse(item));
+            }
+
+            return ret;
+        }
+
+        public CartModel Parse(SetCartDTO cart)
+        {
+            CartModel ret = new CartModel()
+            {
+                User_Id = cart.User_Id,
+                Games = new List<GameModel>()
+            };
+
+            foreach (var item in cart.Games)
+            {
+                ret.Games.Add(Parse(item));
+            }
+
+            return ret;
+        }
+
+        public SalesModel Parse(SetSalesDTO sale)
+        {
+            return new SalesModel()
+            {
+                SalesDate = sale.SalesDate,
+                Cart = Parse(sale.Cart)
+            };
+        }
+    }   
 }
         

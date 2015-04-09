@@ -5,9 +5,8 @@ using System.Web;
 
 namespace GamesTore.Models.Data_Transfer_Objects
 {
-    public class GetGenreDTO
+    public class SetTagDTO
     {
-        public string URL { get; set; }
         public string Name { get; set; }
     }
 }

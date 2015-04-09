@@ -6,18 +6,13 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http.Routing;
-
-
 namespace GamesTore.Models.Data_Transfer_Objects
 {
-    public class GetSalesDTO
+    public class SetCartDTO
     {
-
-        public string URL { get; set; }
-        public DateTime SalesDate { get; set; }
-        public decimal Total { get; set; }
-        public GetCartDTO Cart { get; set; }
-
+        public int Id { get; set; }
+        public int User_Id { get; set; }
+        public List<SetGameDTO> Games { get; set; }
 
     }
 }

@@ -55,7 +55,7 @@ namespace GamesTore.Controllers
 
         // PUT: api/Tag/5
         [HttpPut]
-        public HttpResponseMessage PutTagModel(int id, [FromBody]TagModel tagModel)
+        public HttpResponseMessage PutTagModel(int id, [FromBody]SetTagDTO tagModel)
         {
             if (IsAuthorized(Request, new List<Roles> { Roles.Admin }))
             {
@@ -64,17 +64,16 @@ namespace GamesTore.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
                 }
 
-                if (id != tagModel.Id)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
-                }
+                TagModel editedGenres = Factory.Parse(tagModel);
+
+                editedGenres.Id = id;
 
                 db.Entry(tagModel).State = EntityState.Modified;
 
                 try
                 {
                     db.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK, Factory.Create(tagModel));
+                    return Request.CreateResponse(HttpStatusCode.OK, tagModel);
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
@@ -87,23 +86,24 @@ namespace GamesTore.Controllers
                         return Request.CreateResponse(HttpStatusCode.NoContent, ex.Message);
                     }
                 }
-                
             }
             return Request.CreateResponse(HttpStatusCode.Unauthorized);
         }
 
         // POST: api/Tag
         [HttpPost]
-        public HttpResponseMessage PostTagModel([FromBody]TagModel tagModel)
+        public HttpResponseMessage PostTagModel([FromBody]SetTagDTO tagModel)
         {
             if (IsAuthorized(Request, new List<Roles> { Roles.Admin }))
             {
                 if (ModelState.IsValid)
                 {
-                    db.Tags.Add(tagModel);
+                    TagModel newTag = Factory.Parse(tagModel);
+                    db.Tags.Add(newTag);
                     db.SaveChanges();
 
-                    return Request.CreateResponse(HttpStatusCode.Created, Factory.Create(tagModel));
+                    return Request.CreateResponse(HttpStatusCode.Created, Factory.Create(newTag));
+
                 }
                 else
                 {

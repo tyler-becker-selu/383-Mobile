@@ -55,7 +55,7 @@ namespace GamesTore.Controllers
 
         // PUT: api/Genre/5
         [HttpPut]
-        public HttpResponseMessage PutGenreModel(int id, [FromBody]GenreModel genreModel)
+        public HttpResponseMessage PutGenreModel(int id, [FromBody]SetGenreDTO genreModel)
         {
             if(IsAuthorized(Request, new List<Roles> {Roles.Admin}))
             {
@@ -64,10 +64,9 @@ namespace GamesTore.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
                 }
 
-                if (id != genreModel.Id)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
-                }
+                GenreModel editedGenres = Factory.Parse(genreModel);
+
+                editedGenres.Id = id;
 
                 db.Entry(genreModel).State = EntityState.Modified;
 
@@ -87,8 +86,6 @@ namespace GamesTore.Controllers
                         return Request.CreateResponse(HttpStatusCode.NoContent, ex.Message);
                     }
                 }
-
-                //return Request.CreateResponse(HttpStatusCode.NoContent);
             }
             return Request.CreateResponse(HttpStatusCode.Unauthorized);
             
@@ -96,16 +93,17 @@ namespace GamesTore.Controllers
 
         // POST: api/Genre
         [HttpPost]
-        public HttpResponseMessage PostGenreModel([FromBody]GenreModel genreModel)
+        public HttpResponseMessage PostGenreModel([FromBody]SetGenreDTO genreModel)
         {
             if (IsAuthorized(Request, new List<Roles> { Roles.Admin }))
             {
                 if (ModelState.IsValid)
                 {
-                    db.Genres.Add(genreModel);
+                    GenreModel newGenre = Factory.Parse(genreModel);
+                    db.Genres.Add(newGenre);
                     db.SaveChanges();
 
-                    return Request.CreateResponse(HttpStatusCode.Created, Factory.Create(genreModel));
+                    return Request.CreateResponse(HttpStatusCode.Created, Factory.Create(newGenre));
                     
                 }
                 else

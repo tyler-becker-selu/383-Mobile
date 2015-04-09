@@ -111,8 +111,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GamesTore\Models\ApiKey.cs">
-      <Link>Models\ApiKey.cs</Link>
+    <Compile Include="..\GamesTore\Models\Data Transfer Objects\GetApikeyDTO.cs">
+      <Link>Models\GetApikeyDTO.cs</Link>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

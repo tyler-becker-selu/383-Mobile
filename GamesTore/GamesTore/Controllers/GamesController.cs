@@ -89,7 +89,7 @@ namespace GamesTore.Controllers
 
         // PUT api/Games/5
         [HttpPut]
-        public HttpResponseMessage PutGameModel(int id, [FromBody]GameModel gamemodel)
+        public HttpResponseMessage PutGameModel(int id, [FromBody]SetGameDTO gamemodel)
         {
             if (IsAuthorized(Request, new List<Roles> { Roles.Admin }))
             {
@@ -98,16 +98,11 @@ namespace GamesTore.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
                 }
 
-                if (id != gamemodel.Id)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
-                }
-
                 using (var transaction = db.Database.BeginTransaction())
                 {
                     try
                     {
-                        var gameInfo = db.Games.Find(gamemodel.Id);
+                        var gameInfo = db.Games.Find(id);
                         gameInfo.GameName = gamemodel.GameName;
                         gameInfo.ReleaseDate = gamemodel.ReleaseDate;
                         gameInfo.Price = gamemodel.Price;
@@ -134,7 +129,7 @@ namespace GamesTore.Controllers
                             {
                                 if (!db.Genres.Any(g => g.Name == genre.Name))
                                 {
-                                    db.Genres.Add(genre);
+                                    db.Genres.Add(Factory.Parse(genre));
                                     db.SaveChanges();
                                 }
                                 var myGenre = db.Genres.FirstOrDefault(g => g.Name == genre.Name);
@@ -154,7 +149,7 @@ namespace GamesTore.Controllers
                             {
                                 if (!db.Tags.Any(g => g.Name == tag.Name))
                                 {
-                                    db.Tags.Add(tag);
+                                    db.Tags.Add(Factory.Parse(tag));
                                     db.SaveChanges();
                                 }
                                 var myTag = db.Tags.FirstOrDefault(g => g.Name == tag.Name);
@@ -203,7 +198,7 @@ namespace GamesTore.Controllers
 
         // POST api/Games
         [HttpPost]
-        public HttpResponseMessage PostGameModel([FromBody]GameModel gamemodel)
+        public HttpResponseMessage PostGameModel([FromBody]SetGameDTO gamemodel)
         {
             if (IsAuthorized(Request, new List<Roles> { Roles.Admin }))
             {
@@ -215,13 +210,15 @@ namespace GamesTore.Controllers
                         return Request.CreateResponse(HttpStatusCode.BadRequest, "Game already exist.");
                     }
 
-                    if (gamemodel.Genres == null || gamemodel.Tags == null)
+                    GameModel newGame = Factory.Parse(gamemodel);
+
+                    if (newGame.Genres == null || newGame.Tags == null)
                     {
                         return Request.CreateResponse(HttpStatusCode.BadRequest, "Games must contain one genre and one tag");
                     }
 
                     var genreList = new List<GenreModel>();
-                    foreach (var genre in gamemodel.Genres)
+                    foreach (var genre in newGame.Genres)
                     {
                         if (db.Genres.Any(g => g.Name == genre.Name))
                         {
@@ -233,10 +230,10 @@ namespace GamesTore.Controllers
                             genreList.Add(genre);
                         }
                     }
-                    gamemodel.Genres = genreList;
+                    newGame.Genres = genreList;
 
                     var tagList = new List<TagModel>();
-                    foreach (var tag in gamemodel.Tags)
+                    foreach (var tag in newGame.Tags)
                     {
                         if (db.Tags.Any(g => g.Name == tag.Name))
                         {
@@ -248,12 +245,12 @@ namespace GamesTore.Controllers
                             tagList.Add(tag);
                         }
                     }
-                    gamemodel.Tags = tagList;
+                    newGame.Tags = tagList;
 
-                    db.Games.Add(gamemodel);
+                    db.Games.Add(newGame);
                     db.SaveChanges();
 
-                    return Request.CreateResponse(HttpStatusCode.Created, Factory.Create(gamemodel));
+                    return Request.CreateResponse(HttpStatusCode.Created, Factory.Create(newGame));
                 }
                 else
                 {

@@ -251,6 +251,12 @@
     <Compile Include="Models\Data Transfer Objects\GetSalesDTO.cs" />
     <Compile Include="Models\Data Transfer Objects\GetUserDTO.cs" />
     <Compile Include="Models\Data Transfer Objects\GetTagDTO.cs" />
+    <Compile Include="Models\Data Transfer Objects\SetCartDTO.cs" />
+    <Compile Include="Models\Data Transfer Objects\SetGameDTO.cs" />
+    <Compile Include="Models\Data Transfer Objects\SetGenreDTO.cs" />
+    <Compile Include="Models\Data Transfer Objects\SetSalesDTO.cs" />
+    <Compile Include="Models\Data Transfer Objects\SetTagDTO.cs" />
+    <Compile Include="Models\Data Transfer Objects\SetUserDTO.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\GenreModel.cs" />
     <Compile Include="Models\Roles.cs" />

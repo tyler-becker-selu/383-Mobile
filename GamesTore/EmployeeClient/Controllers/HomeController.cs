@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GamesTore.Models;
 using RestSharp;
 using System.Net;
 using System.Web.Helpers;
+using GamesTore.Models.Data_Transfer_Objects;
 
 namespace EmployeeClient.Controllers
 {
     public class HomeController : Controller
     {
+        RestClient client = new RestClient("http://localhost:12932/api");
         public ActionResult Index()
         {
             return View();
@@ -40,15 +41,19 @@ namespace EmployeeClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(string email, string password)
         {
-            var client = new RestClient("http://localhost:12932/api");
             var request = new RestRequest("ApiKey?email={email}&password={password}", Method.GET);
             request.AddUrlSegment("email", email);
             request.AddUrlSegment("password", password);
-            
-            var response = client.Execute(request);
+            request.RequestFormat = DataFormat.Json;
 
+            var response = client.Execute(request);
+            RestSharp.Deserializers.JsonDeserializer deserial = new RestSharp.Deserializers.JsonDeserializer();
+            
             if (response.StatusCode == HttpStatusCode.OK)
             {
+                GetApikeyDTO userData = deserial.Deserialize<GetApikeyDTO>(response);
+                Session["ApiKey"] = userData.ApiKey;
+                Session["UserId"] = userData.UserId;
                 return RedirectToAction("Index");
             }
 

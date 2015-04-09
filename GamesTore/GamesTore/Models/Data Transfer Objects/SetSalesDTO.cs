@@ -10,14 +10,9 @@ using System.Web.Http.Routing;
 
 namespace GamesTore.Models.Data_Transfer_Objects
 {
-    public class GetSalesDTO
+    public class SetSalesDTO
     {
-
-        public string URL { get; set; }
         public DateTime SalesDate { get; set; }
-        public decimal Total { get; set; }
-        public GetCartDTO Cart { get; set; }
-
-
+        public SetCartDTO Cart { get; set; }
     }
 }
