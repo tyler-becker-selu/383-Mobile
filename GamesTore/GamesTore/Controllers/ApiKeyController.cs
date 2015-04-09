@@ -37,15 +37,6 @@ namespace GamesToreAPI.Controllers
 
                         if (Crypto.VerifyHashedPassword(user.Password, password))
                         {
-                            try
-                            {
-                                user.ApiKey = GetApiKey();
-                                db.Entry(user).CurrentValues.SetValues(user);
-                                db.SaveChanges();
-                            }catch(DbUpdateConcurrencyException)
-                            {
-                                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Failed to save API key to database");
-                            }
                             return Request.CreateResponse(HttpStatusCode.OK, Factory.Create(user.ApiKey, user.Id));
                         }
 
