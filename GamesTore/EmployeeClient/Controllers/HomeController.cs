@@ -12,7 +12,19 @@ namespace EmployeeClient.Controllers
 {
     public class HomeController : Controller
     {
-        RestClient client = new RestClient("http://localhost:12932/api");
+        private RestClient client = new RestClient("http://localhost:12932/api");
+
+        RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
+
+        private void APIHeaders(RestRequest request)
+        {
+            if(Session["ApiKey"] != null && Session["UserId"] != null)
+            {
+                request.AddHeader("xcmps383authenticationkey", Session["ApiKey"].ToString());
+                request.AddHeader("xcmps383authenticationid", Session["UserId"].ToString());
+            }
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -47,11 +59,10 @@ namespace EmployeeClient.Controllers
             request.RequestFormat = DataFormat.Json;
 
             var response = client.Execute(request);
-            RestSharp.Deserializers.JsonDeserializer deserial = new RestSharp.Deserializers.JsonDeserializer();
             
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                GetApikeyDTO userData = deserial.Deserialize<GetApikeyDTO>(response);
+                GetApikeyDTO userData = _deserializer.Deserialize<GetApikeyDTO>(response);
                 Session["ApiKey"] = userData.ApiKey;
                 Session["UserId"] = userData.UserId;
                 return RedirectToAction("Index");
