@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="CustomerConsumer.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.UseMe" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MainActivity.cs">
+    <Files>
+      <File FileName="DialogLogin.cs" Line="1" Column="1" />
+      <File FileName="MainActivity.cs" Line="23" Column="26" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint traceExpression="{loginBTN}" file="C:\Users\jerry\Desktop\383\Final Phase\sp15-p3-g4\CustomerConsumer\CustomerConsumer\MainActivity.cs" line="23" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.CustomerConsumer AndroidDesignerPreferredDevice="Nexus 4" />
+</Properties>

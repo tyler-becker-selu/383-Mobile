@@ -4,13 +4,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <Button
-        android:id="@+id/myButton"
-        android:layout_width="match_parent"
+        android:id="@+id/Request"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
-    <Button
-        android:text="Login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/LoginBTN" />
+        android:text="REST Request" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/Text" />
 </LinearLayout>
