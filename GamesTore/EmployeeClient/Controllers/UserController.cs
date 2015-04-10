@@ -7,6 +7,8 @@ using EmployeeClient.Controllers;
 using RestSharp;
 using System.Net;
 using GamesTore.Models.Data_Transfer_Objects;
+using GamesTore.Models;
+using Newtonsoft.Json;
 
 namespace EmployeeClient.Controllers
 {
@@ -69,18 +71,28 @@ namespace EmployeeClient.Controllers
 
         // POST: User/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(SetUserDTO user)
         {
-            try
+            if(ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                var request = new RestRequest("Users", Method.POST);
+                APIHeaders(request);
 
-                return RedirectToAction("Index");
+                user.Role = Roles.User;
+
+                var json = JsonConvert.SerializeObject(user);
+
+                request.AddParameter("text/json", json, ParameterType.RequestBody);
+
+                var response = client.Execute(request);
+
+                if(response.StatusCode == HttpStatusCode.Created)
+                {
+                    return RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return HttpNotFound();
         }
 
         // GET: User/Edit/5
