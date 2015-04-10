@@ -28,8 +28,10 @@ namespace EmployeeClient.Controllers
         }
 
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index(string message)
         {
+            ViewBag.Message = message;
+
             var request = new RestRequest("Users", Method.GET);
             APIHeaders(request);
             request.RequestFormat = DataFormat.Json;
@@ -79,8 +81,6 @@ namespace EmployeeClient.Controllers
                 var request = new RestRequest("Users", Method.POST);
                 APIHeaders(request);
 
-                user.Role = Roles.User;
-
                 var json = JsonConvert.SerializeObject(user);
 
                 request.AddParameter("text/json", json, ParameterType.RequestBody);
@@ -98,45 +98,78 @@ namespace EmployeeClient.Controllers
         // GET: User/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var request = new RestRequest("Users/{id}", Method.GET);
+            request.AddUrlSegment("id", id.ToString());
+            APIHeaders(request);
+            request.RequestFormat = DataFormat.Json;
+
+            var response = client.Execute(request);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                GetUserDTO user = _deserializer.Deserialize<GetUserDTO>(response);
+                return View(user);
+            }
+
+            return HttpNotFound();
         }
 
         // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, GetUserDTO user)
         {
-            try
-            {
-                // TODO: Add update logic here
+            var request = new RestRequest("Users/{id}", Method.PUT);
+            request.AddUrlSegment("id", id.ToString());
+            APIHeaders(request);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            var json = JsonConvert.SerializeObject(user);
+
+            request.AddParameter("text/json", json, ParameterType.RequestBody);
+
+            var response = client.Execute(request);
+
+            if (response.StatusCode == HttpStatusCode.OK)
             {
-                return View();
+                return RedirectToAction("Details", new { id = id });
             }
+
+            return HttpNotFound();
         }
 
         // GET: User/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var request = new RestRequest("Users/{id}", Method.GET);
+            request.AddUrlSegment("id", id.ToString());
+            APIHeaders(request);
+            request.RequestFormat = DataFormat.Json;
+            var response = client.Execute(request);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                GetUserDTO user = _deserializer.Deserialize<GetUserDTO>(response);
+                return View(user);
+            }
+
+            return HttpNotFound();
         }
 
         // POST: User/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, string deleteMessage)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var request = new RestRequest("Users/{id}", Method.DELETE);
+            request.AddUrlSegment("id", id.ToString());
+            APIHeaders(request);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            var response = client.Execute(request);
+
+            if (response.StatusCode == HttpStatusCode.OK)
             {
-                return View();
+                return RedirectToAction("Index", new { message = deleteMessage});
             }
+            return HttpNotFound();
         }
     }
 }

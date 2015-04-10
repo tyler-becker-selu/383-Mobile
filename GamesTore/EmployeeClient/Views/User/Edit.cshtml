@@ -1,18 +1,18 @@
-﻿@model GamesTore.Models.Data_Transfer_Objects.SetUserDTO
+﻿@model GamesTore.Models.Data_Transfer_Objects.GetUserDTO
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>User</h4>
+        <h4>SetUserDTO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -52,13 +52,13 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Role, Enum.GetValues(typeof(GamesTore.Models.Roles)).Cast<GamesTore.Models.Roles>
                     ().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }))
-                    @Html.ValidationMessageFor(model => model.Role)
-              </div>
+                @Html.ValidationMessageFor(model => model.Role)
+            </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

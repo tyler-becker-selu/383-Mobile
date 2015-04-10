@@ -24,6 +24,7 @@ namespace GamesTore.Models.Data_Transfer_Objects
             return new GetUserDTO()
             {
                 URL = urlHelper.Link("GamesToreApi", new { id = user.Id }),
+                Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
