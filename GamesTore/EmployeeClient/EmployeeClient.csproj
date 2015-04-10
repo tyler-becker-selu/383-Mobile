@@ -112,10 +112,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GamesTore\Models\Data Transfer Objects\GetApikeyDTO.cs">
-      <Link>Models\GetApikeyDTO.cs</Link>
+      <Link>Models\Linked DTOs\GetApikeyDTO.cs</Link>
     </Compile>
     <Compile Include="..\GamesTore\Models\Data Transfer Objects\GetUserDTO.cs">
-      <Link>Models\GetUserDTO.cs</Link>
+      <Link>Models\Linked DTOs\GetUserDTO.cs</Link>
+    </Compile>
+    <Compile Include="..\GamesTore\Models\Data Transfer Objects\SetUserDTO.cs">
+      <Link>Models\Linked DTOs\SetUserDTO.cs</Link>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -125,6 +128,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +171,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

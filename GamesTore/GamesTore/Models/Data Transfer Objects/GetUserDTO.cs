@@ -15,6 +15,6 @@ namespace GamesTore.Models.Data_Transfer_Objects
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        //public Roles Role { get; set; }
+        public Roles Role { get; set; }
     }
 }
