@@ -52,15 +52,13 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< Updated upstream
     <Compile Include="DialogLogin.cs" />
-=======
     <Compile Include="GameActivity.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\Cart.cs" />
->>>>>>> Stashed changes
+
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
