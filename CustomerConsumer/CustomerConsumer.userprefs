@@ -1,20 +1,24 @@
 ﻿<Properties StartupItem="CustomerConsumer\CustomerConsumer.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Testing" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 5 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="CustomerConsumer\MainActivity.cs">
     <Files>
-      <File FileName="CustomerConsumer\MainActivity.cs" Line="43" Column="43" />
+      <File FileName="CustomerConsumer\MainActivity.cs" Line="58" Column="1" />
       <File FileName="CustomerConsumer\Assets\AboutAssets.txt" Line="1" Column="1" />
-      <File FileName="CustomerConsumer\GameActivity.cs" Line="5" Column="5" />
+      <File FileName="CustomerConsumer\GameActivity.cs" Line="31" Column="1" />
+      <File FileName="CustomerConsumer\DialogLogin.cs" Line="13" Column="10" />
+      <File FileName="CustomerConsumer\Model\ApiKey.cs" Line="12" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="CustomerConsumer" expanded="True">
+            <Node name="ComponentReferenceFolder" expanded="True" />
             <Node name="Assets" expanded="True" />
+            <Node name="Model" expanded="True" />
             <Node name="Resources" expanded="True">
               <Node name="layout" expanded="True" />
             </Node>
-            <Node name="GameActivity.cs" selected="True" />
+            <Node name="MainActivity.cs" selected="True" />
           </Node>
         </State>
       </Pad>

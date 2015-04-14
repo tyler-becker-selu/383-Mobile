@@ -21,12 +21,12 @@ namespace CustomerConsumer
 			base.OnCreate (bundle);
 
 			// Create your application here
-			SearchView search = this.FindViewById<SearchView> ("searchGenre");
+		//	SearchView search = this.FindViewById<SearchView> ("searchGenre");
 
-			search.Click += delegate {
+			//search.Click += delegate {
 				
-			};
+			}
 		}
 	}
-}
+
 
