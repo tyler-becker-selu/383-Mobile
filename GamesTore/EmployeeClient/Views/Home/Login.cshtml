@@ -7,36 +7,39 @@
 
 @using (Html.BeginForm("Login", "Home"))
 {
-        @Html.AntiForgeryToken()
-    
-        <div class="form-horizontal">
-            <div class="form-group">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <label for="email" class="control-label col-md-2">Email Address</label>
+    @Html.AntiForgeryToken()
 
-                <div class="col-md-10">
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Email" required />
-                </div>
+    <div class="form-horizontal">
 
-            </div>
+        <div class="form-group">
 
-            <div class="form-group">
+            <label for="email" class="control-label col-md-2">Email Address</label>
 
-                <label for="password" class="control-label col-md-2">Password</label>
-
-                <div class="col-md-10">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required /> 
-                </div>
-
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Login" class="btn btn-default" />
-                </div>
+            <div class="col-md-10">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required />
             </div>
 
         </div>
-        
+
+        <div class="form-group">
+
+            <label for="password" class="control-label col-md-2">Password</label>
+
+            <div class="col-md-10">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+
 }
 

@@ -12,13 +12,13 @@ namespace EmployeeClient.Controllers
 {
     public class HomeController : Controller
     {
-        private RestClient client = new RestClient("http://localhost:12932/api");
+        private RestClient client = new RestClient("http://localhost:12932/api/");
 
         RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
 
         private void APIHeaders(RestRequest request)
         {
-            if(Session["ApiKey"] != null && Session["UserId"] != null)
+            if (Session["ApiKey"] != null && Session["UserId"] != null)
             {
                 request.AddHeader("xcmps383authenticationkey", Session["ApiKey"].ToString());
                 request.AddHeader("xcmps383authenticationid", Session["UserId"].ToString());
@@ -27,20 +27,10 @@ namespace EmployeeClient.Controllers
 
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+            if (Session["ApiKey"] == null || Session["UserId"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
 
@@ -53,13 +43,10 @@ namespace EmployeeClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(string email, string password)
         {
-            var request = new RestRequest("ApiKey?email={email}&password={password}", Method.GET);
-            request.AddUrlSegment("email", email);
-            request.AddUrlSegment("password", password);
-            request.RequestFormat = DataFormat.Json;
+            var request = new RestRequest("ApiKey?email=" + email + "&password=" + password, Method.GET);
 
             var response = client.Execute(request);
-            
+
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 GetApikeyDTO userData = _deserializer.Deserialize<GetApikeyDTO>(response);
@@ -67,9 +54,17 @@ namespace EmployeeClient.Controllers
                 Session["UserId"] = userData.UserId;
                 return RedirectToAction("Index");
             }
+            ModelState.AddModelError("", "Login data is incorrect!");
+            return View();
+        }
+
+
+        public ActionResult Logout()
+        {
+            Session["UserId"] = null;
+            Session["ApiKey"] = null;
 
             return RedirectToAction("Login");
         }
-
     }
 }

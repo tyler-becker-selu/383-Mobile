@@ -8,9 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello" />
+<<<<<<< Updated upstream
     <Button
         android:text="Login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/LoginBTN" />
+=======
+    <CheckBox
+        android:text="CheckBox"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox1" />
+>>>>>>> Stashed changes
 </LinearLayout>

@@ -24,7 +24,7 @@ namespace EmployeeClient
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/FlatlyTheme.min.css",
                       "~/Content/site.css"));
         }
     }

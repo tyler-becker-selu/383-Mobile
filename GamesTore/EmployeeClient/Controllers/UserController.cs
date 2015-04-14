@@ -27,6 +27,12 @@ namespace EmployeeClient.Controllers
             }
         }
 
+        private int GetID(string p)
+        {
+            string[] x = p.Split('/');
+            return Convert.ToInt32(x[x.Length - 1]);
+        }
+
         // GET: User
         public ActionResult Index(string message)
         {
@@ -41,6 +47,12 @@ namespace EmployeeClient.Controllers
             if(response.StatusCode == HttpStatusCode.OK)
             {
                 IEnumerable<GetUserDTO> users = _deserializer.Deserialize<List<GetUserDTO>>(response);
+
+                foreach (GetUserDTO item in users)
+                {
+                    item.Id = GetID(item.URL);
+                }
+
                 return View(users);
             }
 

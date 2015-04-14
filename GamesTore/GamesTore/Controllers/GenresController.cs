@@ -68,7 +68,7 @@ namespace GamesTore.Controllers
 
                 editedGenres.Id = id;
 
-                db.Entry(genreModel).State = EntityState.Modified;
+                db.Entry(editedGenres).State = EntityState.Modified;
 
                 try
                 {
