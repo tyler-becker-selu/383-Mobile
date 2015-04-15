@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Sales";
+}
+<div class="container">
+    <h2>Sales</h2>
+
+    <form>
+        <label>Sale ID (for get and delete): </label>
+        <input id="getSaleId" type="number" placeholder="GameID" />
+        <br />
+        <label>sale Date: </label>
+        <input id="saleDate" type="date" value="3/11/2015" />
+        <br />
+        <label>Employee ID: </label>
+        <input id="employeeID" type="number" placeholder="Employee" />
+        <br />
+        <label>User ID: </label>
+        <input id="userID" type="number" placeholder="user to checkout" />
+    </form>
+
+    <button class="btn btn-default btn-block" type="button" value="getSales" onclick="getSales()" style="width: 100px">Get Sales</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="postSale" onclick="postSale()" style="width: 100px">Post Sales</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="getSale" onclick="getSale($('#getSaleId').val())" style="width: 100px"> Get Sale</button>
+    <br />
+    <button class="btn btn-default btn-block" id="putSale" type="button" value="putSale" onclick="putSale()" disabled style="width: 100px">Put Sale</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="deleteSale" onclick="deleteSale($('#getSaleId').val())" style="width: 100px">Delete Sale</button>
+</div>
+@section scripts{
+    <script src="~/Scripts/AJAX/SalesTest.js"></script>
+}

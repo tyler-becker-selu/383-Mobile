@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action( "Users", "Home")">Users</a></li>
+                <li><a href="@Url.Action("Games", "Home")">Games</a></li>
+                <li><a href="@Url.Action("Carts", "Home") ">Carts</a></li>
+                <li><a href="@Url.Action("Sales", "Home")">Sales</a></li>
+                <li><a href="@Url.Action("Genres", "Home")">Genres</a></li>
+                <li><a href="@Url.Action("Tags", "Home")">Tags</a></li>
+            </ul>
+        </div>
+    </nav>
+</head>
+
+<body>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

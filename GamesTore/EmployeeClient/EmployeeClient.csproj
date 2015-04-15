@@ -111,13 +111,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GamesTore\Models\Data Transfer Objects\GetApikeyDTO.cs">
+    <Compile Include="..\GamesTore\GamesTore\Models\Data Transfer Objects\GetApikeyDTO.cs">
       <Link>Models\Linked DTOs\GetApikeyDTO.cs</Link>
     </Compile>
-    <Compile Include="..\GamesTore\Models\Data Transfer Objects\GetUserDTO.cs">
+    <Compile Include="..\GamesTore\GamesTore\Models\Data Transfer Objects\GetUserDTO.cs">
       <Link>Models\Linked DTOs\GetUserDTO.cs</Link>
     </Compile>
-    <Compile Include="..\GamesTore\Models\Data Transfer Objects\SetUserDTO.cs">
+    <Compile Include="..\GamesTore\GamesTore\Models\Data Transfer Objects\SetUserDTO.cs">
       <Link>Models\Linked DTOs\SetUserDTO.cs</Link>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />

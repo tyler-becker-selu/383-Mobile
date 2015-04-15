@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Games";
+}
+<div class="container">
+    <h2>Games</h2>
+
+    <form>
+        <label>Game ID (for get and delete): </label>
+        <input id="getGameId" type="number" placeholder="GameID" />
+        <br />
+        <label>game Name: </label>
+        <input id="gameName" type="text" value="Super Mario World" />
+        <br />
+        <label>release Date: </label>
+        <input id="releaseDate" type="date" value="3/11/2015" />
+        <br />
+        <label>price: </label>
+        <input id="price" type="number" value="9.99" />
+        <br />
+        <label>inventory Stock: </label>
+        <input id="inventoryStock" type="number" value="2" />
+    </form>
+
+
+        <form>
+            <label>genre: </label>
+            <input id="genre1" type="text" value="Platformer" />
+            <br />
+            <label>genre: </label>
+            <input id="genre2" type="text" placeholder="genre" />
+            <br />
+            <label>genre: </label>
+            <input id="genre3" type="text" placeholder="genre" />
+            <br />
+            <label>tag: </label>
+            <input id="tag1" type="text" value="cool" />
+            <br />
+            <label>tag: </label>
+            <input id="tag2" type="text" placeholder="tag" />
+            <br />
+            <label>tag: </label>
+            <input id="tag3" type="text" placeholder="tag" />
+            <br />
+        </form>
+    <button class="btn btn-default btn-block" type="button" value="getGames" onclick="getGames()" style="width: 100px">Get Games</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="postGame" onclick="postGame()" style="width: 100px">Post Game</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="getGame" onclick="getGame($('#getGameId').val())" style="width: 100px">Get Game</button>
+    <br />
+    <button class="btn btn-default btn-block" id="putGame" type="button" value="putGame" onclick="putGame()" disabled style="width: 100px">Put Game</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="deleteGame" onclick="deleteGame($('#getGameId').val())" style="width: 100px">Delete Game</button>
+</div>
+    @section scripts{
+        <script src="~/Scripts/AJAX/GamesTest.js"></script>
+    }

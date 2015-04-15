@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Carts";
+}
+<div class="container">
+    <h2>Carts</h2>
+    <form>
+        <label>Cart ID (for get and delete): </label>
+        <input id="getCartId" type="number" placeholder="cartID" />
+        <br />
+        <label>game: </label>
+        <input id="game1" type="text" value="Destiny" />
+        <br />
+        <label>game: </label>
+        <input id="game2" type="text" placeholder="game" />
+        <br />
+        <label>game: </label>
+        <input id="game3" type="text" placeholder="game" />
+        <br />
+    </form>
+
+    <button class="btn btn-default btn-block" type="button" value="getCarts" onclick="getCarts()" style="width: 100px">Get Carts</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="postCart" onclick="postCart()" style="width: 100px">Post Cart</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="getCart" onclick="getCart($('#getCartId').val())" style="width: 100px">Get Cart</button>
+    <br />
+    <button class="btn btn-default btn-block" id="putCart" type="button" value="putCart" onclick="putCart()" disabled style="width: 100px">Put Cart</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="deleteCart" onclick="deleteCart($('#getCartId').val())" style="width: 100px">Delet Cart</button>
+</div>
+@section scripts{
+    <script src="~/Scripts/AJAX/CartsTest.js"></script>
+}

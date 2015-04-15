@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Tags";
+}
+<div class="container">
+    <h2>Tags</h2>
+
+    <form>
+        <label>Tag ID (for get and delete): </label>
+        <input id="getTagId" type="number" placeholder="TagID" />
+        <br />
+        <label>Tag Name: </label>
+        <input id="tagName" type="text" placeholder="tag" />
+    </form>
+
+    <button class="btn btn-default btn-block" type="button" value="getTags" onclick="getTags()" style="width: 100px">Get Tags</button>
+        <br />
+    <button class="btn btn-default btn-block" type="button" value="postTag" onclick="postTag()" style="width: 100px">Post Tag</button>
+        <br />
+    <button class="btn btn-default btn-block" type="button" value="getTag" onclick="getTag($('#getTagId').val())" style="width: 100px">Get Tag</button>
+        <br />
+    <button class="btn btn-default btn-block" id="putTag" type="button" value="putTag" onclick="putTag()" disabled style="width: 100px">Put Tag</button>
+        <br />
+    <button class="btn btn-default btn-block" type="button" value="deleteTag" onclick="deleteTag($('#getTagId').val())" style="width: 100px">Delete Tag</button>
+</div>
+@section scripts{
+    <script src="~/Scripts/AJAX/TagsTest.js"></script>
+}

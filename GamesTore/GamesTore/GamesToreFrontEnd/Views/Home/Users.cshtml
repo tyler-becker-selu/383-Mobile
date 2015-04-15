@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Users";
+}
+<div class="container">
+    <h2>Users</h2>
+
+    <form>
+        <label>User ID (for get and delete): </label>
+        <input id="getUserId" type="number" placeholder="userID" />
+        <br />
+        <label>first Name: </label>
+        <input id="firstName" type="text" value="Seth" />
+        <br />
+        <label>last Name: </label>
+        <input id="lastName" type="text" value="Champagne" />
+        <br />
+        <label>email: </label>
+        <input id="email" type="email" value="seth.champagne@selu.edu" />
+        <br />
+        <label>password: </label>
+        <input id="password" type="password" value="cookie" />
+        <br />
+        <label>role: </label>
+        <input id="role" type="text" value="User" />
+    </form>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="getUsers" onclick="getUsers()" style="width: 100px">Get User</button>
+
+    <br />
+
+    <button class="btn btn-default btn-block" type="button" value="postUsers" onclick="postUsers()" style="width: 100px">Post User</button>
+    <br />
+
+    <button class="btn btn-default btn-block" type="button" value="getUsers" onclick="getUser($('#getUserId').val())" style="width: 100px">Get User</button>
+    <br />
+
+    <button class="btn btn-default btn-block" type="button" value="putUsers" onclick="putUsers()" style="width: 100px">Put User</button>
+    <br />
+
+    <button class="btn btn-default btn-block" type="button" value="deleteUser" onclick="deleteUser($('#getUserId').val())" style="width: 100px">Delete User</button>
+</div>
+@section scripts{
+    <script src="~/Scripts/AJAX/UsersTest.js"></script>
+}

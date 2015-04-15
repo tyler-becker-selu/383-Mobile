@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Genres";
+}
+<div class="container">
+    <h2>Genres</h2>
+
+    <form>
+        <label>Genre ID (for get and delete): </label>
+        <input id="getGenreId" type="number" placeholder="GenreID" />
+        <br />
+        <label>Genre Name: </label>
+        <input id="genreName" type="text" placeholder="genre" />
+    </form>
+
+    <button class="btn btn-default btn-block" type="button" value="getGenres" onclick="getGenres()" style="width: 100px">Get Genres</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="postGenre" onclick="postGenre()" style="width: 100px">Post Genre</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="getGenre" onclick="getGenre($('#getGenreId').val())" style="width: 100px">Get Genre</button>
+    <br />
+    <button class="btn btn-default btn-block" id="putGenre" type="button" value="putGenre" onclick="putGenre()" disabled style="width: 100px">Put Genre</button>
+    <br />
+    <button class="btn btn-default btn-block" type="button" value="deleteGenre" onclick="deleteGenre($('#getGenreId').val())" style="width: 100px">Delete Genre</button>
+</div>
+@section scripts{
+    <script src="~/Scripts/AJAX/GenresTest.js"></script>
+}
