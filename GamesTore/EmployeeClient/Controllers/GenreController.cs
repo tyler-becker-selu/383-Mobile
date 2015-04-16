@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using EmployeeClient.Controllers;
+using EmployeeClient.Models;
 using RestSharp;
 using System.Net;
-using GamesTore.Models.Data_Transfer_Objects;
-using GamesTore.Models;
 using Newtonsoft.Json;
-
 namespace EmployeeClient.Controllers
 {
-    public class UserController : Controller
+    public class GenreController : Controller
     {
         private RestClient client = new RestClient("http://localhost:12932/api");
 
@@ -33,12 +30,10 @@ namespace EmployeeClient.Controllers
             return Convert.ToInt32(x[x.Length - 1]);
         }
 
-        // GET: User
-        public ActionResult Index(string message)
+        // GET: Genre
+        public ActionResult Index()
         {
-            ViewBag.Message = message;
-
-            var request = new RestRequest("Users", Method.GET);
+            var request = new RestRequest("Genres", Method.GET);
             APIHeaders(request);
             request.RequestFormat = DataFormat.Json;
 
@@ -46,54 +41,55 @@ namespace EmployeeClient.Controllers
 
             if(response.StatusCode == HttpStatusCode.OK)
             {
-                IEnumerable<GetUserDTO> users = _deserializer.Deserialize<List<GetUserDTO>>(response);
+                IEnumerable<Genre> genres = _deserializer.Deserialize<List<Genre>>(response);
 
-                foreach (GetUserDTO item in users)
+                foreach(Genre item in genres)
                 {
-                    item.Id = GetID(item.URL);
+                   item.Id = GetID(item.URL);
                 }
 
-                return View(users);
+                return View(genres);
             }
 
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("Index","Home");
         }
 
-        // GET: User/Details/5
+        // GET: Genre/Details/5
         public ActionResult Details(int id)
         {
-            var request = new RestRequest("Users/{id}", Method.GET);
+            var request = new RestRequest("Genres/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
             request.RequestFormat = DataFormat.Json;
+
             var response = client.Execute(request);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                GetUserDTO user = _deserializer.Deserialize<GetUserDTO>(response);
-                return View(user);
+                Genre genre = _deserializer.Deserialize<Genre>(response);
+                return View(genre);
             }
 
             return HttpNotFound();
         }
 
-        // GET: User/Create
+        // GET: Genre/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
+        // POST: Genre/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(SetUserDTO user)
+        public ActionResult Create(Genre genre)
         {
             if(ModelState.IsValid)
             {
-                var request = new RestRequest("Users", Method.POST);
+                var request = new RestRequest("Genres", Method.POST);
                 APIHeaders(request);
 
-                var json = JsonConvert.SerializeObject(user);
+                var json = JsonConvert.SerializeObject(genre);
 
                 request.AddParameter("text/json", json, ParameterType.RequestBody);
 
@@ -103,14 +99,16 @@ namespace EmployeeClient.Controllers
                 {
                     return RedirectToAction("Index");
                 }
+
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
-        // GET: User/Edit/5
+        // GET: Genre/Edit/5
         public ActionResult Edit(int id)
         {
-            var request = new RestRequest("Users/{id}", Method.GET);
+            var request = new RestRequest("Genres/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
             request.RequestFormat = DataFormat.Json;
@@ -119,23 +117,23 @@ namespace EmployeeClient.Controllers
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                SetUserDTO user = _deserializer.Deserialize<SetUserDTO>(response);
-                return View(user);
+                Genre genre = _deserializer.Deserialize<Genre>(response);
+                return View(genre);
             }
 
-            return HttpNotFound();
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
-        // POST: User/Edit/5
+        // POST: Genre/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, SetUserDTO user)
+        public ActionResult Edit(int id, Genre genre)
         {
-            var request = new RestRequest("Users/{id}", Method.PUT);
+            var request = new RestRequest("Genres/{id}", Method.PUT);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
 
-            var json = JsonConvert.SerializeObject(user);
+            var json = JsonConvert.SerializeObject(genre);
 
             request.AddParameter("text/json", json, ParameterType.RequestBody);
 
@@ -143,16 +141,16 @@ namespace EmployeeClient.Controllers
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                return RedirectToAction("Details", new { id = id });
+                return RedirectToAction("Index");
             }
 
-            return HttpNotFound();
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
-        // GET: User/Delete/5
+        // GET: Genre/Delete/5
         public ActionResult Delete(int id)
         {
-            var request = new RestRequest("Users/{id}", Method.GET);
+            var request = new RestRequest("Genres/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
             request.RequestFormat = DataFormat.Json;
@@ -160,18 +158,19 @@ namespace EmployeeClient.Controllers
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                GetUserDTO user = _deserializer.Deserialize<GetUserDTO>(response);
-                return View(user);
+                Genre genre = _deserializer.Deserialize<Genre>(response);
+                return View(genre);
             }
 
             return HttpNotFound();
         }
 
-        // POST: User/Delete/5
+        // POST: Genre/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, string deleteMessage)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, string message)
         {
-            var request = new RestRequest("Users/{id}", Method.DELETE);
+            var request = new RestRequest("Genres/{id}", Method.DELETE);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
 
@@ -179,9 +178,9 @@ namespace EmployeeClient.Controllers
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                return RedirectToAction("Index", new { message = deleteMessage});
+                return RedirectToAction("Index");
             }
-            return HttpNotFound();
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }
