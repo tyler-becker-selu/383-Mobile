@@ -98,8 +98,8 @@ namespace EmployeeClient.Controllers
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 Genre genre = _deserializer.Deserialize<Genre>(response);
-                List<Game> gameList = GetGamesForGenre(genre.Name);
-                ViewBag.GameList = gameList;
+                genre.Games = GetGamesForGenre(genre.Name);
+
                 return View(genre);
             }
 

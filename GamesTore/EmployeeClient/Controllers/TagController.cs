@@ -182,13 +182,7 @@ namespace EmployeeClient.Controllers
                 JsonDeserializer deserial = new JsonDeserializer();
 
                 var tag = deserial.Deserialize<Tag>(APIresponse);
-                tag.Id = GetID(tag.URL);
-
-
-                List<Game> gameList = new List<Game>();
-                gameList = getGames(tag.Name);
-
-                ViewBag.gameList = gameList;
+                tag.Games = getGames(tag.Name);
 
                 return View(tag);
 
