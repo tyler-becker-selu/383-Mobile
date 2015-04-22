@@ -14,11 +14,11 @@
         android:layout_marginTop="10.0dp"
         android:layout_marginBottom="10.0dp" />
     <TextView
-        android:text="User Name"
+        android:text="Email Address"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+        android:id="@+id/UserName"
         android:layout_marginLeft="40.0dp"
         android:layout_marginTop="10.0dp"
         android:layout_marginRight="40.0dp"
@@ -32,13 +32,14 @@
         android:layout_marginLeft="40.0dp"
         android:layout_marginRight="40.0dp"
         android:layout_marginTop="5.0dp"
-        android:layout_marginBottom="10.0dp" />
+        android:layout_marginBottom="10.0dp"
+        android:inputType="textEmailAddress" />
     <TextView
         android:text="Password"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+        android:id="@+id/Password"
         android:layout_marginLeft="40.0dp"
         android:layout_marginTop="10.0dp"
         android:layout_marginRight="40.0dp"

@@ -17,9 +17,9 @@ namespace CustomerConsumer
 	{
 		private Button loginBTN;
 
-		private RestClient client = new RestClient("http://localhost:12932/");
+		public RestClient client = new RestClient("http://147.174.76.223:12932/");
 
-		//int count = 1;
+		int count = 1;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -39,9 +39,9 @@ namespace CustomerConsumer
 			// and attach an event to it
 			Button button = FindViewById<Button> (Resource.Id.myButton);
 			
-		//	button.Click += delegate {
-		//		button.Text = string.Format ("{0} clicks!", count++);
-		//	};
+			button.Click += delegate {
+				button.Text = string.Format ("{0} clicks!", count++);
+			};
 			loginBTN = FindViewById<Button> (Resource.Id.LoginBTN);
 			loginBTN.Click += delegate {
 				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
@@ -55,18 +55,24 @@ namespace CustomerConsumer
 
 		void LoginDialog_globOnLoginComplete (object sender, OnLoginEventArgs e)
 		{
-			var request = new RestRequest("ApiKey?email=" + e.UserName + "&password=" + e.Password, Method.GET);
+			var request = new RestRequest("api/ApiKey?email=" + e.UserName + "&password=" + e.Password, Method.GET);
+			request.AddHeader ("Content-Type", "application/json");
 
 			var response = client.Execute(request);
+			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
 
-			if (response.StatusCode == HttpStatusCode.OK)
-			{
-				//ApiKeys userData =  _deserializer.Deserialize<ApiKeys>(response);
-				//var x = userData.ApiKey;
-				//var y = userData.UserId;
-			
+			TextView text = FindViewById<TextView> (Resource.Id.outputText);
+			if (response.StatusCode == HttpStatusCode.OK) {
+				ApiKeys	apiKey = deserial.Deserialize<ApiKeys> (response);
+				count = 0;
+				Button button = FindViewById<Button> (Resource.Id.myButton);
+				button.Text = string.Format ("{0} clicks!", count++);
+				text.Text = string.Format (apiKey.ApiKey + "\n" + apiKey.UserId);
+			} else if (response.StatusCode == HttpStatusCode.Forbidden) {
+				text.Text = string.Format ("Incorrect email/password combination");
+			} else {
+				text.Text = string.Format ("An error has occurred");
 			}
-
 		}
 
 

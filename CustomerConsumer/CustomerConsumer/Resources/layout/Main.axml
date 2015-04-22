@@ -13,9 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/LoginBTN" />
-    <CheckBox
-        android:text="CheckBox"
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/checkBox1" />
+        android:id="@+id/outputText"
+        android:layout_marginLeft="20.0dp"
+        android:layout_marginTop="10.0dp"
+        android:layout_marginRight="20.0dp" />
 </LinearLayout>
