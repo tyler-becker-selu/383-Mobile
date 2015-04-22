@@ -64,11 +64,11 @@ namespace GamesTore.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
                 }
 
-                TagModel editedGenres = Factory.Parse(tagModel);
+                TagModel edititedTags = Factory.Parse(tagModel);
 
-                editedGenres.Id = id;
+                edititedTags.Id = id;
 
-                db.Entry(tagModel).State = EntityState.Modified;
+                db.Entry(edititedTags).State = EntityState.Modified;
 
                 try
                 {

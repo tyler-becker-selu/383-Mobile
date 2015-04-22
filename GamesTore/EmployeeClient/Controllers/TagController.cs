@@ -1,19 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Net;
+﻿using EmployeeClient.Models;
 using RestSharp;
 using RestSharp.Deserializers;
-using EmployeeClient.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+
 namespace EmployeeClient.Controllers
 {
-    public class GameController : Controller
+    public class TagController : Controller
     {
         private RestClient client = new RestClient("http://localhost:12932/");
 
         #region Algorthms
+
+        public List<Game> GetGamesForTag(string tagName)
+        {
+            List<Game> gameList = new List<Game>();
+
+            gameList = getGames(tagName);
+
+            return gameList;
+        }
+
+        private List<Game> getGames(string tagName)
+        {
+            var request = new RestRequest("api/Games", Method.GET);
+            var gameList = new List<Game>();
+
+            APIHeaders(request);
+            request.AddParameter("Tag", tagName);
+
+            var APIresponse = client.Execute(request);
+
+            if (APIresponse.StatusCode == HttpStatusCode.OK)
+            {
+                JsonDeserializer deserial = new JsonDeserializer();
+
+                gameList = deserial.Deserialize<List<Game>>(APIresponse);
+            }
+
+            return gameList;
+        }
+
 
         private void APIHeaders(RestRequest request)
         {
@@ -24,57 +55,12 @@ namespace EmployeeClient.Controllers
             }
         }
 
-
-     
-
         private int GetID(string p)
         {
             string[] x = p.Split('/');
             return Convert.ToInt32(x[x.Length - 1]);
         }
 
-        private List<Game> getGames()
-        {
-            var request = new RestRequest("api/Games", Method.GET);
-            var gameList = new List<Game>();
-
-            APIHeaders(request);
-
-            var APIresponse = client.Execute(request);
-
-            if (APIresponse.StatusCode == HttpStatusCode.OK)
-            {
-                JsonDeserializer deserial = new JsonDeserializer();
-
-                gameList = deserial.Deserialize<List<Game>>(APIresponse);
-
-                foreach (Game item in gameList)
-                {
-                    item.Id = GetID(item.URL);
-                }
-            }
-
-            return gameList;
-        }
-
-        private dynamic getGenres()
-        {
-            var request = new RestRequest("api/Genres", Method.GET);
-            var genreList = new List<Genre>();
-
-            APIHeaders(request);
-
-            var APIresponse = client.Execute(request);
-
-            if (APIresponse.StatusCode == HttpStatusCode.OK)
-            {
-                JsonDeserializer deserial = new JsonDeserializer();
-
-                genreList = deserial.Deserialize<List<Genre>>(APIresponse);
-            }
-
-            return genreList;
-        }
 
         private dynamic getTags()
         {
@@ -97,74 +83,36 @@ namespace EmployeeClient.Controllers
 
         #endregion
 
-        #region Dummy Data
-        private void AddDummyTags(Game game)
-        {
-            Tag tag = new Tag();
-            List<Tag> wee = new List<Tag>();
-            tag.Id = 1;
-            tag.Name = "Hard";
-            wee.Add(tag);
-            game.Tags = wee;
-
-        }
-
-        private void AddDummyGenre(Game game)
-        {
-            Genre genre = new Genre();
-            List<Genre> wee = new List<Genre>();
-            genre.Id = 1;
-            genre.Name = "Action";
-
-            wee.Add(genre);
-            game.Genres = wee;
-
-        }
-        #endregion
-
         #region ViewControllers
 
         // GET: Game
         public ActionResult Index()
         {
+            List<Tag> tagList = new List<Tag>();
+            tagList = getTags();
 
-            var gameList = new List<Game>();
+            foreach (Tag item in tagList)
+            {
+                item.Id = GetID(item.URL);
+            }
 
-            gameList = getGames();
-
-            return View(gameList);
+            return View(tagList);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            var genreList = new List<Genre>();
-            var tagList = new List<Tag>();
-
-            genreList = getGenres();
-            tagList = getTags();
-
-            ViewBag.Tags = tagList;
-            ViewBag.Genres = genreList;
-
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Game game)
+        public ActionResult Create(Tag tag)
         {
-            var request = new RestRequest("api/Games/", Method.POST);
+            var request = new RestRequest("api/Tags/", Method.POST);
 
             APIHeaders(request);
 
-
-
-            //////////////////////////////////Dummy Data (for now)/////////////////////////////////////
-            AddDummyGenre(game);
-            AddDummyTags(game);
-            ///////////////////////////////////////////////////////////////////////////////////////////
-
-            request.AddObject(game);
+            request.AddObject(tag);
 
             var APIresponse = client.Execute(request);
 
@@ -180,7 +128,7 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Edit(int Id)
         {
-            var request = new RestRequest("api/Games/" + Id, Method.GET);
+            var request = new RestRequest("api/Tags/" + Id, Method.GET);
 
             APIHeaders(request);
 
@@ -190,16 +138,7 @@ namespace EmployeeClient.Controllers
             {
                 JsonDeserializer deserial = new JsonDeserializer();
 
-                var genreList = new List<Genre>();
-                var tagList = new List<Tag>();
-
-                genreList = getGenres();
-                tagList = getTags();
-
-                ViewBag.Tags = tagList;
-                ViewBag.Genres = genreList;
-
-                return View(deserial.Deserialize<Game>(APIresponse));
+                return View(deserial.Deserialize<Tag>(APIresponse));
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -207,23 +146,18 @@ namespace EmployeeClient.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Game game)
+        public ActionResult Edit(Tag tag)
         {
             if (!ModelState.IsValid)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var request = new RestRequest("api/Games/" + game.Id, Method.PUT);
+            var request = new RestRequest("api/Tags/" + tag.Id, Method.PUT);
 
             APIHeaders(request);
 
-            //////////////////////////////////Dummy Data (for now)/////////////////////////////////////
-            AddDummyGenre(game);
-            AddDummyTags(game);
-            ///////////////////////////////////////////////////////////////////////////////////////////
-
-            request.AddObject(game);
+            request.AddObject(tag);
 
             var APIresponse = client.Execute(request);
 
@@ -237,7 +171,7 @@ namespace EmployeeClient.Controllers
 
         public ActionResult Details(int Id)
         {
-            var request = new RestRequest("api/Games/" + Id, Method.GET);
+            var request = new RestRequest("api/Tags/" + Id, Method.GET);
 
             APIHeaders(request);
 
@@ -247,10 +181,16 @@ namespace EmployeeClient.Controllers
             {
                 JsonDeserializer deserial = new JsonDeserializer();
 
-                var game = deserial.Deserialize<Game>(APIresponse);
-                game.Id = GetID(game.URL);
+                var tag = deserial.Deserialize<Tag>(APIresponse);
+                tag.Id = GetID(tag.URL);
 
-                return View(game);
+
+                List<Game> gameList = new List<Game>();
+                gameList = getGames(tag.Name);
+
+                ViewBag.gameList = gameList;
+
+                return View(tag);
 
             }
 
@@ -260,7 +200,7 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Delete(int Id)
         {
-            var request = new RestRequest("api/Games/" + Id, Method.GET);
+            var request = new RestRequest("api/Tags/" + Id, Method.GET);
 
             APIHeaders(request);
 
@@ -269,7 +209,7 @@ namespace EmployeeClient.Controllers
             if (APIresponse.StatusCode == HttpStatusCode.OK)
             {
                 JsonDeserializer deserial = new JsonDeserializer();
-                return View(deserial.Deserialize<Game>(APIresponse));
+                return View(deserial.Deserialize<Tag>(APIresponse));
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -277,9 +217,9 @@ namespace EmployeeClient.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Game game)
+        public ActionResult Delete(Tag tag)
         {
-            var request = new RestRequest("api/Games/" + game.Id, Method.DELETE);
+            var request = new RestRequest("api/Tags/" + tag.Id, Method.DELETE);
 
             APIHeaders(request);
 

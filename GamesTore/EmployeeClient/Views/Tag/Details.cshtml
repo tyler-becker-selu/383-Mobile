@@ -1,15 +1,22 @@
-﻿@model EmployeeClient.Models.Genre
+﻿@model EmployeeClient.Models.Tag
+
 <div>
     <h1>Details for @Model.Name</h1>
     <hr />
+    @*<dl class="dl-horizontal">
+        
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
 
+    </dl>*@
     <div class="container" style="margin-top:20px;">
         <div class="row">
             <div class="col-xs-6">
                 <h3 class="text-center">Games</h3>
                 <div class="well" style="max-height: 300px;overflow: auto;">
                     <ul class="list-group">
-                        @foreach (EmployeeClient.Models.Game item in ViewBag.GameList)
+                        @foreach (EmployeeClient.Models.Game item in ViewBag.gameList)
                         {
                             <li class="list-group-item">@item.GameName</li>
                         }

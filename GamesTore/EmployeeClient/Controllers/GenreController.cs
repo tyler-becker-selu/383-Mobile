@@ -7,6 +7,7 @@ using EmployeeClient.Models;
 using RestSharp;
 using System.Net;
 using Newtonsoft.Json;
+using RestSharp.Deserializers;
 namespace EmployeeClient.Controllers
 {
     public class GenreController : Controller
@@ -22,6 +23,36 @@ namespace EmployeeClient.Controllers
                 request.AddHeader("xcmps383authenticationkey", Session["ApiKey"].ToString());
                 request.AddHeader("xcmps383authenticationid", Session["UserId"].ToString());
             }
+        }
+
+
+        public List<Game> GetGamesForGenre(string  genreName)
+        {
+            List<Game> gameList = new List<Game>();
+
+            gameList = getGames(genreName);
+
+            return gameList;
+        }
+
+        private List<Game> getGames(string genreName)
+        {
+            var request = new RestRequest("Games", Method.GET);
+            var gameList = new List<Game>();
+
+            APIHeaders(request);
+            request.AddParameter("genre", genreName);
+
+            var APIresponse = client.Execute(request);
+
+            if (APIresponse.StatusCode == HttpStatusCode.OK)
+            {
+                JsonDeserializer deserial = new JsonDeserializer();
+
+                gameList = deserial.Deserialize<List<Game>>(APIresponse);
+            }
+
+            return gameList;
         }
 
         private int GetID(string p)
@@ -67,6 +98,8 @@ namespace EmployeeClient.Controllers
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 Genre genre = _deserializer.Deserialize<Genre>(response);
+                List<Game> gameList = GetGamesForGenre(genre.Name);
+                ViewBag.GameList = gameList;
                 return View(genre);
             }
 
