@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -17,7 +16,10 @@ namespace CustomerConsumer
 	{
 		private Button loginBTN;
 
-		private RestClient client = new RestClient("http://localhost:12932/");
+		private RestClient client = new RestClient("http://147.174.160.132:12932/api");
+		//Don't forget to change the url as appropriate.
+
+		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
 
 		//int count = 1;
 
@@ -37,7 +39,6 @@ namespace CustomerConsumer
 
 			// Get our button from the layout resource,
 			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
 			
 		//	button.Click += delegate {
 		//		button.Text = string.Format ("{0} clicks!", count++);
@@ -50,6 +51,11 @@ namespace CustomerConsumer
 				loginDialog.globOnLoginComplete += LoginDialog_globOnLoginComplete;
 			};
 
+			Button gamesBTN = FindViewById<Button> (Resource.Id.GameBTN);
+			gamesBTN.Click += (sender, e) => {
+				var intent = new Intent(this, typeof(GameActivity));
+				StartActivity(intent);
+			};
 
 		}
 
@@ -61,10 +67,9 @@ namespace CustomerConsumer
 
 			if (response.StatusCode == HttpStatusCode.OK)
 			{
-				//ApiKeys userData =  _deserializer.Deserialize<ApiKeys>(response);
-				//var x = userData.ApiKey;
-				//var y = userData.UserId;
-			
+				ApiKeys userData =  _deserializer.Deserialize<ApiKeys>(response);
+				UserSessionInfo.setApiKey (userData.ApiKey);
+				UserSessionInfo.setUserId (userData.UserId);
 			}
 
 		}

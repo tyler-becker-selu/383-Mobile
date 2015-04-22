@@ -13,6 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/LoginBTN" />
+    <Button
+        android:text="Games"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/GameBTN" />
     <CheckBox
         android:text="CheckBox"
         android:layout_width="match_parent"

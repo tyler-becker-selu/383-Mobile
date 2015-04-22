@@ -12,12 +12,16 @@
         android:queryHint="Genre"
         android:showDividers="none"
         android:inputType="text" />
-    <ListView
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1" />
+    <ListView xmlns:tools="http://schemas.android.com/tools"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/GameList"
-        xmlns:tools="http://schemas.android.com/tools"
         tools:visibility="visible" />
 </LinearLayout>
