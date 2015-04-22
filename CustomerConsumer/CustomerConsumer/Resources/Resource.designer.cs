@@ -60,6 +60,9 @@ namespace CustomerConsumer
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f05000b
+			public const int GameBTN = 2131034123;
+			
 			// aapt resource value: 0x7f050008
 			public const int GameList = 2131034120;
 			
@@ -86,6 +89,9 @@ namespace CustomerConsumer
 			
 			// aapt resource value: 0x7f05000b
 			public const int outputText = 2131034123;
+			
+			// aapt resource value: 0x7f050009
+			public const int myButton = 2131034121;
 			
 			// aapt resource value: 0x7f050007
 			public const int searchGenre = 2131034119;

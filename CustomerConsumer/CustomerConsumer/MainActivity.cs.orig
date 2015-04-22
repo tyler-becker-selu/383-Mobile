@@ -16,10 +16,14 @@ namespace CustomerConsumer
 	{
 		private Button loginBTN;
 
+<<<<<<< HEAD
+		public RestClient client = new RestClient("http://147.174.76.223:12932/");
+=======
 		private RestClient client = new RestClient("http://147.174.160.132:12932/api");
 		//Don't forget to change the url as appropriate.
 
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
+>>>>>>> LOST_FOUND_1
 
 		int count = 1;
 
@@ -65,17 +69,28 @@ namespace CustomerConsumer
 			request.AddHeader ("Content-Type", "application/json");
 
 			var response = client.Execute(request);
+<<<<<<< HEAD
 			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
 
 			TextView text = FindViewById<TextView> (Resource.Id.outputText);
 			if (response.StatusCode == HttpStatusCode.OK) {
-				ApiKeys userData =  _deserializer.Deserialize<ApiKeys>(response);
-				UserSessionInfo.setApiKey (userData.ApiKey);
-				UserSessionInfo.setUserId (userData.UserId);
+				ApiKeys	apiKey = deserial.Deserialize<ApiKeys> (response);
+				count = 0;
+				Button button = FindViewById<Button> (Resource.Id.myButton);
+				button.Text = string.Format ("{0} clicks!", count++);
+				text.Text = string.Format (apiKey.ApiKey + "\n" + apiKey.UserId);
 			} else if (response.StatusCode == HttpStatusCode.Forbidden) {
 				text.Text = string.Format ("Incorrect email/password combination");
 			} else {
 				text.Text = string.Format ("An error has occurred");
+=======
+
+			if (response.StatusCode == HttpStatusCode.OK)
+			{
+				ApiKeys userData =  _deserializer.Deserialize<ApiKeys>(response);
+				UserSessionInfo.setApiKey (userData.ApiKey);
+				UserSessionInfo.setUserId (userData.UserId);
+>>>>>>> LOST_FOUND_1
 			}
 		}
 

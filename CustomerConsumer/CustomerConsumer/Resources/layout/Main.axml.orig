@@ -13,11 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/LoginBTN" />
+<<<<<<< HEAD
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+=======
     <Button
         android:text="Games"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/GameBTN" />
+    <CheckBox
+        android:text="CheckBox"
+>>>>>>> LOST_FOUND_1
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/outputText"
