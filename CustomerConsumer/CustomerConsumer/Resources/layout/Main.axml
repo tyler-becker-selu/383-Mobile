@@ -13,15 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/LoginBTN" />
-    <Button
-        android:text="Games"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/GameBTN" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/outputText"
         android:layout_marginLeft="20.0dp"
         android:layout_marginTop="10.0dp"
         android:layout_marginRight="20.0dp" />
+    <Button
+        android:text="Games"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/GameBTN" />
 </LinearLayout>

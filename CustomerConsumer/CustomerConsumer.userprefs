@@ -2,19 +2,17 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TestMachine_API_19" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="CustomerConsumer\MainActivity.cs" Line="41" Column="32" />
-      <File FileName="CustomerConsumer\Assets\AboutAssets.txt" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\MainActivity.cs" Line="70" Column="56" />
       <File FileName="CustomerConsumer\GameActivity.cs" Line="1" Column="1" />
-      <File FileName="CustomerConsumer\DialogLogin.cs" Line="1" Column="1" />
-      <File FileName="CustomerConsumer\Model\ApiKey.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\Model\Game.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\Model\Genre.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\Model\Tag.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\Model\ApiKey.cs" Line="5" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\tyler_000\Desktop\Project\sp15-p3-g4\CustomerConsumer\CustomerConsumer\MainActivity.cs" line="66" column="1" />
-      <Breakpoint file="C:\Users\tyler_000\Desktop\Project\sp15-p3-g4\CustomerConsumer\CustomerConsumer\MainActivity.cs" line="63" column="18" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.CustomerConsumer AndroidDesignerPreferredDevice="Nexus 4" AndroidDeviceId-Debug="emulator-5554" AndroidDesignerPreferredTheme="Theme.Holo.DialogWhenLarge.NoActionBar" />
+  <MonoDevelop.Ide.ItemProperties.CustomerConsumer AndroidDesignerPreferredDevice="Nexus 4" />
 </Properties>

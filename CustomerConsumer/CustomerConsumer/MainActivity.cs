@@ -40,9 +40,8 @@ namespace CustomerConsumer
 			// Get our button from the layout resource,
 			// and attach an event to it
 			
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
-			};
+
+
 			loginBTN = FindViewById<Button> (Resource.Id.LoginBTN);
 			loginBTN.Click += delegate {
 				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
@@ -58,6 +57,7 @@ namespace CustomerConsumer
 			};
 
 		}
+
 
 		void LoginDialog_globOnLoginComplete (object sender, OnLoginEventArgs e)
 		{
