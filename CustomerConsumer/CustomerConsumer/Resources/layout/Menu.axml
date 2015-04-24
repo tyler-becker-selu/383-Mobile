@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <Button
+        android:text="Games"
+        android:layout_width="match_parent"
+        android:layout_height="122.3dp"
+        android:id="@+id/goToGames"
+        android:layout_marginLeft="20.0dp"
+        android:layout_marginRight="20.0dp"
+        android:layout_marginTop="20.9dp"
+        android:layout_marginBottom="19.2dp" />
+    <Button
+        android:text="Cart"
+        android:layout_width="match_parent"
+        android:layout_height="122.3dp"
+        android:id="@+id/goToCart"
+        android:layout_marginLeft="20.0dp"
+        android:layout_marginRight="20.0dp"
+        android:layout_marginTop="20.9dp"
+        android:layout_marginBottom="19.2dp" />
+</LinearLayout>

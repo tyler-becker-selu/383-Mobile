@@ -60,14 +60,14 @@ namespace CustomerConsumer
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f05000d
-			public const int GameBTN = 2131034125;
+			// aapt resource value: 0x7f05000c
+			public const int GameBTN = 2131034124;
 			
 			// aapt resource value: 0x7f050009
 			public const int GameList = 2131034121;
 			
-			// aapt resource value: 0x7f05000b
-			public const int LoginBTN = 2131034123;
+			// aapt resource value: 0x7f05000a
+			public const int LoginBTN = 2131034122;
 			
 			// aapt resource value: 0x7f050005
 			public const int LoginSubmitBTN = 2131034117;
@@ -87,11 +87,14 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f050008
 			public const int button1 = 2131034120;
 			
-			// aapt resource value: 0x7f05000a
-			public const int myButton = 2131034122;
+			// aapt resource value: 0x7f05000e
+			public const int goToCart = 2131034126;
 			
-			// aapt resource value: 0x7f05000c
-			public const int outputText = 2131034124;
+			// aapt resource value: 0x7f05000d
+			public const int goToGames = 2131034125;
+			
+			// aapt resource value: 0x7f05000b
+			public const int outputText = 2131034123;
 			
 			// aapt resource value: 0x7f050007
 			public const int searchGenre = 2131034119;
@@ -116,13 +119,19 @@ namespace CustomerConsumer
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int DialogLoginLayout = 2130903040;
+			public const int Cart = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Games = 2130903041;
+			public const int DialogLoginLayout = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int Main = 2130903042;
+			public const int Games = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int Main = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int Menu = 2130903044;
 			
 			static Layout()
 			{

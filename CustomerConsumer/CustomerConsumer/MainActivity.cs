@@ -11,17 +11,16 @@ using RestSharp.Deserializers;
 
 namespace CustomerConsumer
 {
-	[Activity (Label = "CustomerConsumer", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "Game Store 4", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
 		private Button loginBTN;
 
-		private RestClient client = new RestClient("http://147.174.160.132:12932/api");
+		public RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
 		//Don't forget to change the url as appropriate.
 
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
 
-		int count = 1;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -72,6 +71,8 @@ namespace CustomerConsumer
 				ApiKeys userData =  _deserializer.Deserialize<ApiKeys>(response);
 				UserSessionInfo.setApiKey (userData.ApiKey);
 				UserSessionInfo.setUserId (userData.UserId);
+				Intent myIntent = new Intent(this, typeof(MenuActivity));
+				StartActivity (myIntent);
 			} else if (response.StatusCode == HttpStatusCode.Forbidden) {
 				text.Text = string.Format ("Incorrect email/password combination");
 			} else {

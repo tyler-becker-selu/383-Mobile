@@ -58,7 +58,7 @@ namespace CustomerConsumer
 			//user clicked login submit button
 			if (globUserNameText.Length () == 0 || globPasswordText.Length () == 0) {
 				if (globPasswordText.Length () == 0) {
-					View.FindViewById<TextView> (Resource.Id.UserName).SetError("Password is Required", null);
+					globPasswordText.SetError("Password is Required", null);
 				}
 				if (globUserNameText.Length () == 0) {
 					globUserNameText.SetError("Email Address is Required", null);

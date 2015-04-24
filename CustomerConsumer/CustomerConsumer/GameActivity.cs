@@ -16,7 +16,7 @@ namespace CustomerConsumer
 	[Activity (Label = "GameActivity")]			
 	public class GameActivity : ListActivity
 	{
-		private RestClient client = new RestClient("http://147.174.160.132:12932/api");
+		private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
 		//Don't forget to change the url as appropriate.
 
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();

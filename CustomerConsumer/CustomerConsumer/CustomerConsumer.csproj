@@ -59,6 +59,8 @@
     <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\ApiKey.cs" />
     <Compile Include="UserSessionInfo.cs" />
+    <Compile Include="MenuActivity.cs" />
+    <Compile Include="CartActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -75,6 +77,8 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\DialogLoginLayout.axml" />
     <AndroidResource Include="Resources\layout\Games.axml" />
+    <AndroidResource Include="Resources\layout\Menu.axml" />
+    <AndroidResource Include="Resources\layout\Cart.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
