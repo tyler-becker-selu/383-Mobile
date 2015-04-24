@@ -61,6 +61,8 @@
     <Compile Include="UserSessionInfo.cs" />
     <Compile Include="MenuActivity.cs" />
     <Compile Include="CartActivity.cs" />
+    <Compile Include="Model\GamesForCart.cs" />
+    <Compile Include="Model\MItem1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

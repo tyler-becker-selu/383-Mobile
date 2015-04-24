@@ -25,8 +25,10 @@ namespace CustomerConsumer
 		{
 			if (UserSessionInfo.getUserId() != 0 && UserSessionInfo.getApiKey() != null)
 			{
+				string apikey = UserSessionInfo.getApiKey ();
+				int id = UserSessionInfo.getUserId ();
 				request.AddHeader("xcmps383authenticationkey", UserSessionInfo.getApiKey());
-				request.AddHeader("xcmps383authenticationid", UserSessionInfo.getUserId().ToString());
+				request.AddHeader ("xcmps383authenticationid", UserSessionInfo.getUserId ().ToString());
 			}
 		}
 
@@ -47,7 +49,7 @@ namespace CustomerConsumer
 
 		void ListItems()
 		{
-			var request = new RestRequest ("Games", Method.GET);
+			var request = new RestRequest ("api/Games", Method.GET);
 			APIHeaders (request);
 			Button gBtn = FindViewById<Button> (Resource.Id.button1);
 			var response = client.Execute (request);
