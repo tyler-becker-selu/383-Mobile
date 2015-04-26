@@ -47,6 +47,9 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f020000
 			public const int Icon = 2130837504;
 			
+			// aapt resource value: 0x7f020001
+			public const int logo = 2130837505;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -63,14 +66,14 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f050000
 			public const int CartText = 2131034112;
 			
-			// aapt resource value: 0x7f050012
-			public const int GameBTN = 2131034130;
+			// aapt resource value: 0x7f050011
+			public const int GameBTN = 2131034129;
 			
 			// aapt resource value: 0x7f05000f
 			public const int GameList = 2131034127;
 			
-			// aapt resource value: 0x7f050010
-			public const int LoginBTN = 2131034128;
+			// aapt resource value: 0x7f050012
+			public const int LoginBTN = 2131034130;
 			
 			// aapt resource value: 0x7f05000b
 			public const int LoginSubmitBTN = 2131034123;
@@ -102,8 +105,8 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f050013
 			public const int goToGames = 2131034131;
 			
-			// aapt resource value: 0x7f050011
-			public const int outputText = 2131034129;
+			// aapt resource value: 0x7f050010
+			public const int outputText = 2131034128;
 			
 			// aapt resource value: 0x7f050002
 			public const int relativeLayout1 = 2131034114;

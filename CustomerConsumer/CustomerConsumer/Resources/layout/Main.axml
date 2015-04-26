@@ -2,12 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <Button
-        android:text="Log In"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/LoginBTN" />
+    android:layout_height="fill_parent"
+    android:background="#ffffffff">
     <TextView
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
@@ -18,7 +14,17 @@
         android:layout_marginRight="20.0dp" />
     <Button
         android:text="Games"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:id="@+id/GameBTN" />
+        android:id="@+id/GameBTN"
+        android:background="#ff149c82"
+        android:layout_gravity="center_horizontal" />
+    <Button
+        android:text="Log In"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/LoginBTN"
+        android:background="#ff149c82"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp" />
 </LinearLayout>
