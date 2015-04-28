@@ -28,7 +28,7 @@ namespace CustomerConsumer
 				string apikey = UserSessionInfo.getApiKey ();
 				int id = UserSessionInfo.getUserId ();
 				request.AddHeader("xcmps383authenticationkey", UserSessionInfo.getApiKey());
-				request.AddHeader ("xcmps383authenticationid", UserSessionInfo.getUserId ().ToString());
+				request.AddHeader ("xcmps383authenticationid", UserSessionInfo.getUserId().ToString());
 			}
 		}
 
@@ -47,17 +47,40 @@ namespace CustomerConsumer
 				
 		}
 
-		void ListItems()
+		public void ListItems()
 		{
 			var request = new RestRequest ("api/Games", Method.GET);
 			APIHeaders (request);
-			Button gBtn = FindViewById<Button> (Resource.Id.button1);
 			var response = client.Execute (request);
 
 			if (response.StatusCode == HttpStatusCode.OK) 
 			{
 				IEnumerable<Game> games = _deserializer.Deserialize<List<Game>> (response);
-				gBtn.Text = games.First().GameName;
+				makeGameButtons (games.ToList ());
+			}
+		}
+		public void makeGameButtons(List<Game> games){
+			TableLayout layout = FindViewById<TableLayout>(Resource.Id.gamesList);
+			foreach (Game game in games) {
+				TableRow tRow = new TableRow (this);
+				layout.AddView (tRow);
+				Button button = new Button (this);
+				button.LayoutParameters = new TableRow.LayoutParams (
+					TableRow.LayoutParams.MatchParent,
+					TableRow.LayoutParams.WrapContent,
+					.5f);
+				tRow.AddView (button);
+				button.Text = string.Format (game.GameName);
+				TextView price = new TextView (this);
+				price.LayoutParameters = new TableRow.LayoutParams (
+					TableRow.LayoutParams.MatchParent,
+					TableRow.LayoutParams.WrapContent,
+					.5f);
+				price.TextSize = 20;
+				price.SetTextColor (Android.Graphics.Color.Black);
+				price.Gravity = GravityFlags.Right;
+				tRow.AddView (price);
+				price.Text = string.Format ("$" + game.Price);
 			}
 		}
 	}

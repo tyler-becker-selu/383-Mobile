@@ -8,6 +8,7 @@ using Android.OS;
 using RestSharp;
 using System.Net;
 using RestSharp.Deserializers;
+using Android.Graphics.Drawables;
 
 namespace CustomerConsumer
 {
@@ -32,8 +33,7 @@ namespace CustomerConsumer
 			catch (Exception ex){
 				string x = ex.Message;
 			}
-
-
+				
 			// Set our view from the "main" layout resource
 
 			// Get our button from the layout resource,
@@ -48,13 +48,7 @@ namespace CustomerConsumer
 				loginDialog.Show (transaction, "dialog fragment");
 				loginDialog.globOnLoginComplete += LoginDialog_globOnLoginComplete;
 			};
-
-			Button gamesBTN = FindViewById<Button> (Resource.Id.GameBTN);
-			gamesBTN.Click += (sender, e) => {
-				var intent = new Intent(this, typeof(GameActivity));
-				StartActivity(intent);
-			};
-
+				
 		}
 
 

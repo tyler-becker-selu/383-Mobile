@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#ffffffff">
-    <SearchView
+    <SearchView xmlns:tools="http://schemas.android.com/tools"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
@@ -15,19 +15,11 @@
         android:inputType="text"
         android:background="#ff000000"
         android:iconifiedByDefault="false"
-        xmlns:tools="http://schemas.android.com/tools"
         tools:visibility="visible" />
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button1" />
-    <ListView xmlns:tools="http://schemas.android.com/tools"
+    <TableLayout
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/GameList"
-        tools:visibility="visible"
-        android:background="#ffffffff" />
+        android:layout_height="wrap_content"
+        android:id="@+id/gamesList" />
 </LinearLayout>

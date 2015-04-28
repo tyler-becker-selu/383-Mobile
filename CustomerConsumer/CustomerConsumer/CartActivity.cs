@@ -93,6 +93,7 @@ namespace CustomerConsumer
 				tRow.AddView (price);
 				total = total + (game.m_Item1.Price);
 				price.Text = string.Format ("$" + game.m_Item1.Price);
+				price.SetTextColor (Android.Graphics.Color.Black);
 			}
 			return total;
 		}
