@@ -42,6 +42,8 @@ namespace CustomerConsumer
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
+			Dialog.SetTitle ("Login");
+
 			base.OnCreateView(inflater, container, savedInstanceState);
 			var view = inflater.Inflate (Resource.Layout.DialogLoginLayout,container, false);
 			globUserNameText = view.FindViewById<EditText> (Resource.Id.UserNameText);

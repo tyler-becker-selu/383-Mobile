@@ -71,6 +71,15 @@ namespace CustomerConsumer
 					.5f);
 				tRow.AddView (button);
 				button.Text = string.Format (game.GameName);
+
+				button.Click += delegate {
+					FragmentTransaction transaction = FragmentManager.BeginTransaction();
+					GamesDetailFragment details = new GamesDetailFragment();
+					details.Show(transaction, "dialog fragment");
+					details.setTitle(game.GameName);
+					details.setPrice(game.Price);
+				};
+
 				TextView price = new TextView (this);
 				price.LayoutParameters = new TableRow.LayoutParams (
 					TableRow.LayoutParams.MatchParent,
@@ -82,6 +91,11 @@ namespace CustomerConsumer
 				tRow.AddView (price);
 				price.Text = string.Format ("$" + game.Price);
 			}
+		}
+		private int GetID(string p)
+		{
+			string[] x = p.Split('/');
+			return Convert.ToInt32(x[x.Length - 1]);
 		}
 	}
 }
