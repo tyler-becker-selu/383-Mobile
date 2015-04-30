@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create","Game"))
 {
     @Html.AntiForgeryToken()
 
@@ -51,26 +51,28 @@
         <div class="container" style="margin-top:20px;">
             <div class="row">
                 <div class="col-xs-6">
-                    <h3 class="text-center">Tags</h3>
+                    <h3 class="text-center">
+                        @Html.LabelFor(model => model.Tags)
+                    </h3>
                     <div class="well" style="max-height: 300px;overflow: auto;">
-                        <ul class="list-group checked-list-box">
-                            @foreach (EmployeeClient.Models.Tag item in ViewBag.Tags)
+                        <ul class="list-group checked-list-box" id="tags">
+                            @foreach (EmployeeClient.Models.Tag item in Model.Tags)
                             {
                                 <li class="list-group-item">@item.Name</li>
-                                @*<li class="list-group-item" data-checked="true">Dapibus ac facilisis in</li>*@
                             }
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-xs-6">
-                    <h3 class="text-center">Genres</h3>
+                    <h3 class="text-center">
+                        @Html.LabelFor(model => model.Genres)
+                    </h3>
                     <div class="well" style="max-height: 300px;overflow: auto;">
                         <ul class="list-group checked-list-box">
-                            @foreach (EmployeeClient.Models.Genre item in ViewBag.Genres)
+                            @foreach (EmployeeClient.Models.Genre item in Model.Genres)
                             {
                                 <li class="list-group-item">@item.Name</li>
-                                @*<li class="list-group-item" data-checked="true">Dapibus ac facilisis in</li>*@
                             }
                         </ul>
                     </div>

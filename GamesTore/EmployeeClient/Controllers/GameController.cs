@@ -138,26 +138,22 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var genreList = new List<Genre>();
-            var tagList = new List<Tag>();
+            
+            Game game = new Game();
+            game.Genres = getGenres();
+            game.Tags = getTags();
 
-            genreList = getGenres();
-            tagList = getTags();
-
-            ViewBag.Tags = tagList;
-            ViewBag.Genres = genreList;
-
-            return View();
+            return View(game);
         }
 
         [HttpPost]
-        public ActionResult Create(Game game)
+        public ActionResult Create(Game game, FormCollection formCollection)
         {
             var request = new RestRequest("api/Games/", Method.POST);
 
             APIHeaders(request);
 
-
+         //   var x = formCollection["tags"];
 
             //////////////////////////////////Dummy Data (for now)/////////////////////////////////////
             AddDummyGenre(game);

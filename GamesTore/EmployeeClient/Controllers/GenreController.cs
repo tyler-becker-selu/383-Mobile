@@ -12,9 +12,8 @@ namespace EmployeeClient.Controllers
 {
     public class GenreController : Controller
     {
-        private RestClient client = new RestClient("http://localhost:12932/api");
-
-        RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
+        private RestClient client = new RestClient("http://localhost:12932/");
+        JsonDeserializer _deserializer = new JsonDeserializer();
 
         private void APIHeaders(RestRequest request)
         {
@@ -64,7 +63,7 @@ namespace EmployeeClient.Controllers
         // GET: Genre
         public ActionResult Index()
         {
-            var request = new RestRequest("Genres", Method.GET);
+            var request = new RestRequest("api/Genres", Method.GET);
             APIHeaders(request);
             request.RequestFormat = DataFormat.Json;
 

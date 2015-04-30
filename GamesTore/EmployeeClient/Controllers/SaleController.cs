@@ -3,16 +3,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EmployeeClient.Models;
+using RestSharp;
+using RestSharp.Deserializers;
+using System.Net;
 
 namespace EmployeeClient.Controllers
 {
     public class SaleController : Controller
     {
+        private RestClient client = new RestClient("http://localhost:12932/");
+
+        #region Algorthms
+
+        private void APIHeaders(RestRequest request)
+        {
+            if (Session["ApiKey"] != null && Session["UserId"] != null)
+            {
+                request.AddHeader("xcmps383authenticationkey", Session["ApiKey"].ToString());
+                request.AddHeader("xcmps383authenticationid", Session["UserId"].ToString());
+            }
+        }
+
+        private int GetID(string p)
+        {
+            string[] x = p.Split('/');
+            return Convert.ToInt32(x[x.Length - 1]);
+        }
+
+        private List<Sale> GetSales()
+        {
+            var request = new RestRequest("api/Sales", Method.GET);
+            var saleList = new List<Sale>();
+
+            APIHeaders(request);
+
+            var APIresponse = client.Execute(request);
+
+            if (APIresponse.StatusCode == HttpStatusCode.OK)
+            {
+                JsonDeserializer deserial = new JsonDeserializer();
+
+                saleList = deserial.Deserialize<List<Sale>>(APIresponse);
+
+                foreach (Sale item in saleList)
+                {
+                    item.ID = GetID(item.URL);
+                }
+            }
+
+            return saleList;
+        }
+
+
+        #endregion
+
         // GET: Sale
         public ActionResult Index()
         {
-            return View();
+            var sales = GetSales();
+            return View(sales);
         }
+
 
         // GET: Sale/Details/5
         public ActionResult Details(int id)
