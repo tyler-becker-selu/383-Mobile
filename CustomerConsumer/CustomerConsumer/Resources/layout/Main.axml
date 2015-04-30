@@ -4,20 +4,30 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#ffffffff">
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceLarge"
+    <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/outputText"
-        android:layout_marginLeft="20.0dp"
-        android:layout_marginTop="10.0dp"
-        android:layout_marginRight="20.0dp" />
-    <Button
+        android:id="@+id/space1"
+        android:layout_weight="1" />
         android:text="Log In"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
         android:id="@+id/LoginBTN"
         android:background="#ff149c82"
-        android:layout_gravity="center"
-        android:layout_marginTop="194.9dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="20dp" />
+    <TextView
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@android:color/holo_red_dark"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/outputText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="20dp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/space2"
+        android:layout_weight="1" />
 </LinearLayout>

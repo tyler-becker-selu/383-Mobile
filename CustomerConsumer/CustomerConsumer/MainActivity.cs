@@ -18,7 +18,6 @@ namespace CustomerConsumer
 		private Button loginBTN;
 
 		public RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
-		//Don't forget to change the url as appropriate.
 
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
 
@@ -42,6 +41,7 @@ namespace CustomerConsumer
 
 
 			loginBTN = FindViewById<Button> (Resource.Id.LoginBTN);
+			loginBTN.TextSize = 50;
 			loginBTN.Click += delegate {
 				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 				DialogLogin loginDialog = new DialogLogin ();

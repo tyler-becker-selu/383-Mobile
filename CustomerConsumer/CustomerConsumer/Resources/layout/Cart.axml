@@ -7,14 +7,28 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <TextView
-            android:text="This is the cart"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/CartText"
-            android:layout_margin="10.0dp"
-            android:textColor="@android:color/black" />
+            android:id="@+id/linearLayout2">
+            <Button
+                android:text="Go To Games"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button1"
+                android:layout_weight="1"
+                android:layout_margin="10dp" />
+            <Button
+                android:text="Update Cart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button2"
+                android:layout_weight="1"
+                android:layout_margin="10dp" />
+        </LinearLayout>
         <TableLayout
             android:minWidth="25px"
             android:minHeight="25px"

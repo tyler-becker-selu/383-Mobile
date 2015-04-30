@@ -16,14 +16,14 @@ namespace CustomerConsumer
 	{
 		private Button loginBTN;
 
-<<<<<<< HEAD
-		public RestClient client = new RestClient("http://147.174.76.223:12932/");
-=======
+<<<<<<< Updated upstream
 		private RestClient client = new RestClient("http://147.174.160.132:12932/api");
 		//Don't forget to change the url as appropriate.
 
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
->>>>>>> LOST_FOUND_1
+=======
+		public RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
+>>>>>>> Stashed changes
 
 		int count = 1;
 
@@ -44,9 +44,8 @@ namespace CustomerConsumer
 			// Get our button from the layout resource,
 			// and attach an event to it
 			
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
-			};
+
+
 			loginBTN = FindViewById<Button> (Resource.Id.LoginBTN);
 			loginBTN.Click += delegate {
 				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
@@ -63,34 +62,24 @@ namespace CustomerConsumer
 
 		}
 
+
 		void LoginDialog_globOnLoginComplete (object sender, OnLoginEventArgs e)
 		{
 			var request = new RestRequest("api/ApiKey?email=" + e.UserName + "&password=" + e.Password, Method.GET);
 			request.AddHeader ("Content-Type", "application/json");
 
 			var response = client.Execute(request);
-<<<<<<< HEAD
 			RestSharp.Deserializers.JsonDeserializer deserial= new JsonDeserializer();
 
 			TextView text = FindViewById<TextView> (Resource.Id.outputText);
 			if (response.StatusCode == HttpStatusCode.OK) {
-				ApiKeys	apiKey = deserial.Deserialize<ApiKeys> (response);
-				count = 0;
-				Button button = FindViewById<Button> (Resource.Id.myButton);
-				button.Text = string.Format ("{0} clicks!", count++);
-				text.Text = string.Format (apiKey.ApiKey + "\n" + apiKey.UserId);
+				ApiKeys userData =  _deserializer.Deserialize<ApiKeys>(response);
+				UserSessionInfo.setApiKey (userData.ApiKey);
+				UserSessionInfo.setUserId (userData.UserId);
 			} else if (response.StatusCode == HttpStatusCode.Forbidden) {
 				text.Text = string.Format ("Incorrect email/password combination");
 			} else {
 				text.Text = string.Format ("An error has occurred");
-=======
-
-			if (response.StatusCode == HttpStatusCode.OK)
-			{
-				ApiKeys userData =  _deserializer.Deserialize<ApiKeys>(response);
-				UserSessionInfo.setApiKey (userData.ApiKey);
-				UserSessionInfo.setUserId (userData.UserId);
->>>>>>> LOST_FOUND_1
 			}
 		}
 
