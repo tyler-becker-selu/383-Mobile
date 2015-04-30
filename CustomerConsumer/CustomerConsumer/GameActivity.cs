@@ -14,12 +14,12 @@ using System.Net;
 namespace CustomerConsumer
 {
 	[Activity (Label = "GameActivity")]			
-	public class GameActivity : ListActivity
+	public class GameActivity : Activity
 	{
 		private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
 		//Don't forget to change the url as appropriate.
-
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
+		private List<Game> gamesList;
 
 		private void APIHeaders(RestRequest request)
 		{
@@ -46,7 +46,7 @@ namespace CustomerConsumer
 			ListItems ();
 				
 		}
-
+			
 		public void ListItems()
 		{
 			var request = new RestRequest ("api/Games", Method.GET);
@@ -55,47 +55,23 @@ namespace CustomerConsumer
 
 			if (response.StatusCode == HttpStatusCode.OK) 
 			{
+				ListView listView;
+				listView = FindViewById<ListView> (Resource.Id.listOfGames);
 				IEnumerable<Game> games = _deserializer.Deserialize<List<Game>> (response);
-				makeGameButtons (games.ToList ());
+				gamesList = games.ToList ();
+				listView.Adapter = new GamesAdapter (this, gamesList);
+				listView.ItemClick += OnGameClick;
 			}
 		}
-		public void makeGameButtons(List<Game> games){
-			TableLayout layout = FindViewById<TableLayout>(Resource.Id.gamesList);
-			foreach (Game game in games) {
-				TableRow tRow = new TableRow (this);
-				layout.AddView (tRow);
-				Button button = new Button (this);
-				button.LayoutParameters = new TableRow.LayoutParams (
-					TableRow.LayoutParams.MatchParent,
-					TableRow.LayoutParams.WrapContent,
-					.5f);
-				tRow.AddView (button);
-				button.Text = string.Format (game.GameName);
-
-				button.Click += delegate {
-					FragmentTransaction transaction = FragmentManager.BeginTransaction();
-					GamesDetailFragment details = new GamesDetailFragment();
-					details.Show(transaction, "dialog fragment");
-					details.setTitle(game.GameName);
-					details.setPrice(game.Price);
-				};
-
-				TextView price = new TextView (this);
-				price.LayoutParameters = new TableRow.LayoutParams (
-					TableRow.LayoutParams.MatchParent,
-					TableRow.LayoutParams.WrapContent,
-					.5f);
-				price.TextSize = 20;
-				price.SetTextColor (Android.Graphics.Color.Black);
-				price.Gravity = GravityFlags.Right;
-				tRow.AddView (price);
-				price.Text = string.Format ("$" + game.Price);
-			}
-		}
-		private int GetID(string p)
+		public void OnGameClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			string[] x = p.Split('/');
-			return Convert.ToInt32(x[x.Length - 1]);
+			var listView = sender as ListView;
+			Game t = gamesList[e.Position];
+			FragmentTransaction transaction = FragmentManager.BeginTransaction();
+			GamesDetailFragment details = new GamesDetailFragment();
+			details.Show(transaction, "dialog fragment");
+			details.setName(t.GameName);
+			details.setPrice(t.Price);
 		}
 	}
 }

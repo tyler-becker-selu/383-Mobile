@@ -64,6 +64,7 @@
     <Compile Include="Model\GamesForCart.cs" />
     <Compile Include="Model\MItem1.cs" />
     <Compile Include="GamesDetailFragment.cs" />
+    <Compile Include="GamesAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
