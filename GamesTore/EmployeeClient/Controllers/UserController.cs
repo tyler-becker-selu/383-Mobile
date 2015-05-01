@@ -14,7 +14,7 @@ namespace EmployeeClient.Controllers
 {
     public class UserController : Controller
     {
-        private RestClient client = new RestClient("http://localhost:12932/api");
+        private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/api");
 
         RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
 

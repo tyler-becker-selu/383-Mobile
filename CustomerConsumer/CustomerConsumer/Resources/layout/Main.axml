@@ -6,16 +6,15 @@
     android:background="#ffffffff">
     <Space
         android:layout_width="match_parent"
+        android:layout_height="366.9dp"
+        android:id="@+id/space1" />
+    <Button
+        android:text="Login"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:id="@+id/space1"
-        android:layout_weight="1" />
-        android:text="Log In"
         android:id="@+id/LoginBTN"
         android:background="#ff149c82"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_margin="20dp" />
+        android:layout_gravity="center" />
     <TextView
         android:gravity="center_vertical|center_horizontal"
         android:textColor="@android:color/holo_red_dark"
@@ -25,9 +24,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_margin="20dp" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/space2"
-        android:layout_weight="1" />
 </LinearLayout>

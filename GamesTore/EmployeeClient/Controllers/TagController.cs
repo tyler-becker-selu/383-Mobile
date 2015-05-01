@@ -12,7 +12,7 @@ namespace EmployeeClient.Controllers
 {
     public class TagController : Controller
     {
-        private RestClient client = new RestClient("http://localhost:12932/");
+        private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
 
         #region Algorthms
 

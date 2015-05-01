@@ -45,13 +45,19 @@ namespace CustomerConsumer
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int delete = 2130837504;
+			public const int big = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int Icon = 2130837505;
+			public const int delete = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int logo = 2130837506;
+			public const int huge = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int Icon = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int med = 2130837508;
 			
 			static Drawable()
 			{
@@ -66,28 +72,32 @@ namespace CustomerConsumer
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050012
-			public const int GameList = 2131034130;
+			// aapt resource value: 0x7f05001f
+			public const int LoginBTN = 2131034143;
 			
-			// aapt resource value: 0x7f050011
-			public const int GameBTN = 2131034129;
-			// aapt resource value: 0x7f050016
-			public const int LoginBTN = 2131034134;
-			
-			public const int GameList = 2131034127;
+			// aapt resource value: 0x7f05000f
 			public const int LoginSubmitBTN = 2131034127;
-			// aapt resource value: 0x7f050012
-			public const int LoginBTN = 2131034130;
+			
 			// aapt resource value: 0x7f05000d
 			public const int Password = 2131034125;
 			
 			// aapt resource value: 0x7f05000e
 			public const int PasswordText = 2131034126;
+			
 			// aapt resource value: 0x7f05000b
 			public const int UserName = 2131034123;
 			
 			// aapt resource value: 0x7f05000c
 			public const int UserNameText = 2131034124;
+			
+			// aapt resource value: 0x7f050018
+			public const int addMe = 2131034136;
+			
+			// aapt resource value: 0x7f05001c
+			public const int addToCart = 2131034140;
+			
+			// aapt resource value: 0x7f05001e
+			public const int back = 2131034142;
 			
 			// aapt resource value: 0x7f050001
 			public const int button1 = 2131034113;
@@ -104,73 +114,65 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f050007
 			public const int checkout = 2131034119;
 			
-			// aapt resource value: 0x7f050018
-			public const int goToCart = 2131034136;
+			// aapt resource value: 0x7f050013
+			public const int gameName = 2131034131;
 			
-			// aapt resource value: 0x7f05000e
-			public const int button1 = 2131034126;
-			// aapt resource value: 0x7f050017
-			public const int goToGames = 2131034135;
+			// aapt resource value: 0x7f050022
+			public const int goToCart = 2131034146;
+			
+			// aapt resource value: 0x7f050021
+			public const int goToGames = 2131034145;
 			
 			// aapt resource value: 0x7f050014
-			public const int button2 = 2131034132;
+			public const int itemPrice = 2131034132;
+			
+			// aapt resource value: 0x7f05001b
+			public const int linearLayout1 = 2131034139;
 			
 			// aapt resource value: 0x7f050000
 			public const int linearLayout2 = 2131034112;
 			
-			// aapt resource value: 0x7f050015
-			public const int outputText = 2131034133;
+			// aapt resource value: 0x7f050012
+			public const int linearLayout3 = 2131034130;
 			
-			// aapt resource value: 0x7f050014
-			public const int goToCart = 2131034132;
-			// aapt resource value: 0x7f05000f
-			public const int gameName = 2131034127;
+			// aapt resource value: 0x7f050017
+			public const int linearLayout4 = 2131034135;
+			
+			// aapt resource value: 0x7f050011
+			public const int listOfGames = 2131034129;
+			
+			// aapt resource value: 0x7f050016
+			public const int numberPicker1 = 2131034134;
+			
+			// aapt resource value: 0x7f050020
+			public const int outputText = 2131034144;
+			
 			// aapt resource value: 0x7f050004
 			public const int relativeLayout1 = 2131034116;
 			
-			// aapt resource value: 0x7f050013
-			public const int goToGames = 2131034131;
-			// aapt resource value: 0x7f050011
-			public const int searchGenre = 2131034129;
-			
-			// aapt resource value: 0x7f050017
-			public const int goToGames = 2131034135;
-			
-			// aapt resource value: 0x7f050013
-			public const int outputText = 2131034128;
-			public const int itemPrice = 2131034128;
-			public const int space1 = 2131034131;
-			
-			// aapt resource value: 0x7f050011
-			public const int linearLayout1 = 2131034129;
-			
-			// aapt resource value: 0x7f05000d
-			public const int linearLayout2 = 2131034125;
-			
-			// aapt resource value: 0x7f05000e
-			public const int listOfGames = 2131034126;
+			// aapt resource value: 0x7f05001d
+			public const int space1 = 2131034141;
 			
 			// aapt resource value: 0x7f050015
-			public const int outputText = 2131034133;
+			public const int space2 = 2131034133;
 			
-			// aapt resource value: 0x7f050016
-			public const int space2 = 2131034134;
+			// aapt resource value: 0x7f05001a
+			public const int space3 = 2131034138;
 			
-			// aapt resource value: 0x7f05000d
-			public const int searchGenre = 2131034125;
-			// aapt resource value: 0x7f050013
-			public const int space1 = 2131034131;
+			// aapt resource value: 0x7f050019
+			public const int subMe = 2131034137;
+			
 			// aapt resource value: 0x7f05000a
 			public const int textView1 = 2131034122;
+			
+			// aapt resource value: 0x7f050023
+			public const int textView2 = 2131034147;
 			
 			// aapt resource value: 0x7f050010
 			public const int textView3 = 2131034128;
 			
-			// aapt resource value: 0x7f050019
-			public const int textView2 = 2131034137;
 			// aapt resource value: 0x7f050008
 			public const int textViewTest = 2131034120;
-			
 			
 			// aapt resource value: 0x7f050005
 			public const int textview = 2131034117;
@@ -201,18 +203,19 @@ namespace CustomerConsumer
 			public const int DialogLoginLayout = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int Main = 2130903043;
-			public const int GamesDetailsLayout = 2130903043;
 			public const int Games = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int Main = 2130903044;
+			public const int GamesDetailsLayout = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int Menu = 2130903045;
+			public const int Main = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int Test = 2130903046;
+			public const int Menu = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int Test = 2130903047;
 			
 			static Layout()
 			{
