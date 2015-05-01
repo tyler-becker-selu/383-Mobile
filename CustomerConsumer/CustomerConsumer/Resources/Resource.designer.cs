@@ -26,6 +26,8 @@ namespace CustomerConsumer
 		
 		public static void UpdateIdValues()
 		{
+			global::AutoMapper.Android.Resource.String.ApplicationName = global::CustomerConsumer.Resource.String.ApplicationName;
+			global::AutoMapper.Android.Resource.String.Hello = global::CustomerConsumer.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -235,6 +237,12 @@ namespace CustomerConsumer
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f040003
+			public const int ApplicationName = 2130968579;
+			
+			// aapt resource value: 0x7f040002
+			public const int Hello = 2130968578;
 			
 			// aapt resource value: 0x7f040001
 			public const int app_name = 2130968577;
