@@ -31,10 +31,10 @@ namespace EmployeeClient.Controllers
             return Convert.ToInt32(x[x.Length - 1]);
         }
 
-        private List<Sale> GetSales()
+        private List<GamesForCart> GetSales()
         {
             var request = new RestRequest("api/Sales", Method.GET);
-            var saleList = new List<Sale>();
+            var saleList = new List<GamesForCart>();
 
             APIHeaders(request);
 
@@ -44,12 +44,7 @@ namespace EmployeeClient.Controllers
             {
                 JsonDeserializer deserial = new JsonDeserializer();
 
-                saleList = deserial.Deserialize<List<Sale>>(APIresponse);
-
-                foreach (Sale item in saleList)
-                {
-                    item.ID = GetID(item.URL);
-                }
+                saleList = deserial.Deserialize<List<GamesForCart>>(APIresponse);
             }
 
             return saleList;

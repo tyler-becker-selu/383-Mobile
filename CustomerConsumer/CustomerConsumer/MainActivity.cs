@@ -18,7 +18,6 @@ namespace CustomerConsumer
 		private Button loginBTN;
 
 		public RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
-		//Don't forget to change the url as appropriate.
 
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
 
@@ -38,8 +37,6 @@ namespace CustomerConsumer
 
 			// Get our button from the layout resource,
 			// and attach an event to it
-			
-
 
 			loginBTN = FindViewById<Button> (Resource.Id.LoginBTN);
 			loginBTN.Click += delegate {

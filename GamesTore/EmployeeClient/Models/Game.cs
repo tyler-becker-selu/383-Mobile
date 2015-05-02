@@ -17,7 +17,7 @@ namespace EmployeeClient.Models
         public string GameName { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Release Date")]
         public DateTime ReleaseDate { get; set; }
         public decimal Price { get; set; }

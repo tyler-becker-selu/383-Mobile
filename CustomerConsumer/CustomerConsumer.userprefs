@@ -1,15 +1,15 @@
 ﻿<Properties StartupItem="CustomerConsumer\CustomerConsumer.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TestMachine_API_19" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CustomerConsumer\MainActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CustomerConsumer\GameActivity.cs">
     <Files>
-      <File FileName="CustomerConsumer\MainActivity.cs" Line="15" Column="2" />
-      <File FileName="CustomerConsumer\GameActivity.cs" Line="44" Column="5" />
-      <File FileName="CustomerConsumer\CartActivity.cs" Line="43" Column="43" />
-      <File FileName="CustomerConsumer\GamesDetailFragment.cs" Line="33" Column="24" />
-      <File FileName="CustomerConsumer\DialogLogin.cs" Line="40" Column="37" />
-      <File FileName="CustomerConsumer\GamesAdapter.cs" Line="34" Column="4" />
-      <File FileName="CustomerConsumer\CustomActivity.cs" Line="17" Column="37" />
-      <File FileName="CustomerConsumer\MenuActivity.cs" Line="26" Column="56" />
+      <File FileName="CustomerConsumer\MainActivity.cs" Line="64" Column="49" />
+      <File FileName="CustomerConsumer\CartActivity.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\GamesDetailFragment.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\Properties\AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\GameActivity.cs" Line="16" Column="81" />
+      <File FileName="CustomerConsumer\Model\Game.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\Model\GamesForCart.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\obj\Debug\android\AndroidManifest.xml" Line="12" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

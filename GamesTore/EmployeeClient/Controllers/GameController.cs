@@ -9,94 +9,10 @@ using RestSharp.Deserializers;
 using EmployeeClient.Models;
 namespace EmployeeClient.Controllers
 {
-    public class GameController : Controller
+    [AuthController(AccessLevel="Admin")]
+    public class GameController : BaseController
     {
-        private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
-
-        #region Algorthms
-
-        private void APIHeaders(RestRequest request)
-        {
-            if (Session["ApiKey"] != null && Session["UserId"] != null)
-            {
-                request.AddHeader("xcmps383authenticationkey", Session["ApiKey"].ToString());
-                request.AddHeader("xcmps383authenticationid", Session["UserId"].ToString());
-            }
-        }
-
-
      
-
-        private int GetID(string p)
-        {
-            string[] x = p.Split('/');
-            return Convert.ToInt32(x[x.Length - 1]);
-        }
-
-        private List<Game> getGames()
-        {
-            var request = new RestRequest("api/Games", Method.GET);
-            var gameList = new List<Game>();
-
-            APIHeaders(request);
-
-            var APIresponse = client.Execute(request);
-
-            if (APIresponse.StatusCode == HttpStatusCode.OK)
-            {
-                JsonDeserializer deserial = new JsonDeserializer();
-
-                gameList = deserial.Deserialize<List<Game>>(APIresponse);
-
-                foreach (Game item in gameList)
-                {
-                    item.Id = GetID(item.URL);
-                }
-            }
-
-            return gameList;
-        }
-
-        private dynamic getGenres()
-        {
-            var request = new RestRequest("api/Genres", Method.GET);
-            var genreList = new List<Genre>();
-
-            APIHeaders(request);
-
-            var APIresponse = client.Execute(request);
-
-            if (APIresponse.StatusCode == HttpStatusCode.OK)
-            {
-                JsonDeserializer deserial = new JsonDeserializer();
-
-                genreList = deserial.Deserialize<List<Genre>>(APIresponse);
-            }
-
-            return genreList;
-        }
-
-        private dynamic getTags()
-        {
-            var request = new RestRequest("api/Tags", Method.GET);
-            var genreList = new List<Tag>();
-
-            APIHeaders(request);
-
-            var APIresponse = client.Execute(request);
-
-            if (APIresponse.StatusCode == HttpStatusCode.OK)
-            {
-                JsonDeserializer deserial = new JsonDeserializer();
-
-                genreList = deserial.Deserialize<List<Tag>>(APIresponse);
-            }
-
-            return genreList;
-        }
-
-        #endregion
-
         #region Dummy Data
         private void AddDummyTags(Game game)
         {
@@ -138,7 +54,7 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            
+
             Game game = new Game();
             game.Genres = getGenres();
             game.Tags = getTags();
@@ -147,20 +63,13 @@ namespace EmployeeClient.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Game game, FormCollection formCollection)
+        public ActionResult Create(Game game)
         {
             var request = new RestRequest("api/Games/", Method.POST);
-
+            request.RequestFormat = DataFormat.Json;
             APIHeaders(request);
 
-         //   var x = formCollection["tags"];
-
-            //////////////////////////////////Dummy Data (for now)/////////////////////////////////////
-            AddDummyGenre(game);
-            AddDummyTags(game);
-            ///////////////////////////////////////////////////////////////////////////////////////////
-
-            request.AddObject(game);
+            request.AddBody(game);
 
             var APIresponse = client.Execute(request);
 

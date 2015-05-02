@@ -64,6 +64,7 @@
     <Compile Include="Model\GamesForCart.cs" />
     <Compile Include="Model\MItem1.cs" />
     <Compile Include="GamesDetailFragment.cs" />
+    <Compile Include="DialogCheckout.cs" />
     <Compile Include="GamesAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +84,15 @@
     <AndroidResource Include="Resources\layout\Games.axml" />
     <AndroidResource Include="Resources\layout\Menu.axml" />
     <AndroidResource Include="Resources\layout\Cart.axml" />
-    <AndroidResource Include="Resources\drawable-hdpi\logo.png" />
     <AndroidResource Include="Resources\layout\Test.axml" />
     <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
+    <AndroidResource Include="Resources\layout\DialogCheckoutLayout.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\huge.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\big.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\med.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\small.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\smallMed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

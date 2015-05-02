@@ -14,12 +14,13 @@ using Android.Widget;
 
 namespace CustomerConsumer
 {
+	
 	public class GamesDetailFragment : DialogFragment
 	{
-		private string _name;
-		private decimal _price;
-		private TextView priceText;
-		private TextView gmName;
+		private Game _detailedGame;
+		private TextView _priceText;
+		private TextView _gmName;
+		private NumberPicker _numPicker;
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
@@ -27,21 +28,27 @@ namespace CustomerConsumer
 
 			base.OnCreateView (inflater, container, savedInstanceState);
 			var view = inflater.Inflate (Resource.Layout.GamesDetailsLayout,container, false);
-			priceText = view.FindViewById<TextView> (Resource.Id.itemPrice);
-			priceText.Text = _price.ToString();
-			gmName = view.FindViewById<TextView> (Resource.Id.gameName);
-			gmName.Text = _name;
+			_priceText = view.FindViewById<TextView> (Resource.Id.itemPrice);
+			_priceText.Text = "$" + _detailedGame.Price.ToString();
+
+			_gmName = view.FindViewById<TextView> (Resource.Id.gameName);
+			_gmName.Text = _detailedGame.GameName;
+
+			_numPicker = view.FindViewById<NumberPicker> (Resource.Id.numberPicker1);
+			_numPicker.MinValue = 1;
+			_numPicker.MaxValue = _detailedGame.InventoryStock;
+			_numPicker.ValueChanged += delegate {
+				onValueChange(_numPicker.Value);	
+			};
 
 			return view;
 		}
-
-		public void setName(string name)
-		{
-			_name = name;
+		public void onValueChange(int newVal){
+			_priceText.Text = "$" + (_detailedGame.Price * newVal);
 		}
-		public void setPrice(decimal price)
+		public void setGame(Game detailedGame)
 		{
-			_price = price;
+			_detailedGame = detailedGame;
 		}
 	}
 }

@@ -12,8 +12,10 @@ namespace EmployeeClient.Controllers
 {
     public class GenreController : Controller
     {
+
         private RestClient client = new RestClient("http://localhost:12932/");
         JsonDeserializer _deserializer = new JsonDeserializer();
+
 
         private void APIHeaders(RestRequest request)
         {

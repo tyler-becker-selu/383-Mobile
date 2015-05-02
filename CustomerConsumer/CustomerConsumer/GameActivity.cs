@@ -13,7 +13,7 @@ using System.Net;
 
 namespace CustomerConsumer
 {
-	[Activity (Label = "GameActivity")]			
+	[Activity (Label = "GameActivity", Theme="@android:style/Theme.Black.NoTitleBar")]			
 	public class GameActivity : Activity
 	{
 		private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
@@ -70,8 +70,7 @@ namespace CustomerConsumer
 			FragmentTransaction transaction = FragmentManager.BeginTransaction();
 			GamesDetailFragment details = new GamesDetailFragment();
 			details.Show(transaction, "dialog fragment");
-			details.setName(t.GameName);
-			details.setPrice(t.Price);
+			details.setGame(t);
 		}
 	}
 }

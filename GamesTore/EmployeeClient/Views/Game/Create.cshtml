@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Create","Game"))
+@using (Html.BeginForm("Create", "Game"))
 {
     @Html.AntiForgeryToken()
 
@@ -19,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.GameName, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.GameName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.GameName, new { htmlAttributes = new { @class = "form-control", @id = "name" } })
                 @Html.ValidationMessageFor(model => model.GameName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control", @id = "releaseDate" } })
                 @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,15 +35,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @id ="price"} })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.InventoryStock, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.InventoryStock, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.InventoryStock, new { htmlAttributes = new { @class = "form-control", @id = "inventory" } })
                 @Html.ValidationMessageFor(model => model.InventoryStock, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -58,7 +58,7 @@
                         <ul class="list-group checked-list-box" id="tags">
                             @foreach (EmployeeClient.Models.Tag item in Model.Tags)
                             {
-                                <li class="list-group-item">@item.Name</li>
+                                <li class="list-group-item" id="@item.Id">@item.Name</li>
                             }
                         </ul>
                     </div>
@@ -69,10 +69,10 @@
                         @Html.LabelFor(model => model.Genres)
                     </h3>
                     <div class="well" style="max-height: 300px;overflow: auto;">
-                        <ul class="list-group checked-list-box">
+                        <ul class="list-group checked-list-box" id="genres">
                             @foreach (EmployeeClient.Models.Genre item in Model.Genres)
                             {
-                                <li class="list-group-item">@item.Name</li>
+                                <li class="list-group-item" id="@item.Id">@item.Name</li>
                             }
                         </ul>
                     </div>
@@ -82,16 +82,17 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary pull-right" />
+                
+                <input value="Create" onclick="createGame()" class="btn btn-primary pull-right" />
+
             </div>
         </div>
     </div>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
 </div>
-
+<script src="~/Scripts/CustomScripts/Game.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

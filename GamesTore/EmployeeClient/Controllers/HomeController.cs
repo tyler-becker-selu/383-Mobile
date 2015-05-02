@@ -10,21 +10,13 @@ using GamesTore.Models.Data_Transfer_Objects;
 
 namespace EmployeeClient.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private RestClient client = new RestClient("http://localhost:12932/api/");
 
         RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
 
-        private void APIHeaders(RestRequest request)
-        {
-            if (Session["ApiKey"] != null && Session["UserId"] != null)
-            {
-                request.AddHeader("xcmps383authenticationkey", Session["ApiKey"].ToString());
-                request.AddHeader("xcmps383authenticationid", Session["UserId"].ToString());
-            }
-        }
-
+        [AuthController(AccessLevel = "Employee")]
         public ActionResult Index()
         {
             if (Session["ApiKey"] == null || Session["UserId"] == null)
@@ -63,6 +55,7 @@ namespace EmployeeClient.Controllers
         {
             Session["UserId"] = null;
             Session["ApiKey"] = null;
+            Session["Role"] = null;
 
             return RedirectToAction("Login");
         }

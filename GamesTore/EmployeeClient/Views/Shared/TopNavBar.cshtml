@@ -12,14 +12,19 @@
             @if (Session["UserId"] != null)
             {
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Users", "Index", "User")</li>
+                    @if (Session["Role"].ToString().Equals("Admin"))
+                    {
+                        <li>@Html.ActionLink("Users", "Index", "User")</li>
+                        <li>@Html.ActionLink("Genres", "Index", "Genre")</li>
+                        <li>@Html.ActionLink("Tags", "Index", "Tag")</li>
+                    }
+                    
                     <li>@Html.ActionLink("Games", "Index", "Game")</li>
-                    <li>@Html.ActionLink("Genres", "Index", "Genre")</li>
-                    <li>@Html.ActionLink("Tags", "Index", "Tag")</li>
+
                 </ul>
-                
+
                 <ul class="nav navbar-nav navbar-right">
-                     <li> @Html.ActionLink("Log Out", "Logout", "Home")</li>
+                    <li> @Html.ActionLink("Log Out", "Logout", "Home")</li>
                 </ul>
             }
             else
