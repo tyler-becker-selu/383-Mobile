@@ -5,16 +5,6 @@
     android:layout_height="fill_parent"
     android:background="#ff8a8a8a">
     <TextView
-        android:text="Log In"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:layout_marginLeft="20.0dp"
-        android:layout_marginRight="20.0dp"
-        android:layout_marginTop="10.0dp"
-        android:layout_marginBottom="10.0dp" />
-    <TextView
         android:text="Email Address"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"

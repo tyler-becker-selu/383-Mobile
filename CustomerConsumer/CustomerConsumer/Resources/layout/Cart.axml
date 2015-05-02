@@ -18,7 +18,7 @@
                 android:text="Go To Games"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/button1"
+                android:id="@+id/cartToGames"
                 android:layout_weight="1"
                 android:layout_margin="10dp" />
             <Button
@@ -36,7 +36,33 @@
             android:layout_height="match_parent"
             android:id="@+id/buttonLayoutCart"
             android:layout_marginLeft="20.0dp"
-            android:layout_marginRight="20.0dp" />
+            android:layout_marginRight="20.0dp">
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/tableRow1">
+                <TextView
+                    android:textColor="@android:color/black"
+                    android:text="Game"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView1"
+                    android:layout_weight="1" />
+                <TextView
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    android:text="Unit Price"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView2"
+                    android:layout_weight="1" />
+                <TextView
+                    android:textColor="@android:color/black"
+                    android:gravity="right"
+                    android:text="Quantity"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView3"
+                    android:layout_weight="1" />
+            </TableRow>
+        </TableLayout>
         <RelativeLayout
             android:minWidth="25px"
             android:minHeight="25px"
@@ -67,12 +93,12 @@
         <Button
             android:text="Checkout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/checkout"
             android:layout_marginLeft="30.0dp"
             android:layout_marginRight="30.0dp"
             android:layout_marginTop="20.0dp"
             android:layout_marginBottom="20.0dp"
-            android:background="#ff149c82" />
+            android:layout_weight="1" />
     </LinearLayout>
 </ScrollView>
