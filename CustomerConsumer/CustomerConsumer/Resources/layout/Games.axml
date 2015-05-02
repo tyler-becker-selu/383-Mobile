@@ -7,6 +7,47 @@
     android:id="@+id/linearLayout2"
     android:minWidth="25px"
     android:minHeight="25px">
+    <SearchView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/genreSearch"
+        android:background="#ffd1caca" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout3">
+        <Space
+            android:layout_width="139.3dp"
+            android:layout_height="match_parent"
+            android:id="@+id/space1" />
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/radioGroup1">
+            <RadioButton
+                android:text="Genre"
+                android:id="@+id/genre"
+                android:checked="true"
+                android:button="@android:drawable/btn_radio"
+                android:textColor="#ff000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:text="Tags"
+                android:id="@+id/tags"
+                android:button="@android:drawable/btn_radio"
+                android:textColor="#ff000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+        <Space
+            android:layout_width="127dp"
+            android:layout_height="match_parent"
+            android:id="@+id/space2" />
+    </LinearLayout>
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"

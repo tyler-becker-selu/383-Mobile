@@ -10,16 +10,20 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.Net;
+using Java.Lang;
 
 namespace CustomerConsumer
 {
 	[Activity (Label = "GameActivity", Theme="@android:style/Theme.Black.NoTitleBar")]			
 	public class GameActivity : Activity
 	{
-		private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
-		//Don't forget to change the url as appropriate.
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
-		private List<Game> gamesList;
+		private RestClient _client = new RestClient("http://dev.envocsupport.com/GameStore4/");
+		private SearchView _searchBar;
+		private GamesAdapter _adapter;
+		private List<Game> _gamesList;
+		private RadioButton _genreBtn;
+		private RadioButton _tagBtn;
 
 		private void APIHeaders(RestRequest request)
 		{
@@ -39,9 +43,23 @@ namespace CustomerConsumer
 			try{
 				SetContentView (Resource.Layout.Games);
 			}
-			catch (Exception ex){
+			catch (System.Exception ex){
 				string x = ex.Message;
 			}
+
+			_searchBar = FindViewById<SearchView> (Resource.Id.genreSearch);
+			_genreBtn = FindViewById <RadioButton> (Resource.Id.genre);
+			_tagBtn = FindViewById<RadioButton> (Resource.Id.tags);
+
+			_genreBtn.Click += delegate {
+				UserSessionInfo.SetSearchTag(false);
+				_searchBar.SetQueryHint("Genres");
+			};
+
+			_tagBtn.Click += delegate {
+				UserSessionInfo.SetSearchTag(true);
+				_searchBar.SetQueryHint("Tags");
+			};
 
 			ListItems ();
 				
@@ -51,26 +69,41 @@ namespace CustomerConsumer
 		{
 			var request = new RestRequest ("api/Games", Method.GET);
 			APIHeaders (request);
-			var response = client.Execute (request);
+			var response = _client.Execute (request);
 
 			if (response.StatusCode == HttpStatusCode.OK) 
 			{
 				ListView listView;
 				listView = FindViewById<ListView> (Resource.Id.listOfGames);
 				IEnumerable<Game> games = _deserializer.Deserialize<List<Game>> (response);
-				gamesList = games.ToList ();
-				listView.Adapter = new GamesAdapter (this, gamesList);
+				_gamesList = games.ToList ();
+				_adapter = new GamesAdapter (this, _gamesList);
+				listView.Adapter = _adapter;
 				listView.ItemClick += OnGameClick;
+
+				_searchBar.QueryTextSubmit += SearchByGenres;
+				_searchBar.QueryTextChange += CheckNull;
+
+
 			}
 		}
 		public void OnGameClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			var listView = sender as ListView;
-			Game t = gamesList[e.Position];
+			Game t = _gamesList[e.Position];
 			FragmentTransaction transaction = FragmentManager.BeginTransaction();
 			GamesDetailFragment details = new GamesDetailFragment();
 			details.Show(transaction, "dialog fragment");
 			details.setGame(t);
+		}
+		public void SearchByGenres(object sender, Android.Widget.SearchView.QueryTextSubmitEventArgs args){
+			_adapter.Filter.InvokeFilter (_searchBar.Query);
+		}
+		public void CheckNull(object sender, Android.Widget.SearchView.QueryTextChangeEventArgs args){
+			if (_searchBar.Query == "") {
+				ICharSequence seq = null;
+				_adapter.Filter.InvokeFilter (seq);
+			}
 		}
 	}
 }

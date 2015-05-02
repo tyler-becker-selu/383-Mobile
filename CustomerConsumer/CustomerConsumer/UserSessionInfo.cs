@@ -5,15 +5,25 @@ namespace CustomerConsumer
 {
 	public class UserSessionInfo : Application
 	{
+		private static bool SearchTag;
 		private static int UserId;
 		private static string ApiKey;
 		private static Cart UserCart;
 
+
 		public void onCreate(){
 			this.onCreate ();
+			SearchTag = false;
 			UserId = 0;
 			ApiKey = "";
 			UserCart = null;
+		}
+		public static bool GetSearchTag(){
+			return SearchTag;
+		}
+
+		public static void SetSearchTag(bool change) {
+			UserSessionInfo.SearchTag = change;
 		}
 
 		public static string getApiKey(){

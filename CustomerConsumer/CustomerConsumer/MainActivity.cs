@@ -94,8 +94,6 @@ namespace CustomerConsumer
 					UserSessionInfo.setUserCart (userCart);
 				}
 					
-
-
 				Intent myIntent = new Intent(this, typeof(MenuActivity));
 				StartActivity (myIntent);
 			} else if (response.StatusCode == HttpStatusCode.Forbidden) {
@@ -104,6 +102,8 @@ namespace CustomerConsumer
 				text.Text = string.Format ("An error has occurred");
 			}
 		}
+
+
 	}
 }
 

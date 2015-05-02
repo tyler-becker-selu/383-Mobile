@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>x86</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -72,6 +73,7 @@
     <Compile Include="GamesDetailFragment.cs" />
     <Compile Include="DialogCheckout.cs" />
     <Compile Include="GamesAdapter.cs" />
+    <Compile Include="ObjectExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
