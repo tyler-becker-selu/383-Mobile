@@ -63,19 +63,9 @@ namespace CustomerConsumer
 
 
 		public decimal listGames(){
-			var request = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId (), Method.GET);
-			APIHeaders (request);
-			request.OnBeforeDeserialization = resp => {
-				resp.ContentType = "application/json";
-			};
-			var response = client.Execute <Cart> (request);
 			Button gBtn = FindViewById<Button> (Resource.Id.checkout);
 			decimal total = 0;
-			if (response.StatusCode == HttpStatusCode.OK) {
-				Cart cart = _deserializer.Deserialize<Cart> (response);
-				//IEnumerable<Game> gamesInCart = cart.Games;
-				total = makeGameButtons (cart.Games);
-			}
+			total = makeGameButtons (UserSessionInfo.getUserCart().Games);
 			return total;
 		}
 

@@ -21,6 +21,16 @@ namespace CustomerConsumer
 
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
 
+		private void APIHeaders(RestRequest request)
+		{
+			if (UserSessionInfo.getUserId() != 0 && UserSessionInfo.getApiKey() != null)
+			{
+				string apikey = UserSessionInfo.getApiKey ();
+				int id = UserSessionInfo.getUserId ();
+				request.AddHeader("xcmps383authenticationkey", UserSessionInfo.getApiKey());
+				request.AddHeader ("xcmps383authenticationid", UserSessionInfo.getUserId ().ToString());
+			}
+		}
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -60,8 +70,32 @@ namespace CustomerConsumer
 			TextView text = FindViewById<TextView> (Resource.Id.outputText);
 			if (response.StatusCode == HttpStatusCode.OK) {
 				ApiKeys userData =  _deserializer.Deserialize<ApiKeys>(response);
+
 				UserSessionInfo.setApiKey (userData.ApiKey);
 				UserSessionInfo.setUserId (userData.UserId);
+
+				var cartRequest = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId (), Method.GET);
+				APIHeaders (cartRequest);
+				cartRequest.RequestFormat = DataFormat.Json;
+
+				Cart userCart;
+
+				var cartResponse = client.Execute (cartRequest);
+				if (cartResponse.StatusCode != HttpStatusCode.NotFound) {
+					 userCart = _deserializer.Deserialize<Cart> (cartResponse);
+				} else {
+					userCart = null;
+				}
+
+				if (userCart != null) {
+					UserSessionInfo.setUserCart (userCart);
+				} else {
+					userCart = new Cart ();
+					UserSessionInfo.setUserCart (userCart);
+				}
+					
+
+
 				Intent myIntent = new Intent(this, typeof(MenuActivity));
 				StartActivity (myIntent);
 			} else if (response.StatusCode == HttpStatusCode.Forbidden) {
@@ -70,8 +104,6 @@ namespace CustomerConsumer
 				text.Text = string.Format ("An error has occurred");
 			}
 		}
-
-
 	}
 }
 
