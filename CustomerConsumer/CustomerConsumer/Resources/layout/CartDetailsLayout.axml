@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2">
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="GameName"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/gameName"
+                android:textColor="#ff000000"
+                android:paddingRight="5dp"
+                android:singleLine="false" />
+            <TextView
+                android:text="Price"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/itemPrice"
+                android:textColor="#ff000000" />
+        </LinearLayout>
+        <Space
+            android:layout_width="130.7dp"
+            android:layout_height="match_parent"
+            android:id="@+id/space2" />
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/numberPicker1"
+            android:background="#ffd6d1d1"
+            android:fadingEdge="vertical"
+            android:fitsSystemWindows="true" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/linearLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <Button
+                android:text="Button"
+                android:id="@+id/addMe"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:text="Button"
+                android:id="@+id/subMe"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="96.5dp"
+        android:id="@+id/space3" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="99.3dp"
+        android:id="@+id/linearLayout1"
+        android:layout_marginBottom="0.0dp">
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/space1"
+            android:layout_weight="1" />
+        <Button
+            android:text="Update Cart"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/updateCart"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#ff337ab7"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/space2"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>
