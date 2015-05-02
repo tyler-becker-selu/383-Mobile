@@ -13,7 +13,8 @@ namespace EmployeeClient.Controllers
 {
     public class BaseController : Controller
     {
-        public RestClient client = new RestClient("http://localhost:12932/");
+        public RestClient client = new RestClient("http://localhost:12932/api/");
+        public JsonDeserializer _deserializer = new JsonDeserializer();
 
         #region Algorthms
         public bool isLoggedIn()
@@ -41,7 +42,7 @@ namespace EmployeeClient.Controllers
 
         public List<Game> getGames()
         {
-            var request = new RestRequest("api/Games", Method.GET);
+            var request = new RestRequest("Games/", Method.GET);
             var gameList = new List<Game>();
 
             APIHeaders(request);
@@ -63,9 +64,29 @@ namespace EmployeeClient.Controllers
             return gameList;
         }
 
+        public List<Game> getGames(string genreName)
+        {
+            var request = new RestRequest("Games/", Method.GET);
+            var gameList = new List<Game>();
+
+            APIHeaders(request);
+            request.AddParameter("genre", genreName);
+
+            var APIresponse = client.Execute(request);
+
+            if (APIresponse.StatusCode == HttpStatusCode.OK)
+            {
+                JsonDeserializer deserial = new JsonDeserializer();
+
+                gameList = deserial.Deserialize<List<Game>>(APIresponse);
+            }
+
+            return gameList;
+        }
+
         public dynamic getGenres()
         {
-            var request = new RestRequest("api/Genres", Method.GET);
+            var request = new RestRequest("Genres/", Method.GET);
             var genreList = new List<Genre>();
 
             APIHeaders(request);
@@ -89,7 +110,7 @@ namespace EmployeeClient.Controllers
 
         public dynamic getTags()
         {
-            var request = new RestRequest("api/Tags", Method.GET);
+            var request = new RestRequest("Tags/", Method.GET);
             var tagList = new List<Tag>();
 
             APIHeaders(request);

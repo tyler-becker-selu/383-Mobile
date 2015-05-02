@@ -7,9 +7,10 @@ using System.Net;
 using RestSharp;
 using RestSharp.Deserializers;
 using EmployeeClient.Models;
+using EmployeeClient.Models.ViewModels;
 namespace EmployeeClient.Controllers
 {
-    [AuthController(AccessLevel="Admin")]
+    [AuthController(AccessLevel="Employee")]
     public class GameController : BaseController
     {
      
@@ -65,7 +66,7 @@ namespace EmployeeClient.Controllers
         [HttpPost]
         public ActionResult Create(Game game)
         {
-            var request = new RestRequest("api/Games/", Method.POST);
+            var request = new RestRequest("Games/", Method.POST);
             request.RequestFormat = DataFormat.Json;
             APIHeaders(request);
 
@@ -85,7 +86,7 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Edit(int Id)
         {
-            var request = new RestRequest("api/Games/" + Id, Method.GET);
+            var request = new RestRequest("Games/" + Id, Method.GET);
 
             APIHeaders(request);
 
@@ -93,25 +94,29 @@ namespace EmployeeClient.Controllers
 
             if (APIresponse.StatusCode == HttpStatusCode.OK)
             {
-                JsonDeserializer deserial = new JsonDeserializer();
+                var game = _deserializer.Deserialize<EditGameViewModel>(APIresponse);
 
-                var genreList = new List<Genre>();
-                var tagList = new List<Tag>();
+                game.Id = GetID(game.URL);
 
-                genreList = getGenres();
-                tagList = getTags();
+                foreach (Tag item in game.Tags)
+                {
+                    item.Id = GetID(item.URL);
+                }
+                foreach (Genre item in game.Genres)
+                {
+                    item.Id = GetID(item.URL);
+                }
+               
+                game.dbGenres = getGenres();
+                game.dbTags = getTags();
 
-                ViewBag.Tags = tagList;
-                ViewBag.Genres = genreList;
-
-                return View(deserial.Deserialize<Game>(APIresponse));
+                return View(game);
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Game game)
         {
             if (!ModelState.IsValid)
@@ -119,16 +124,11 @@ namespace EmployeeClient.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var request = new RestRequest("api/Games/" + game.Id, Method.PUT);
-
+            var request = new RestRequest("Games/" + game.Id, Method.PUT);
+            request.RequestFormat = DataFormat.Json;
             APIHeaders(request);
 
-            //////////////////////////////////Dummy Data (for now)/////////////////////////////////////
-            AddDummyGenre(game);
-            AddDummyTags(game);
-            ///////////////////////////////////////////////////////////////////////////////////////////
-
-            request.AddObject(game);
+            request.AddBody(game);
 
             var APIresponse = client.Execute(request);
 
@@ -142,7 +142,7 @@ namespace EmployeeClient.Controllers
 
         public ActionResult Details(int Id)
         {
-            var request = new RestRequest("api/Games/" + Id, Method.GET);
+            var request = new RestRequest("Games/" + Id, Method.GET);
 
             APIHeaders(request);
 
@@ -165,7 +165,7 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Delete(int Id)
         {
-            var request = new RestRequest("api/Games/" + Id, Method.GET);
+            var request = new RestRequest("Games/" + Id, Method.GET);
 
             APIHeaders(request);
 
@@ -184,7 +184,7 @@ namespace EmployeeClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Game game)
         {
-            var request = new RestRequest("api/Games/" + game.Id, Method.DELETE);
+            var request = new RestRequest("Games/" + game.Id, Method.DELETE);
 
             APIHeaders(request);
 

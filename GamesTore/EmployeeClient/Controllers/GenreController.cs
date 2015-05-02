@@ -10,23 +10,9 @@ using Newtonsoft.Json;
 using RestSharp.Deserializers;
 namespace EmployeeClient.Controllers
 {
-    public class GenreController : Controller
+    [AuthController(AccessLevel = "Admin")]
+    public class GenreController : BaseController
     {
-
-        private RestClient client = new RestClient("http://localhost:12932/");
-        JsonDeserializer _deserializer = new JsonDeserializer();
-
-
-        private void APIHeaders(RestRequest request)
-        {
-            if (Session["ApiKey"] != null && Session["UserId"] != null)
-            {
-                request.AddHeader("xcmps383authenticationkey", Session["ApiKey"].ToString());
-                request.AddHeader("xcmps383authenticationid", Session["UserId"].ToString());
-            }
-        }
-
-
         public List<Game> GetGamesForGenre(string  genreName)
         {
             List<Game> gameList = new List<Game>();
@@ -36,36 +22,10 @@ namespace EmployeeClient.Controllers
             return gameList;
         }
 
-        private List<Game> getGames(string genreName)
-        {
-            var request = new RestRequest("Games", Method.GET);
-            var gameList = new List<Game>();
-
-            APIHeaders(request);
-            request.AddParameter("genre", genreName);
-
-            var APIresponse = client.Execute(request);
-
-            if (APIresponse.StatusCode == HttpStatusCode.OK)
-            {
-                JsonDeserializer deserial = new JsonDeserializer();
-
-                gameList = deserial.Deserialize<List<Game>>(APIresponse);
-            }
-
-            return gameList;
-        }
-
-        private int GetID(string p)
-        {
-            string[] x = p.Split('/');
-            return Convert.ToInt32(x[x.Length - 1]);
-        }
-
         // GET: Genre
         public ActionResult Index()
         {
-            var request = new RestRequest("api/Genres", Method.GET);
+            var request = new RestRequest("Genres/", Method.GET);
             APIHeaders(request);
             request.RequestFormat = DataFormat.Json;
 
@@ -89,7 +49,7 @@ namespace EmployeeClient.Controllers
         // GET: Genre/Details/5
         public ActionResult Details(int id)
         {
-            var request = new RestRequest("Genres/{id}", Method.GET);
+            var request = new RestRequest(" Genres/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
             request.RequestFormat = DataFormat.Json;

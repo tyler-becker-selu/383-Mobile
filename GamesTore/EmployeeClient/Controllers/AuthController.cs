@@ -47,7 +47,7 @@ namespace EmployeeClient.Controllers
 
         private bool Admin()
         {
-            var request = new RestRequest("api/Users", Method.GET);
+            var request = new RestRequest("Users", Method.GET);
 
             APIHeaders(request);
 
@@ -79,7 +79,7 @@ namespace EmployeeClient.Controllers
 
             string privilegeLevels = string.Join("", auth.GetUserRights());
 
-            if (privilegeLevels.Contains(this.AccessLevel))
+            if (privilegeLevels.Contains(this.AccessLevel) || privilegeLevels.Equals("Admin"))
             {
                 return true;
             }

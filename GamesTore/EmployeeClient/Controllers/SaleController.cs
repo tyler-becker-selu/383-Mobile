@@ -10,30 +10,13 @@ using System.Net;
 
 namespace EmployeeClient.Controllers
 {
-    public class SaleController : Controller
+    public class SaleController : BaseController
     {
-        private RestClient client = new RestClient("http://localhost:12932/");
-
-        #region Algorthms
-
-        private void APIHeaders(RestRequest request)
-        {
-            if (Session["ApiKey"] != null && Session["UserId"] != null)
-            {
-                request.AddHeader("xcmps383authenticationkey", Session["ApiKey"].ToString());
-                request.AddHeader("xcmps383authenticationid", Session["UserId"].ToString());
-            }
-        }
-
-        private int GetID(string p)
-        {
-            string[] x = p.Split('/');
-            return Convert.ToInt32(x[x.Length - 1]);
-        }
+      
 
         private List<GamesForCart> GetSales()
         {
-            var request = new RestRequest("api/Sales", Method.GET);
+            var request = new RestRequest("Sales", Method.GET);
             var saleList = new List<GamesForCart>();
 
             APIHeaders(request);
@@ -51,7 +34,7 @@ namespace EmployeeClient.Controllers
         }
 
 
-        #endregion
+
 
         // GET: Sale
         public ActionResult Index()

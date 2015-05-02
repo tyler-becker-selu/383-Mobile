@@ -141,6 +141,7 @@
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\ViewModels\EditGameViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -157,7 +158,6 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CustomScripts\Game.js" />
     <Content Include="Scripts\CustomScripts\ListCheckboxes.js" />
-    <Content Include="Scripts\CustomScripts\Login.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

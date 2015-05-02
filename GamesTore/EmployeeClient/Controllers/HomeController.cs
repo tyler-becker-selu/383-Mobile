@@ -12,10 +12,7 @@ namespace EmployeeClient.Controllers
 {
     public class HomeController : BaseController
     {
-        private RestClient client = new RestClient("http://localhost:12932/api/");
-
-        RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
-
+       
         [AuthController(AccessLevel = "Employee")]
         public ActionResult Index()
         {
