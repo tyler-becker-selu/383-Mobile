@@ -66,44 +66,16 @@ namespace CustomerConsumer
 			}
 		}
 
-
-
 		public decimal listGames(){
-			var request = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId (), Method.GET);
-			APIHeaders (request);
-			request.OnBeforeDeserialization = resp => {
-				resp.ContentType = "application/json";
-			};
-			var response = client.Execute <Cart> (request);
-			Button gBtn = FindViewById<Button> (Resource.Id.checkout);
 			decimal total = 0;
-			total = makeGameButtons (UserSessionInfo.getUserCart().Games);
-			if (response.StatusCode == HttpStatusCode.OK) {
-				Cart cart = _deserializer.Deserialize<Cart> (response);
-				string[] url = cart.URL.Split ('/');
-				UserSessionInfo.setCartId (Convert.ToInt32 (url [6]));
-				total = makeGameButtons (UserSessionInfo.getUserCart().Games);
-			} else if (response.StatusCode == HttpStatusCode.NotFound) {
-				TableLayout layout = FindViewById<TableLayout>(Resource.Id.buttonLayoutCart);
-				TableRow tRow = new TableRow (this);
-				TableRow titleRow = FindViewById<TableRow> (Resource.Id.tableRow1);
-				titleRow.Visibility = ViewStates.Invisible;
-				layout.AddView (tRow);
-				TextView emptyCart = new TextView (this);
-				emptyCart.LayoutParameters = new TableRow.LayoutParams (
-					TableRow.LayoutParams.WrapContent,
-					TableRow.LayoutParams.WrapContent);
-				emptyCart.TextSize = 30;
-				emptyCart.SetTextColor (Android.Graphics.Color.Black);
-				emptyCart.Gravity = GravityFlags.CenterHorizontal|GravityFlags.Top;
-				tRow.AddView (emptyCart);
-				emptyCart.Text = string.Format ("You don't have any games in your cart yet! Click the Go To Games button to start adding games");
-
-			}
+			ListView cartList = FindViewById<ListView>(Resource.Id.cartList);
+			GamesForCartsAdapter adapter = new GamesForCartsAdapter (this,UserSessionInfo.getUserCart().Games);
+			cartList.Adapter = adapter;
+			cartList.ItemClick += OnGameClick;
 			return total;
 		}
 
-		public decimal makeGameButtons(List<GamesForCart> cartGames){
+		/*public decimal makeGameButtons(List<GamesForCart> cartGames){
 			decimal total = 0;
 			TableLayout layout = FindViewById<TableLayout>(Resource.Id.buttonLayoutCart);
 			foreach (GamesForCart game in cartGames) {
@@ -149,6 +121,14 @@ namespace CustomerConsumer
 
 			}
 			return total;
+		}*/
+		public void OnGameClick(object sender, AdapterView.ItemClickEventArgs e)
+		{
+			Game t = UserSessionInfo.getUserCart().Games[e.Position].m_Item1;
+			FragmentTransaction transaction = FragmentManager.BeginTransaction();
+			CartDetailFragment details = new CartDetailFragment();
+			details.Show(transaction, "dialog fragment");
+			details.setGame(t);
 		}
 	}
 }

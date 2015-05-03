@@ -9,6 +9,7 @@ using RestSharp;
 using System.Net;
 using RestSharp.Deserializers;
 using Android.Graphics.Drawables;
+using Android.Util;
 
 namespace CustomerConsumer
 {
@@ -104,7 +105,24 @@ namespace CustomerConsumer
 			}
 		}
 
+		protected override void OnDestroy ()
+		{
+			var cart = UserSessionInfo.getUserCart ();
+			if (cart != null) {
+				
+				var request = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId(), Method.PUT);
+				APIHeaders (request);
+				RestSharp.Serializers.JsonSerializer serial = new RestSharp.Serializers.JsonSerializer ();
+				var json = serial.Serialize (cart);
 
+				request.AddParameter ("text/json", json, ParameterType.RequestBody);
+
+				var response = client.Execute (request);
+			}
+
+			base.OnDestroy ();
+
+		}
 	}
 }
 

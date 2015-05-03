@@ -74,6 +74,7 @@
     <Compile Include="GamesAdapter.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="CartDetailFragment.cs" />
+    <Compile Include="Resources\GamesForCartsAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -103,6 +104,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\smallMed.png" />
     <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
     <AndroidResource Include="Resources\layout\CartDetailsLayout.axml" />
+    <AndroidResource Include="Resources\layout\Temp.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

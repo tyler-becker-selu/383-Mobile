@@ -24,7 +24,7 @@ namespace CustomerConsumer
 			TextView text = view.FindViewById<TextView> (Resource.Id.cartID);
 			text.TextSize = 100;
 
-			text.Text = "" + UserSessionInfo.getCartId();
+			text.Text = "" + UserSessionInfo.getUserId();
 			return view;
 		}
 	}

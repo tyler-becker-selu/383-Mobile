@@ -31,8 +31,8 @@ namespace CustomerConsumer
 
 		public GamesAdapter (Activity context, List<Game> games):base()
 		{
-			this._context = context;
-			this._games = games;
+			_context = context;
+			_games = games;
 
 			Filter = new GameFilter (this);
 		}

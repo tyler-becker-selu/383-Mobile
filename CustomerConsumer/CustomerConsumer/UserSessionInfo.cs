@@ -19,6 +19,7 @@ namespace CustomerConsumer
 			ApiKey = "";
 			UserCart = null;
 		}
+			
 		public static bool GetSearchTag(){
 			return SearchTag;
 		}

@@ -29,8 +29,6 @@ namespace CustomerConsumer
 		{
 			if (UserSessionInfo.getUserId() != 0 && UserSessionInfo.getApiKey() != null)
 			{
-				string apikey = UserSessionInfo.getApiKey ();
-				int id = UserSessionInfo.getUserId ();
 				request.AddHeader("xcmps383authenticationkey", UserSessionInfo.getApiKey());
 				request.AddHeader ("xcmps383authenticationid", UserSessionInfo.getUserId().ToString());
 			}
@@ -75,8 +73,7 @@ namespace CustomerConsumer
 			{
 				ListView listView;
 				listView = FindViewById<ListView> (Resource.Id.listOfGames);
-				IEnumerable<Game> games = _deserializer.Deserialize<List<Game>> (response);
-				_gamesList = games.ToList ();
+				_gamesList = _deserializer.Deserialize<List<Game>> (response);
 				_adapter = new GamesAdapter (this, _gamesList);
 				listView.Adapter = _adapter;
 				listView.ItemClick += OnGameClick;
@@ -89,7 +86,6 @@ namespace CustomerConsumer
 		}
 		public void OnGameClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			var listView = sender as ListView;
 			Game t = _gamesList[e.Position];
 			FragmentTransaction transaction = FragmentManager.BeginTransaction();
 			GamesDetailFragment details = new GamesDetailFragment();
