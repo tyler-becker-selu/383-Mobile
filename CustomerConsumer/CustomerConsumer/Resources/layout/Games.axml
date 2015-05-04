@@ -24,14 +24,14 @@
             android:text="Genre"
             android:id="@+id/genre"
             android:checked="true"
-            android:button="@android:drawable/btn_radio"
+            android:button="@drawable/buttonstuff_btn_radio_holo_light"
             android:textColor="#ff000000"
             android:layout_width="94.9dp"
             android:layout_height="wrap_content" />
         <RadioButton
             android:text="Tags"
             android:id="@+id/tags"
-            android:button="@android:drawable/btn_radio"
+            android:button="@drawable/buttonstuff_btn_radio_holo_light"
             android:textColor="#ff000000"
             android:layout_width="87.7dp"
             android:layout_height="wrap_content" />
