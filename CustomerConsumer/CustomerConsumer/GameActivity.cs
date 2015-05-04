@@ -62,6 +62,13 @@ namespace CustomerConsumer
 				UserSessionInfo.SetSearchTag(true);
 				_searchBar.SetQueryHint("Tags");
 			};
+			Button logout = FindViewById<Button> (Resource.Id.logoutGames);
+			logout.Click += delegate {
+				UserSessionInfo.Logout();
+				Intent myIntent = new Intent(this, typeof(MainActivity));
+				StartActivity (myIntent);
+				Finish();
+			};
 
 			ListItems ();
 				
@@ -90,11 +97,20 @@ namespace CustomerConsumer
 		}
 		public void OnGameClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
+			TextView msg = FindViewById<TextView> (Resource.Id.gameMessage);
+			msg.Text = "";
 			Game t = _gamesList[e.Position];
 			FragmentTransaction transaction = FragmentManager.BeginTransaction();
 			GamesDetailFragment details = new GamesDetailFragment();
 			details.Show(transaction, "dialog fragment");
 			details.setGame(t);
+			details.parentContext (this);
+			details.ShowMsg += Details_ShowMsg;
+		}
+		void Details_ShowMsg(object sender, EventArgs e){
+			TextView msg = FindViewById<TextView> (Resource.Id.gameMessage);
+			string msgt = UserSessionInfo.GetToast ();
+			msg.Text = UserSessionInfo.GetToast ();
 		}
 		public void SearchByGenres(object sender, Android.Widget.SearchView.QueryTextSubmitEventArgs args){
 			_adapter.Filter.InvokeFilter (_searchBar.Query);

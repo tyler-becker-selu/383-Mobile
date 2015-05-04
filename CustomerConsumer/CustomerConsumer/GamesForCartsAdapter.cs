@@ -20,8 +20,9 @@ namespace CustomerConsumer
 		public override int Count
 		{
 			get{
-				return _cartGamesList.Count ();
-			}
+					return _cartGamesList.Count ();
+				}
+
 		}
 		public override long GetItemId(int position)
 		{

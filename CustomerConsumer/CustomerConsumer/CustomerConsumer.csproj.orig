@@ -103,7 +103,6 @@
     <AndroidResource Include="Resources\layout\Games.axml" />
     <AndroidResource Include="Resources\layout\Cart.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\logo.png" />
-    <AndroidResource Include="Resources\layout\Test.axml" />
     <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
     <AndroidResource Include="Resources\layout\DialogCheckoutLayout.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
@@ -116,6 +115,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\smallMed.png" />
     <AndroidResource Include="Resources\drawable-hdpi\hugeNoBorder.png" />
     <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
+<<<<<<< Updated upstream
     <AndroidResource Include="Resources\layout\CartDetailsLayout.axml" />
     <AndroidResource Include="Resources\layout\CartDetailLayout.axml" />
     <AndroidResource Include="Resources\layout\Temp.axml" />

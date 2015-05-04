@@ -27,6 +27,9 @@ namespace CustomerConsumer
 		private TextView _genres;
 		private NumberPicker _numPicker;
 		private Button _addToCart;
+		private Boolean _updated;
+		private Context _parentContext;
+		public event EventHandler<EventArgs> ShowMsg;
 		//private Button _closeFragment;
 
 		private void APIHeaders(RestRequest request)
@@ -45,6 +48,7 @@ namespace CustomerConsumer
 			Dialog.SetTitle ("Details");
 
 			base.OnCreateView (inflater, container, savedInstanceState);
+			_updated = false;
 			var view = inflater.Inflate (Resource.Layout.GamesDetailsLayout,container, false);
 			_priceText = view.FindViewById<TextView> (Resource.Id.itemPrice);
 			_priceText.Text = "Price: $" + _detailedGame.Price.ToString();
@@ -59,6 +63,7 @@ namespace CustomerConsumer
 
 			_addToCart = view.FindViewById<Button> (Resource.Id.addToCart);
 			_addToCart.Click += delegate {
+				_updated = true;
 				Cart tempCart = UserSessionInfo.getUserCart();
 				if(tempCart.Games == null )
 				{
@@ -86,6 +91,7 @@ namespace CustomerConsumer
 
 						var cartResponse = client.Execute (cartRequest);
 						userCart = _deserializer.Deserialize<Cart> (cartResponse);
+						UserSessionInfo.SetToast("You now have "+ (userCart.Games.First().m_Item2) + " copies of " + userCart.Games.First().m_Item1.GameName + " in your cart.");
 						UserSessionInfo.setUserCart(userCart);
 					}
 
@@ -95,15 +101,28 @@ namespace CustomerConsumer
 					GamesForCart tempGame = new GamesForCart();
 					tempGame.m_Item1 = _detailedGame;
 					tempGame.m_Item2 = _numPicker.Value;
+					UserSessionInfo.SetToast("You now have "+ (tempGame.m_Item2) + " copies of " + tempGame.m_Item1.GameName + " in your cart.");
 					tempCart.Games.Add(tempGame);
 					UserSessionInfo.setUserCart(tempCart);
 				}
 				else
 				{
-					tempCart.Games.Find(r => r.m_Item1.URL.Equals(_detailedGame.URL)).m_Item2 = _numPicker.Value;
+					GamesForCart gf = tempCart.Games.Find(r => r.m_Item1.URL.Equals(_detailedGame.URL));
+					if((gf.m_Item2+ _numPicker.Value) <= gf.m_Item1.InventoryStock){
+						gf.m_Item2 += _numPicker.Value;
+						UserSessionInfo.SetToast("You now have "+ (gf.m_Item2) + " copies of " + gf.m_Item1.GameName + " in your cart.");
+					}else{
+						gf.m_Item2 = gf.m_Item1.InventoryStock;
+						UserSessionInfo.SetToast("Whoops, there aren't "+ (gf.m_Item2+ _numPicker.Value) + " copies of " + gf.m_Item1.GameName + " available. You now have "+ (gf.m_Item1.InventoryStock) + " copies in your cart.");
+					}
+					tempCart.Games.Find(r => r.m_Item1.URL.Equals(_detailedGame.URL)).m_Item2 = gf.m_Item2;
 					UserSessionInfo.setUserCart(tempCart);
 				}
 				this.Dismiss();
+				ShowMsg.Invoke (this, new EventArgs ());
+				//this.Dismiss();
+				//g.showToast();
+				//Toast.MakeText (this, "Your cart has been updated", ToastLength.Long);
 			};
 
 
@@ -115,6 +134,9 @@ namespace CustomerConsumer
 		public void setGame(Game detailedGame)
 		{
 			_detailedGame = detailedGame;
+		}
+		public void parentContext(Context context){
+			_parentContext = context;
 		}
 	}
 }

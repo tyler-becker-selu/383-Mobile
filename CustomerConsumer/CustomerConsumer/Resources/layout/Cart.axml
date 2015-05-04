@@ -1,76 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#ffffff"
+    android:background="@color/primary_light"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px">
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/linearLayout1"
-        android:background="@color/primary_light">
+        android:background="@color/primary_light"
+        android:layout_marginBottom="0.0dp"
+        android:layout_marginTop="0.0dp">
         <Button
             android:text="Go To Games"
             android:id="@+id/cartToGames"
             android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_margin="10dp"
             android:background="@drawable/buttonstuff_btn_default_holo_light"
             android:textColor="@color/icons" />
-        <ListView
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cartList"
-            android:layout_marginBottom="0.0dp"
-            android:headerDividersEnabled="true"
-            android:footerDividersEnabled="true"
-            android:listSelector="@drawable/listviewselector" />
-        <RelativeLayout
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/relativeLayout1"
-            android:layout_marginLeft="20.0dp"
-            android:layout_marginTop="10.0dp"
-            android:layout_marginRight="20.0dp">
-            <TextView
-                android:id="@+id/textview"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_width="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_height="wrap_content"
-                android:text="Total:"
-                android:textColor="@android:color/black" />
-            <TextView
-                android:id="@+id/totalForCart"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="placeholder"
-                android:layout_toRightOf="@+id/textview"
-                android:gravity="right"
-                android:textColor="@android:color/black" />
-        </RelativeLayout>
         <Button
-            android:text="Checkout"
+            android:text="Logout"
+            android:id="@+id/logoutCart"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonstuff_btn_default_holo_light"
+            android:textColor="@color/icons" />
+    </LinearLayout>
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cartList"
+        android:layout_marginBottom="0.0dp"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="true"
+        android:listSelector="@drawable/listviewselector" />
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout1"
+        android:layout_marginLeft="20.0dp"
+        android:layout_marginTop="10.0dp"
+        android:layout_marginRight="20.0dp">
+        <TextView
+            android:id="@+id/textview"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:text="Total:"
+            android:textColor="@android:color/black" />
+        <TextView
+            android:id="@+id/totalForCart"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="20dp"
-            android:id="@+id/checkout"
-            android:height="50dp"
-            android:layout_marginLeft="30.0dp"
-            android:background="@drawable/buttonstuff_btn_default_holo_light"
-            android:layout_marginRight="30.0dp"
-            android:layout_marginTop="20.0dp"
-            android:layout_marginBottom="20.0dp" />
-    </LinearLayout>
+            android:text="placeholder"
+            android:layout_toRightOf="@+id/textview"
+            android:gravity="right"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+    <Button
+        android:text="Checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
+        android:id="@+id/checkout"
+        android:layout_marginLeft="30.0dp"
+        android:background="@drawable/buttonstuff_btn_default_holo_light"
+        android:layout_marginRight="30.0dp"
+        android:layout_marginTop="20.0dp"
+        android:layout_marginBottom="20.0dp" />
 </LinearLayout>

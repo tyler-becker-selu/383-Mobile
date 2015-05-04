@@ -19,7 +19,7 @@ namespace CustomerConsumer
 	[Activity (Label = "Cart", Icon = "@drawable/hugeNoBorder")]			
 	public class CartActivity : Activity
 	{
-		private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
+		private RestClient client = UserSessionInfo.getClient();
 
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
 
@@ -38,32 +38,51 @@ namespace CustomerConsumer
 		{
 			base.OnCreate (bundle);
 			try{
+				Cart cart = UserSessionInfo.getUserCart();
 				SetContentView (Resource.Layout.Cart);
 				decimal total = 0;
-				total = listGames();
 				TextView totalText = FindViewById<TextView>(Resource.Id.totalForCart);
 				totalText.Text = string.Format("$"+total);
 
 				Button checkoutBTN = FindViewById<Button> (Resource.Id.checkout);
 				checkoutBTN.Click += delegate {
-					Cart cart = UserSessionInfo.getUserCart();
 						var request = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId(), Method.PUT);
 						APIHeaders (request);
 						RestSharp.Serializers.JsonSerializer serial = new RestSharp.Serializers.JsonSerializer ();
 						var json = serial.Serialize (cart);
-
 						request.AddParameter ("text/json", json, ParameterType.RequestBody);
-
+						string[] url = cart.URL.Split('/');
+						UserSessionInfo.setCartId(Convert.ToInt32(url[url.Length-1]));
 						var response = client.Execute (request);
 					FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 					DialogCheckout checkoutDialog = new DialogCheckout ();
 					checkoutDialog.Show (transaction, "dialog fragment");
 				};
+				if(cart.Games == null || !cart.Games.Any()){
+					totalText.Text = "You don't have any games in your cart! Click the Go To Games button to find some games.";
+					totalText.Gravity = GravityFlags.Center;
+					TextView tText = FindViewById<TextView>(Resource.Id.textview);
+					tText.Text = "";
+					checkoutBTN.Visibility = ViewStates.Invisible;
+					
+				}else{
+					total = listGames();
+					totalText.Text = string.Format("$"+total);
+				}
+
 				Button goToGamesBTN = FindViewById<Button> (Resource.Id.cartToGames);
 				goToGamesBTN.Click += delegate {
 					Intent myIntent = new Intent(this, typeof(GameActivity));
 					StartActivity (myIntent);
 				};
+				Button logout = FindViewById<Button> (Resource.Id.logoutCart);
+				logout.Click += delegate {
+					UserSessionInfo.Logout();
+					Intent myIntent = new Intent(this, typeof(MainActivity));
+					StartActivity (myIntent);
+					Finish();
+				};
+
 
 			}
 			catch (Exception ex){
@@ -85,53 +104,7 @@ namespace CustomerConsumer
 			return total;
 		}
 
-		/*public decimal makeGameButtons(List<GamesForCart> cartGames){
-			decimal total = 0;
-			TableLayout layout = FindViewById<TableLayout>(Resource.Id.buttonLayoutCart);
-			foreach (GamesForCart game in cartGames) {
-				TableRow tRow = new TableRow (this);
-				layout.AddView (tRow);
-					Button button = new Button (this);
-					button.LayoutParameters = new TableRow.LayoutParams (
-						TableRow.LayoutParams.MatchParent,
-						TableRow.LayoutParams.MatchParent,
-						.33f);
-					tRow.AddView (button);
-					button.Text = string.Format (game.m_Item1.GameName);
-				button.Click+= delegate {
-					Game g = game.m_Item1;
-					FragmentTransaction transaction = FragmentManager.BeginTransaction();
-					CartDetailFragment details = new CartDetailFragment();
-					details.Show(transaction, "dialog fragment");
-					details.setGame(g);
-				};
-					TextView price = new TextView (this);
-					price.LayoutParameters = new TableRow.LayoutParams (
-						TableRow.LayoutParams.MatchParent,
-						TableRow.LayoutParams.MatchParent,
-						.34f);
-					price.TextSize = 20;
-					price.Gravity = GravityFlags.Right;
-					tRow.AddView (price);
-					for (int i = 0; i < game.m_Item2; ++i) {
-						total = total + (game.m_Item1.Price);
-					}
-					price.Text = string.Format ("$" + game.m_Item1.Price);
-					price.SetTextColor (Android.Graphics.Color.Black);
-					TextView invCount = new TextView (this);
-					invCount.LayoutParameters = new TableRow.LayoutParams (
-						TableRow.LayoutParams.MatchParent,
-						TableRow.LayoutParams.MatchParent,
-						.33f);
-					invCount.TextSize = 20;
-					invCount.SetTextColor (Android.Graphics.Color.Black);
-					invCount.Gravity = GravityFlags.Right;
-					tRow.AddView (invCount);
-					invCount.Text = string.Format ("" + game.m_Item2);
 
-			}
-			return total;
-		}*/
 		public void OnGameClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			Game t = UserSessionInfo.getUserCart().Games[e.Position].m_Item1;

@@ -50,13 +50,22 @@ namespace CustomerConsumer
 			// and attach an event to it
 
 			loginBTN = FindViewById<Button> (Resource.Id.LoginBTN);
-			loginBTN.Click += delegate {
-				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
-				DialogLogin loginDialog = new DialogLogin ();
-				loginDialog.Show (transaction, "dialog fragment");
-				loginDialog.globOnLoginComplete += LoginDialog_globOnLoginComplete;
-			};
-				
+			if (UserSessionInfo.getUserId () == 0) {
+				loginBTN.Click += delegate {
+					FragmentTransaction transaction = FragmentManager.BeginTransaction ();
+					DialogLogin loginDialog = new DialogLogin ();
+					loginDialog.Show (transaction, "dialog fragment");
+					loginDialog.globOnLoginComplete += LoginDialog_globOnLoginComplete;
+				};
+			} else {
+				loginBTN.Text = "Logout";
+				loginBTN.Click += delegate {
+					UserSessionInfo.Logout();
+					Intent intent = new Intent (this, typeof(MainActivity));
+					StartActivity (intent);
+					Finish ();	
+				};
+			}
 		}
 
 
@@ -94,33 +103,18 @@ namespace CustomerConsumer
 					userCart = new Cart ();
 					UserSessionInfo.setUserCart (userCart);
 				}
-					
+				Intent intent = new Intent (this, typeof(MainActivity));
+				StartActivity (intent);
+				Finish ();	
 				Intent myIntent = new Intent(this, typeof(GameActivity));
 				StartActivity (myIntent);
+
 			} else if (response.StatusCode == HttpStatusCode.Forbidden) {
 				text.Text = string.Format ("Incorrect email/password combination");
 			} else {
-				text.Text = string.Format ("An error has occurred");
+				text.Text = string.Format ("An error has occurred "+response.StatusCode.ToString());
+				//text.Text = string.Format ("An error has occurred");
 			}
-		}
-
-		protected override void OnDestroy ()
-		{
-			var cart = UserSessionInfo.getUserCart ();
-			if (cart != null) {
-				
-				var request = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId(), Method.PUT);
-				APIHeaders (request);
-				RestSharp.Serializers.JsonSerializer serial = new RestSharp.Serializers.JsonSerializer ();
-				var json = serial.Serialize (cart);
-
-				request.AddParameter ("text/json", json, ParameterType.RequestBody);
-
-				var response = client.Execute (request);
-			}
-
-			base.OnDestroy ();
-
 		}
 	}
 }

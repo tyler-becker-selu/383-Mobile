@@ -8,24 +8,34 @@ using Android.OS;
 using RestSharp;
 using System.Net;
 using RestSharp.Deserializers;
+using Android.Graphics.Drawables;
+using Android.Util;
 
 namespace CustomerConsumer
 {
-	[Activity (Label = "CustomerConsumer", MainLauncher = true, Icon = "@drawable/icon")]
+<<<<<<< Updated upstream
+	[Activity (Label = "Game Store 4", MainLauncher = true, Icon = "@drawable/icon", Theme="@style/CustomTheme")]
+=======
+	[Activity (Label = "Game Store 4", MainLauncher = true, Icon = "@drawable/hugeNoBorder")]
+>>>>>>> Stashed changes
 	public class MainActivity : Activity
 	{
 		private Button loginBTN;
 
-<<<<<<< Updated upstream
-		private RestClient client = new RestClient("http://147.174.160.132:12932/api");
-		//Don't forget to change the url as appropriate.
+		public RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
 
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
-=======
-		public RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
->>>>>>> Stashed changes
 
-		int count = 1;
+		private void APIHeaders(RestRequest request)
+		{
+			if (UserSessionInfo.getUserId() != 0 && UserSessionInfo.getApiKey() != null)
+			{
+				string apikey = UserSessionInfo.getApiKey ();
+				int id = UserSessionInfo.getUserId ();
+				request.AddHeader("xcmps383authenticationkey", UserSessionInfo.getApiKey());
+				request.AddHeader ("xcmps383authenticationid", UserSessionInfo.getUserId ().ToString());
+			}
+		}
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -37,14 +47,11 @@ namespace CustomerConsumer
 			catch (Exception ex){
 				string x = ex.Message;
 			}
-
-
+				
 			// Set our view from the "main" layout resource
 
 			// Get our button from the layout resource,
 			// and attach an event to it
-			
-
 
 			loginBTN = FindViewById<Button> (Resource.Id.LoginBTN);
 			loginBTN.Click += delegate {
@@ -53,13 +60,7 @@ namespace CustomerConsumer
 				loginDialog.Show (transaction, "dialog fragment");
 				loginDialog.globOnLoginComplete += LoginDialog_globOnLoginComplete;
 			};
-
-			Button gamesBTN = FindViewById<Button> (Resource.Id.GameBTN);
-			gamesBTN.Click += (sender, e) => {
-				var intent = new Intent(this, typeof(GameActivity));
-				StartActivity(intent);
-			};
-
+				
 		}
 
 
@@ -74,8 +75,32 @@ namespace CustomerConsumer
 			TextView text = FindViewById<TextView> (Resource.Id.outputText);
 			if (response.StatusCode == HttpStatusCode.OK) {
 				ApiKeys userData =  _deserializer.Deserialize<ApiKeys>(response);
+
 				UserSessionInfo.setApiKey (userData.ApiKey);
 				UserSessionInfo.setUserId (userData.UserId);
+
+				var cartRequest = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId (), Method.GET);
+				APIHeaders (cartRequest);
+				cartRequest.RequestFormat = DataFormat.Json;
+
+				Cart userCart;
+
+				var cartResponse = client.Execute (cartRequest);
+				if (cartResponse.StatusCode != HttpStatusCode.NotFound) {
+					userCart = _deserializer.Deserialize<Cart> (cartResponse);
+				} else {
+					userCart = null;
+				}
+
+				if (userCart != null) {
+					UserSessionInfo.setUserCart (userCart);
+				} else {
+					userCart = new Cart ();
+					UserSessionInfo.setUserCart (userCart);
+				}
+					
+				Intent myIntent = new Intent(this, typeof(GameActivity));
+				StartActivity (myIntent);
 			} else if (response.StatusCode == HttpStatusCode.Forbidden) {
 				text.Text = string.Format ("Incorrect email/password combination");
 			} else {
@@ -83,7 +108,24 @@ namespace CustomerConsumer
 			}
 		}
 
+		protected override void OnDestroy ()
+		{
+			var cart = UserSessionInfo.getUserCart ();
+			if (cart != null) {
+				
+				var request = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId(), Method.PUT);
+				APIHeaders (request);
+				RestSharp.Serializers.JsonSerializer serial = new RestSharp.Serializers.JsonSerializer ();
+				var json = serial.Serialize (cart);
 
+				request.AddParameter ("text/json", json, ParameterType.RequestBody);
+
+				var response = client.Execute (request);
+			}
+
+			base.OnDestroy ();
+
+		}
 	}
 }
 

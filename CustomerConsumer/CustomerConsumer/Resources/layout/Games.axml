@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/genreSearch"
+        android:queryHint="Search"
         android:background="@color/buttonstuff_color" />
     <RadioGroup
         android:id="@+id/radioGroup1"
@@ -36,14 +37,41 @@
             android:layout_width="87.7dp"
             android:layout_height="wrap_content" />
     </RadioGroup>
-    <Button
-        android:text="Go to Cart"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gamesToCart"
-        android:layout_gravity="center"
-        android:background="@drawable/buttonstuff_btn_default_holo_light"
-        android:textColor="@color/icons" />
+        android:id="@+id/linearLayout3">
+        <Button
+            android:text="Go to Cart"
+            android:id="@+id/gamesToCart"
+            android:layout_gravity="center"
+            android:background="@drawable/buttonstuff_btn_default_holo_light"
+            android:textColor="@color/icons"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" />
+        <Button
+            android:text="Logout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/logoutGames"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonstuff_btn_default_holo_light"
+            android:textColor="@color/icons" />
+    </LinearLayout>
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gameMessage"
+        android:textColor="#00008B"
+        android:layout_margin="10dp"
+        android:gravity="center" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
