@@ -9,7 +9,6 @@ namespace CustomerConsumer
 		private static int UserId;
 		private static string ApiKey;
 		private static Cart UserCart;
-		private static int CartId;
 
 
 		public void onCreate(){
@@ -50,14 +49,6 @@ namespace CustomerConsumer
 		public static void setUserCart(Cart userCart) {
 			UserSessionInfo.UserCart = userCart;
 		}
-		public static int getCartId(){
-			return CartId;
-		}
-
-		public static void setCartId(int id) {
-			UserSessionInfo.CartId = id;
-		}
-
 	}
 }
 

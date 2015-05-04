@@ -9,69 +9,23 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/linearLayout1">
+        <Button
+            android:text="Go To Games"
+            android:id="@+id/cartToGames"
+            android:gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout2">
-            <Button
-                android:text="Go To Games"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/cartToGames"
-                android:layout_weight="1"
-                android:layout_margin="10dp" />
-            <Button
-                android:text="Update Cart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button2"
-                android:layout_weight="1"
-                android:layout_margin="10dp" />
-        </LinearLayout>
-    <!--<TableLayout
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/buttonLayoutCart"
-            android:layout_marginLeft="20.0dp"
-            android:layout_marginRight="20.0dp">
-            <TableRow
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:id="@+id/tableRow1">
-                <TextView
-                    android:textColor="@android:color/black"
-                    android:text="Game"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/textView1"
-                    android:layout_weight="1" />
-                <TextView
-                    android:textColor="@android:color/black"
-                    android:gravity="center"
-                    android:text="Unit Price"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/textView2"
-                    android:layout_weight="1" />
-                <TextView
-                    android:textColor="@android:color/black"
-                    android:gravity="right"
-                    android:text="Quantity"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/textView3"
-                    android:layout_weight="1" />
-            </TableRow>
-        </TableLayout>-->
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp" />
         <ListView
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/cartList" />
+            android:layout_height="wrap_content"
+            android:id="@+id/cartList"
+            android:layout_marginBottom="0.0dp" />
         <RelativeLayout
             android:minWidth="25px"
             android:minHeight="25px"
@@ -102,12 +56,15 @@
         <Button
             android:text="Checkout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
             android:id="@+id/checkout"
+            android:height="50dp"
             android:layout_marginLeft="30.0dp"
+            android:background="#ff149c82"
             android:layout_marginRight="30.0dp"
             android:layout_marginTop="20.0dp"
-            android:layout_marginBottom="20.0dp"
-            android:layout_weight="1" />
+            android:layout_marginBottom="20.0dp" />
     </LinearLayout>
 </LinearLayout>

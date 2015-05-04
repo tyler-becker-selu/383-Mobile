@@ -14,7 +14,7 @@ using Java.Lang;
 
 namespace CustomerConsumer
 {
-	[Activity (Label = "Game", Theme="@android:style/Theme.Black.NoTitleBar")]			
+	[Activity (Label = "Games", Theme="@android:style/Theme", Icon = "@drawable/hugeNoBorder")]			
 	public class GameActivity : Activity
 	{
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
@@ -44,7 +44,11 @@ namespace CustomerConsumer
 			catch (System.Exception ex){
 				string x = ex.Message;
 			}
-
+			Button goToCart = FindViewById<Button> (Resource.Id.gamesToCart);
+			goToCart.Click += delegate {
+				Intent myIntent = new Intent(this, typeof(CartActivity));
+				StartActivity (myIntent);
+			};
 			_searchBar = FindViewById<SearchView> (Resource.Id.genreSearch);
 			_genreBtn = FindViewById <RadioButton> (Resource.Id.genre);
 			_tagBtn = FindViewById<RadioButton> (Resource.Id.tags);
@@ -101,6 +105,7 @@ namespace CustomerConsumer
 				_adapter.Filter.InvokeFilter (seq);
 			}
 		}
+			
 	}
 }
 

@@ -30,7 +30,7 @@
             <TextView
                 android:text="Price"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/itemPrice"
                 android:textColor="#ff000000" />
@@ -46,24 +46,16 @@
             android:background="#ffd6d1d1"
             android:fadingEdge="vertical"
             android:fitsSystemWindows="true" />
-        <LinearLayout
-            android:orientation="vertical"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:id="@+id/linearLayout4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <Button
-                android:text="Button"
-                android:id="@+id/addMe"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" />
-            <Button
-                android:text="Button"
-                android:id="@+id/subMe"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/space4"
+                android:layout_weight="1.7" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/space5"
+                android:layout_weight="1.7" />
     </LinearLayout>
     <Space
         android:layout_width="match_parent"

@@ -3,21 +3,37 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffffff">
-    <Space
+    android:background="#ffffff">
+    <TextView
+        android:text="Group Four Store"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ff149c82"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:typeface="serif" />
+    <ImageView
+        android:src="@drawable/hugenoborder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/imageView1"
         android:layout_weight="1"
-        android:id="@+id/space1" />
+        android:layout_margin="10dp" />
     <Button
         android:text="Login"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:id="@+id/LoginBTN"
-        android:layout_margin="20dp"
         android:gravity="center_vertical|center_horizontal"
         android:background="#ff149c82"
-        android:layout_weight="1" />
+        android:layout_weight="1.25"
+        android:layout_gravity="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp" />
     <TextView
         android:gravity="center_horizontal"
         android:textColor="@android:color/holo_red_dark"
@@ -25,10 +41,11 @@
         android:id="@+id/outputText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"
+        android:layout_margin="10dp" />
     <Space
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="1.1"
         android:id="@+id/space2" />
 </LinearLayout>

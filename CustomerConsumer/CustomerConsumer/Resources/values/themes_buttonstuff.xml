@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="ButtonStuff" parent="@style/_ButtonStuff"/>
+
+  <style name="_ButtonStuff" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    <item name="android:radioButtonStyle">@style/RadioButtonButtonStuff</item>
+
+    <item name="android:buttonStyle">@style/ButtonButtonStuff</item>
+
+    <item name="android:imageButtonStyle">@style/ImageButtonButtonStuff</item>
+
+  </style>
+
+</resources>

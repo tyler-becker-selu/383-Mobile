@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+	<style name="CustomTheme" parent ="AppTheme.Base">
+	</style>
+	<style name="AppTheme.Base" parent="Theme.AppCompat.Light">
+		<item name="android:colorPrimary">@color/primary</item>
+		<item name="android:colorPrimaryDark">@color/primary_dark</item>
+		<item name="android:colorAccent">@color/accent</item>
+		<item name="android:textColorPrimary">@color/primary_text</item>
+		<item name="android:textColor">@color/primary_text</item>
+		<item name="android:navigationBarColor">@color/primary_dark</item>
+		<item name="android:background">@color/primary</item>
+		<item name="android:label">@color/primary_text</item>
+		<item name="android:divider">@color/divider</item>
+	</style>
+</resources>
+
