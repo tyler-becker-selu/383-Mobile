@@ -54,7 +54,7 @@ namespace GamesTore.Controllers
         [HttpGet]
         public HttpResponseMessage Get(int id)
         {
-            var cart = db.Carts.FirstOrDefault(c => c.User_Id == id);
+            var cart = db.Carts.FirstOrDefault(c => c.User_Id == id && c.CheckoutReady);
             if (cart == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Cannot find User's cart");

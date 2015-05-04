@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace EmployeeClient.Models
 {
-    class Cart
+    public class Cart
     {
         public string URL { get; set; }
         public int ID { get; set; }
         public bool CheckoutReady { get; set; }
         public int User_Id { get; set; }
-        public List<Tuple<Game, int>> Games { get; set; }
+        public List<GamesForCart> Games { get; set; }
 
     }
 }

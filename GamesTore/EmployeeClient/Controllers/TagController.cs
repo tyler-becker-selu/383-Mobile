@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace EmployeeClient.Controllers
 {
+    [AuthController(AccessLevel = "Admin")]
     public class TagController : BaseController
     {
         
@@ -70,6 +71,9 @@ namespace EmployeeClient.Controllers
         // GET: Game
         public ActionResult Index()
         {
+            ViewBag.Message = "Tag";
+
+
             List<Tag> tagList = new List<Tag>();
             tagList = getTags();
 
@@ -84,6 +88,9 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.Message = "Tag";
+
+
             return View();
         }
 
@@ -110,6 +117,8 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Edit(int Id)
         {
+            ViewBag.Message = "Tag";
+
             var request = new RestRequest("Tags/" + Id, Method.GET);
 
             APIHeaders(request);
@@ -153,6 +162,8 @@ namespace EmployeeClient.Controllers
 
         public ActionResult Details(int Id)
         {
+            ViewBag.Message = "Tag";
+
             var request = new RestRequest("Tags/" + Id, Method.GET);
 
             APIHeaders(request);
@@ -176,6 +187,8 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Delete(int Id)
         {
+            ViewBag.Message = "Tag";
+
             var request = new RestRequest("Tags/" + Id, Method.GET);
 
             APIHeaders(request);

@@ -1,33 +1,62 @@
-﻿@model IEnumerable<EmployeeClient.Models.GamesForCart>
-
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model IEnumerable<EmployeeClient.Models.Cart>
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.m_Item2)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.m_Item2)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
+<table class="display nowrap dataTable dtr-inline" id="saleTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.URL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckoutReady)
+            </th>
+            <th>
+                Games
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User_Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.URL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckoutReady)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var thing in item.Games)
+                        {
+                            <li>
+                                @thing.m_Item1.GameName
+                            </li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_Id)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs" })
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-default btn-xs" })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+<script>
+    $(document).ready(function () {
+        $('#saleTable').DataTable();
+    })
+</script>

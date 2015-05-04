@@ -13,7 +13,9 @@ namespace EmployeeClient.Controllers
 {
     public class BaseController : Controller
     {
-        public RestClient client = new RestClient("http://localhost:12932/api/");
+
+        public RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/api");
+        //public RestClient client = new RestClient("http://localhost:12932/api/");
         public JsonDeserializer _deserializer = new JsonDeserializer();
 
         #region Algorthms

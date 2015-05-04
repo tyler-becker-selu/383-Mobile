@@ -16,15 +16,15 @@ namespace EmployeeClient.Controllers
         [AuthController(AccessLevel = "Employee")]
         public ActionResult Index()
         {
-            if (Session["ApiKey"] == null || Session["UserId"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
+            ViewBag.Message = "Welcome to Group 4's Web Portal!";
+
             return View();
         }
 
         public ActionResult Login()
         {
+            ViewBag.Message = "Please Login to use this website";
+
             return View();
         }
 

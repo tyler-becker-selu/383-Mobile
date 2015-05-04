@@ -13,37 +13,13 @@ namespace EmployeeClient.Controllers
     [AuthController(AccessLevel="Employee")]
     public class GameController : BaseController
     {
-     
-        #region Dummy Data
-        private void AddDummyTags(Game game)
-        {
-            Tag tag = new Tag();
-            List<Tag> wee = new List<Tag>();
-            tag.Id = 1;
-            tag.Name = "Hard";
-            wee.Add(tag);
-            game.Tags = wee;
-
-        }
-
-        private void AddDummyGenre(Game game)
-        {
-            Genre genre = new Genre();
-            List<Genre> wee = new List<Genre>();
-            genre.Id = 1;
-            genre.Name = "Action";
-
-            wee.Add(genre);
-            game.Genres = wee;
-
-        }
-        #endregion
-
+   
         #region ViewControllers
 
         // GET: Game
         public ActionResult Index()
         {
+            ViewBag.Message = "Game";
 
             var gameList = new List<Game>();
 
@@ -55,7 +31,7 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-
+            ViewBag.Message = "Game";
             Game game = new Game();
             game.Genres = getGenres();
             game.Tags = getTags();
@@ -77,7 +53,8 @@ namespace EmployeeClient.Controllers
 
             if (APIresponse.StatusCode == HttpStatusCode.Created)
             {
-                return RedirectToAction("Index");
+                var redirect = new UrlHelper(Request.RequestContext).Action("Index","Game");
+                return Json(new { Url = redirect });
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -86,6 +63,8 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Edit(int Id)
         {
+            ViewBag.Message = "Game";
+
             var request = new RestRequest("Games/" + Id, Method.GET);
 
             APIHeaders(request);
@@ -134,7 +113,8 @@ namespace EmployeeClient.Controllers
 
             if (APIresponse.StatusCode == HttpStatusCode.OK)
             {
-                return RedirectToAction("Index");
+                var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Game");
+                return Json(new { Url = redirect });
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -142,6 +122,8 @@ namespace EmployeeClient.Controllers
 
         public ActionResult Details(int Id)
         {
+            ViewBag.Message = "Game";
+
             var request = new RestRequest("Games/" + Id, Method.GET);
 
             APIHeaders(request);
@@ -165,6 +147,8 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Delete(int Id)
         {
+            ViewBag.Message = "Game";
+
             var request = new RestRequest("Games/" + Id, Method.GET);
 
             APIHeaders(request);

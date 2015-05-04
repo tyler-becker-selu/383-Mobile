@@ -12,12 +12,10 @@ namespace GamesTore.Models.Data_Transfer_Objects
 {
     public class GetSalesDTO
     {
-
         public string URL { get; set; }
         public DateTime SalesDate { get; set; }
+        public int EmployeeID { get; set; }
         public decimal Total { get; set; }
         public GetCartDTO Cart { get; set; }
-
-
     }
 }

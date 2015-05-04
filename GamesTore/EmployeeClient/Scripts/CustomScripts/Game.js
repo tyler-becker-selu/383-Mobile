@@ -65,7 +65,6 @@ function ajaxCreate(game) {
 }
 
 function ajaxEdit(game) {
-    console.log(game);
     $.ajax({
         contentType: "application/json",
         type: 'POST',

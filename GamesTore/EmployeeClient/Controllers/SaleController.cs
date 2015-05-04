@@ -7,52 +7,65 @@ using EmployeeClient.Models;
 using RestSharp;
 using RestSharp.Deserializers;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace EmployeeClient.Controllers
 {
+    [AuthController(AccessLevel = "Employee")]
     public class SaleController : BaseController
     {
       
 
-        private List<GamesForCart> GetSales()
+        public List<Cart> GetCart()
         {
-            var request = new RestRequest("Sales", Method.GET);
-            var saleList = new List<GamesForCart>();
-
+            var request = new RestRequest("Carts", Method.GET);
+            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             APIHeaders(request);
 
+           
+
             var APIresponse = client.Execute(request);
+            List<Cart> cartList = new List<Cart>();
 
-            if (APIresponse.StatusCode == HttpStatusCode.OK)
+            if (APIresponse.StatusCode == HttpStatusCode.OK)  
             {
-                JsonDeserializer deserial = new JsonDeserializer();
-
-                saleList = deserial.Deserialize<List<GamesForCart>>(APIresponse);
+                cartList = JsonConvert.DeserializeObject<List<Cart>>(APIresponse.Content);
+                
+                foreach (var item in cartList)
+                {
+                    item.ID = GetID(item.URL);
+                }
             }
 
-            return saleList;
+            return cartList;
         }
 
 
 
 
         // GET: Sale
-        public ActionResult Index()
+        public ActionResult Index() 
         {
-            var sales = GetSales();
-            return View(sales);
+            ViewBag.Message = "Sale";
+
+            var cart = GetCart();
+            return View(cart);
         }
 
 
         // GET: Sale/Details/5
         public ActionResult Details(int id)
         {
+            ViewBag.Message = "Sale";
+
             return View();
         }
 
         // GET: Sale/Create
         public ActionResult Create()
         {
+            ViewBag.Message = "Sale";
+
             return View();
         }
 
@@ -63,7 +76,6 @@ namespace EmployeeClient.Controllers
             try
             {
                 // TODO: Add insert logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -94,26 +106,7 @@ namespace EmployeeClient.Controllers
             }
         }
 
-        // GET: Sale/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
-        // POST: Sale/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+      
     }
 }

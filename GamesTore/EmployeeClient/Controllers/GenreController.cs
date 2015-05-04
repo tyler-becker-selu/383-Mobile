@@ -15,6 +15,8 @@ namespace EmployeeClient.Controllers
     {
         public List<Game> GetGamesForGenre(string  genreName)
         {
+            ViewBag.Message = "Genre";
+
             List<Game> gameList = new List<Game>();
 
             gameList = getGames(genreName);
@@ -25,6 +27,8 @@ namespace EmployeeClient.Controllers
         // GET: Genre
         public ActionResult Index()
         {
+            ViewBag.Message = "Genre";
+
             var request = new RestRequest("Genres/", Method.GET);
             APIHeaders(request);
             request.RequestFormat = DataFormat.Json;
@@ -49,6 +53,8 @@ namespace EmployeeClient.Controllers
         // GET: Genre/Details/5
         public ActionResult Details(int id)
         {
+            ViewBag.Message = "Genre";
+
             var request = new RestRequest(" Genres/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
@@ -70,6 +76,8 @@ namespace EmployeeClient.Controllers
         // GET: Genre/Create
         public ActionResult Create()
         {
+            ViewBag.Message = "Genre";
+
             return View();
         }
 
@@ -102,6 +110,8 @@ namespace EmployeeClient.Controllers
         // GET: Genre/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.Message = "Genre";
+
             var request = new RestRequest("Genres/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
@@ -144,6 +154,8 @@ namespace EmployeeClient.Controllers
         // GET: Genre/Delete/5
         public ActionResult Delete(int id)
         {
+            ViewBag.Message = "Genre";
+
             var request = new RestRequest("Genres/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
