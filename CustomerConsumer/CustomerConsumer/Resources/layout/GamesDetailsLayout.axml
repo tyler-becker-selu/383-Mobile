@@ -60,8 +60,8 @@
         android:id="@+id/addToCart"
         android:background="@drawable/buttonstuff_btn_default_holo_light"
         android:textColor="@color/icons"
-        android:layout_width="272.1dp"
-        android:layout_height="122.4dp"
+        android:layout_width="200dp"
+        android:layout_height="125dp"
         android:layout_gravity="center" />
     <Space
         android:layout_width="match_parent"

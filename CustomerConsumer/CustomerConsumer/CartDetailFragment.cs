@@ -49,7 +49,7 @@ namespace CustomerConsumer
 			GamesForCart game = tempCart.Games.FirstOrDefault(x => x.m_Item1.GameName.Equals(_detailedGame.GameName));
 
 			_priceText = view.FindViewById<TextView> (Resource.Id.itemPrice);
-			_priceText.Text = "$" + (_detailedGame.Price*game.m_Item2);
+			_priceText.Text = "Price: $" + (_detailedGame.Price*game.m_Item2);
 			_gmName = view.FindViewById<TextView> (Resource.Id.gameName);
 			_gmName.Text = _detailedGame.GameName;
 			_numPicker = view.FindViewById<NumberPicker> (Resource.Id.numberPicker1);
@@ -84,7 +84,7 @@ namespace CustomerConsumer
 			return view;
 		}
 		public void onValueChange(int newVal){
-			_priceText.Text = "$" + (_detailedGame.Price * newVal);
+			_priceText.Text = "Price: $" + (_detailedGame.Price * newVal);
 		}
 		public void setGame(Game detailedGame)
 		{

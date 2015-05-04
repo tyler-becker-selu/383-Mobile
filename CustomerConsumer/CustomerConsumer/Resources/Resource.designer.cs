@@ -1425,23 +1425,23 @@ namespace CustomerConsumer
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0a0072
-			public const int LoginBTN = 2131361906;
-			
-			// aapt resource value: 0x7f0a0068
-			public const int LoginSubmitBTN = 2131361896;
-			
-			// aapt resource value: 0x7f0a0066
-			public const int Password = 2131361894;
+			// aapt resource value: 0x7f0a0071
+			public const int LoginBTN = 2131361905;
 			
 			// aapt resource value: 0x7f0a0067
-			public const int PasswordText = 2131361895;
-			
-			// aapt resource value: 0x7f0a0064
-			public const int UserName = 2131361892;
+			public const int LoginSubmitBTN = 2131361895;
 			
 			// aapt resource value: 0x7f0a0065
-			public const int UserNameText = 2131361893;
+			public const int Password = 2131361893;
+			
+			// aapt resource value: 0x7f0a0066
+			public const int PasswordText = 2131361894;
+			
+			// aapt resource value: 0x7f0a0063
+			public const int UserName = 2131361891;
+			
+			// aapt resource value: 0x7f0a0064
+			public const int UserNameText = 2131361892;
 			
 			// aapt resource value: 0x7f0a0040
 			public const int action_bar = 2131361856;
@@ -1485,8 +1485,8 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f0a0026
 			public const int activity_chooser_view_content = 2131361830;
 			
-			// aapt resource value: 0x7f0a006f
-			public const int addToCart = 2131361903;
+			// aapt resource value: 0x7f0a006e
+			public const int addToCart = 2131361902;
 			
 			// aapt resource value: 0x7f0a0030
 			public const int alertTitle = 2131361840;
@@ -1500,8 +1500,8 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f0a0036
 			public const int buttonPanel = 2131361846;
 			
-			// aapt resource value: 0x7f0a0063
-			public const int cartID = 2131361891;
+			// aapt resource value: 0x7f0a0062
+			public const int cartID = 2131361890;
 			
 			// aapt resource value: 0x7f0a0051
 			public const int cartList = 2131361873;
@@ -1560,14 +1560,14 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f0a0058
 			public const int gameName = 2131361880;
 			
-			// aapt resource value: 0x7f0a006d
-			public const int gamesToCart = 2131361901;
+			// aapt resource value: 0x7f0a006c
+			public const int gamesToCart = 2131361900;
 			
-			// aapt resource value: 0x7f0a006b
-			public const int genre = 2131361899;
+			// aapt resource value: 0x7f0a006a
+			public const int genre = 2131361898;
 			
-			// aapt resource value: 0x7f0a0069
-			public const int genreSearch = 2131361897;
+			// aapt resource value: 0x7f0a0068
+			public const int genreSearch = 2131361896;
 			
 			// aapt resource value: 0x7f0a0004
 			public const int home = 2131361796;
@@ -1584,8 +1584,8 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f0a0028
 			public const int image = 2131361832;
 			
-			// aapt resource value: 0x7f0a0071
-			public const int imageView1 = 2131361905;
+			// aapt resource value: 0x7f0a0070
+			public const int imageView1 = 2131361904;
 			
 			// aapt resource value: 0x7f0a0059
 			public const int itemPrice = 2131361881;
@@ -1602,8 +1602,8 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f0a0009
 			public const int listMode = 2131361801;
 			
-			// aapt resource value: 0x7f0a006e
-			public const int listOfGames = 2131361902;
+			// aapt resource value: 0x7f0a006d
+			public const int listOfGames = 2131361901;
 			
 			// aapt resource value: 0x7f0a002a
 			public const int list_item = 2131361834;
@@ -1626,8 +1626,8 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f0a005b
 			public const int numberPicker1 = 2131361883;
 			
-			// aapt resource value: 0x7f0a0073
-			public const int outputText = 2131361907;
+			// aapt resource value: 0x7f0a0072
+			public const int outputText = 2131361906;
 			
 			// aapt resource value: 0x7f0a002d
 			public const int parentPanel = 2131361837;
@@ -1641,8 +1641,8 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f0a003a
 			public const int radio = 2131361850;
 			
-			// aapt resource value: 0x7f0a006a
-			public const int radioGroup1 = 2131361898;
+			// aapt resource value: 0x7f0a0069
+			public const int radioGroup1 = 2131361897;
 			
 			// aapt resource value: 0x7f0a0052
 			public const int relativeLayout1 = 2131361874;
@@ -1698,9 +1698,6 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f0a0011
 			public const int showTitle = 2131361809;
 			
-			// aapt resource value: 0x7f0a0060
-			public const int space1 = 2131361888;
-			
 			// aapt resource value: 0x7f0a005a
 			public const int space2 = 2131361882;
 			
@@ -1731,17 +1728,17 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f0a000b
 			public const int tabMode = 2131361803;
 			
-			// aapt resource value: 0x7f0a006c
-			public const int tags = 2131361900;
+			// aapt resource value: 0x7f0a006b
+			public const int tags = 2131361899;
 			
 			// aapt resource value: 0x7f0a0033
 			public const int textSpacerNoButtons = 2131361843;
 			
-			// aapt resource value: 0x7f0a0070
-			public const int textView1 = 2131361904;
+			// aapt resource value: 0x7f0a006f
+			public const int textView1 = 2131361903;
 			
-			// aapt resource value: 0x7f0a0062
-			public const int textViewTest = 2131361890;
+			// aapt resource value: 0x7f0a0061
+			public const int textViewTest = 2131361889;
 			
 			// aapt resource value: 0x7f0a0053
 			public const int textview = 2131361875;
@@ -1761,8 +1758,8 @@ namespace CustomerConsumer
 			// aapt resource value: 0x7f0a0008
 			public const int up = 2131361800;
 			
-			// aapt resource value: 0x7f0a0061
-			public const int updateCart = 2131361889;
+			// aapt resource value: 0x7f0a0060
+			public const int updateCart = 2131361888;
 			
 			// aapt resource value: 0x7f0a0012
 			public const int useLogo = 2131361810;

@@ -23,6 +23,8 @@ namespace CustomerConsumer
 		private Game _detailedGame;
 		private TextView _priceText;
 		private TextView _gmName;
+		private TextView _tags;
+		private TextView _genres;
 		private NumberPicker _numPicker;
 		private Button _addToCart;
 		//private Button _closeFragment;
@@ -46,7 +48,6 @@ namespace CustomerConsumer
 			var view = inflater.Inflate (Resource.Layout.GamesDetailsLayout,container, false);
 			_priceText = view.FindViewById<TextView> (Resource.Id.itemPrice);
 			_priceText.Text = "Price: $" + _detailedGame.Price.ToString();
-
 			_gmName = view.FindViewById<TextView> (Resource.Id.gameName);
 			_gmName.Text = _detailedGame.GameName;
 			_numPicker = view.FindViewById<NumberPicker> (Resource.Id.numberPicker1);
