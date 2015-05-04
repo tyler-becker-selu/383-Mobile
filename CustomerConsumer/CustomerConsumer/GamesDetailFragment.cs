@@ -49,7 +49,6 @@ namespace CustomerConsumer
 
 			_gmName = view.FindViewById<TextView> (Resource.Id.gameName);
 			_gmName.Text = _detailedGame.GameName;
-
 			_numPicker = view.FindViewById<NumberPicker> (Resource.Id.numberPicker1);
 			_numPicker.MinValue = 1;
 			_numPicker.MaxValue = _detailedGame.InventoryStock;
@@ -60,7 +59,6 @@ namespace CustomerConsumer
 			_addToCart = view.FindViewById<Button> (Resource.Id.addToCart);
 			_addToCart.Click += delegate {
 				Cart tempCart = UserSessionInfo.getUserCart();
-
 				if(tempCart.Games == null )
 				{
 					var postRequest = new RestRequest ("api/Carts/",Method.POST);
@@ -104,8 +102,9 @@ namespace CustomerConsumer
 					tempCart.Games.Find(r => r.m_Item1.URL.Equals(_detailedGame.URL)).m_Item2 = _numPicker.Value;
 					UserSessionInfo.setUserCart(tempCart);
 				}
-
+				this.Dismiss();
 			};
+
 
 			return view;
 		}

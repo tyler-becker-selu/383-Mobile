@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>x86</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,6 +47,18 @@
       <HintPath>..\Components\restsharp-105.0.1.0\lib\android\RestSharp.MonoDroid.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
+    <Reference Include="AutoMapper.Android">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\MonoAndroid\AutoMapper.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\MonoAndroid\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -59,21 +72,20 @@
     <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\ApiKey.cs" />
     <Compile Include="UserSessionInfo.cs" />
-    <Compile Include="MenuActivity.cs" />
     <Compile Include="CartActivity.cs" />
     <Compile Include="Model\GamesForCart.cs" />
-    <Compile Include="Model\MItem1.cs" />
-<<<<<<< Updated upstream
     <Compile Include="GamesDetailFragment.cs" />
-    <Compile Include="GamesAdapter.cs" />
-=======
     <Compile Include="DialogCheckout.cs" />
->>>>>>> Stashed changes
+    <Compile Include="GamesAdapter.cs" />
+    <Compile Include="ObjectExtensions.cs" />
+    <Compile Include="CartDetailFragment.cs" />
+    <Compile Include="GamesForCartsAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -85,16 +97,92 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\DialogLoginLayout.axml" />
     <AndroidResource Include="Resources\layout\Games.axml" />
-    <AndroidResource Include="Resources\layout\Menu.axml" />
     <AndroidResource Include="Resources\layout\Cart.axml" />
-    <AndroidResource Include="Resources\drawable-hdpi\logo.png" />
-<<<<<<< Updated upstream
-    <AndroidResource Include="Resources\layout\Test.axml" />
-    <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
-=======
     <AndroidResource Include="Resources\layout\DialogCheckoutLayout.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
->>>>>>> Stashed changes
+    <AndroidResource Include="Resources\drawable-hdpi\huge.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\big.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\med.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\small.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\smallMed.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\hugeNoBorder.png" />
+    <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
+<<<<<<< HEAD
+    <AndroidResource Include="Resources\layout\CartDetailsLayout.axml" />
+=======
+    <AndroidResource Include="Resources\layout\CartDetailLayout.axml" />
+    <AndroidResource Include="Resources\layout\Temp.axml" />
+    <AndroidResource Include="Resources\values\colors_teal_yellow.xml" />
+>>>>>>> 53961c2df6dfd912b019ace270b123a792620eb2
+    <AndroidResource Include="Resources\values\style.xml" />
+    <AndroidResource Include="Resources\values-v21\style.xml" />
+    <AndroidResource Include="Resources\values\colors_teal_indigo.xml" />
+    <AndroidResource Include="Resources\values-v11\style.xml" />
+    <AndroidResource Include="Resources\values\colors_buttonstuff.xml" />
+    <AndroidResource Include="Resources\values\styles_buttonstuff.xml" />
+    <AndroidResource Include="Resources\values\themes_buttonstuff.xml" />
+    <AndroidResource Include="Resources\drawable\buttonstuff_btn_default_holo_light.xml" />
+    <AndroidResource Include="Resources\drawable\buttonstuff_btn_radio_holo_light.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_default_disabled_focused_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_default_disabled_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_default_focused_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_default_normal_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_default_pressed_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_radio_off_disabled_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_radio_off_disabled_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_radio_off_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_radio_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_radio_off_pressed_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_radio_on_disabled_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_radio_on_disabled_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_radio_on_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_radio_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\buttonstuff_btn_radio_on_pressed_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_default_disabled_focused_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_default_disabled_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_default_focused_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_default_normal_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_default_pressed_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_radio_off_disabled_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_radio_off_disabled_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_radio_off_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_radio_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_radio_off_pressed_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_radio_on_disabled_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_radio_on_disabled_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_radio_on_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_radio_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttonstuff_btn_radio_on_pressed_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_default_disabled_focused_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_default_disabled_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_default_focused_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_default_normal_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_default_pressed_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_radio_off_disabled_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_radio_off_disabled_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_radio_off_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_radio_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_radio_off_pressed_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_radio_on_disabled_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_radio_on_disabled_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_radio_on_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_radio_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttonstuff_btn_radio_on_pressed_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_default_disabled_focused_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_default_disabled_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_default_focused_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_default_normal_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_default_pressed_holo_light.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_off_disabled_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_off_disabled_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_off_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_off_pressed_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_on_disabled_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_on_disabled_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_on_focused_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_on_pressed_holo_light.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -105,5 +193,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="Resources\values-v21\" />
+    <Folder Include="Resources\values-v11\" />
+    <Folder Include="Resources\drawable\" />
   </ItemGroup>
 </Project>

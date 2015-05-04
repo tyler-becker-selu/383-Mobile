@@ -36,7 +36,7 @@
                 android:textColor="#ff000000" />
         </LinearLayout>
         <Space
-            android:layout_width="130.7dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:id="@+id/space2" />
         <NumberPicker
@@ -53,15 +53,10 @@
             android:id="@+id/linearLayout4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
-            <Button
-                android:text="Button"
-                android:id="@+id/addMe"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" />
-            <Button
-                android:text="Button"
-                android:id="@+id/subMe"
-                android:layout_width="80dp"
+            <ImageButton
+                android:src="@drawable/delete"
+                android:id="@+id/delete"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
