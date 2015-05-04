@@ -45,7 +45,7 @@ namespace CustomerConsumer
 			base.OnCreateView (inflater, container, savedInstanceState);
 			var view = inflater.Inflate (Resource.Layout.GamesDetailsLayout,container, false);
 			_priceText = view.FindViewById<TextView> (Resource.Id.itemPrice);
-			_priceText.Text = "$" + _detailedGame.Price.ToString();
+			_priceText.Text = "Price: $" + _detailedGame.Price.ToString();
 
 			_gmName = view.FindViewById<TextView> (Resource.Id.gameName);
 			_gmName.Text = _detailedGame.GameName;
@@ -109,7 +109,7 @@ namespace CustomerConsumer
 			return view;
 		}
 		public void onValueChange(int newVal){
-			_priceText.Text = "$" + (_detailedGame.Price * newVal);
+			_priceText.Text = "Price: $" + (_detailedGame.Price * newVal);
 		}
 		public void setGame(Game detailedGame)
 		{

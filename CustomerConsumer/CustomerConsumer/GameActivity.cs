@@ -14,7 +14,7 @@ using Java.Lang;
 
 namespace CustomerConsumer
 {
-	[Activity (Label = "Games", Theme="@android:style/Theme", Icon = "@drawable/hugeNoBorder")]			
+	[Activity (Label = "Games", Icon = "@drawable/hugeNoBorder")]			
 	public class GameActivity : Activity
 	{
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();

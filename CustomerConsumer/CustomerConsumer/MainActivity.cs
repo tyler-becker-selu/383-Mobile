@@ -10,14 +10,14 @@ using System.Net;
 using RestSharp.Deserializers;
 using Android.Graphics.Drawables;
 using Android.Util;
+using Android.Support.V7.App;
 
 namespace CustomerConsumer
 {
-	[Activity (Label = "Game Store 4", MainLauncher = true, Icon = "@drawable/hugeNoBorder", Theme="@style/CustomTheme")]
+	[Activity (Label = "Game Store 4", MainLauncher = true, Icon = "@drawable/hugeNoBorder")]
 	public class MainActivity : Activity
 	{
 		private Button loginBTN;
-
 		public RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
 
 		private RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
@@ -43,7 +43,7 @@ namespace CustomerConsumer
 			catch (Exception ex){
 				string x = ex.Message;
 			}
-				
+		
 			// Set our view from the "main" layout resource
 
 			// Get our button from the layout resource,

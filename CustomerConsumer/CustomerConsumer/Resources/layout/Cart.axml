@@ -10,7 +10,8 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/linearLayout1">
+        android:id="@+id/linearLayout1"
+        android:background="@color/primary_light">
         <Button
             android:text="Go To Games"
             android:id="@+id/cartToGames"
@@ -18,14 +19,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonstuff_btn_default_holo_light"
+            android:textColor="@color/icons" />
         <ListView
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/cartList"
-            android:layout_marginBottom="0.0dp" />
+            android:layout_marginBottom="0.0dp"
+            android:headerDividersEnabled="true"
+            android:footerDividersEnabled="true"
+            android:listSelector="@drawable/listviewselector" />
         <RelativeLayout
             android:minWidth="25px"
             android:minHeight="25px"
@@ -62,7 +68,7 @@
             android:id="@+id/checkout"
             android:height="50dp"
             android:layout_marginLeft="30.0dp"
-            android:background="#ff149c82"
+            android:background="@drawable/buttonstuff_btn_default_holo_light"
             android:layout_marginRight="30.0dp"
             android:layout_marginTop="20.0dp"
             android:layout_marginBottom="20.0dp" />

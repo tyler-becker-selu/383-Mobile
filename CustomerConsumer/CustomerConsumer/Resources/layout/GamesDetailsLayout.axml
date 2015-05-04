@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffff">
+    android:background="@color/primary_light">
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
@@ -17,7 +17,8 @@
             android:minHeight="25px"
             android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingLeft="15dp">
             <TextView
                 android:text="GameName"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -38,53 +39,32 @@
         <Space
             android:layout_width="130.7dp"
             android:layout_height="match_parent"
-            android:id="@+id/space2" />
+            android:id="@+id/space2"
+            android:background="@color/primary_light" />
         <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/numberPicker1"
-            android:background="#ffd6d1d1"
+            android:background="@color/accent"
             android:fadingEdge="vertical"
-            android:fitsSystemWindows="true" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/space4"
-                android:layout_weight="1.7" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/space5"
-                android:layout_weight="1.7" />
+            android:fitsSystemWindows="true"
+            android:orientation="horizontal" />
     </LinearLayout>
     <Space
         android:layout_width="match_parent"
         android:layout_height="96.5dp"
-        android:id="@+id/space3" />
-    <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/space3"
+        android:background="@color/primary_light" />
+    <Button
+        android:text="Add to Cart"
+        android:id="@+id/addToCart"
+        android:background="@drawable/buttonstuff_btn_default_holo_light"
+        android:textColor="@color/icons"
+        android:layout_width="272.1dp"
+        android:layout_height="122.4dp"
+        android:layout_gravity="center" />
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="99.3dp"
-        android:id="@+id/linearLayout1"
-        android:layout_marginBottom="0.0dp">
-        <Button
-            android:text="Add to Cart"
-            android:layout_width="165dp"
-            android:layout_height="95dp"
-            android:id="@+id/addToCart"
-            android:background="#ff337ab7"
-            android:layout_marginLeft="5dp" />
-        <Space
-            android:layout_width="43.0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/space1" />
-        <Button
-            android:text="Back to Games"
-            android:layout_width="165dp"
-            android:layout_height="95dp"
-            android:id="@+id/back"
-            android:layout_gravity="right"
-            android:background="#ff95a5a6"
-            android:layout_marginRight="5dp" />
-    </LinearLayout>
+        android:layout_height="32.1dp"
+        android:id="@+id/space4" />
 </LinearLayout>

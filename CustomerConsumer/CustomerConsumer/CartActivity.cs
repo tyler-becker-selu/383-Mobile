@@ -16,7 +16,7 @@ using Android.Graphics.Drawables;
 
 namespace CustomerConsumer
 {
-	[Activity (Label = "Cart",  Theme="@android:style/Theme.Black", Icon = "@drawable/hugeNoBorder")]			
+	[Activity (Label = "Cart", Icon = "@drawable/hugeNoBorder")]			
 	public class CartActivity : Activity
 	{
 		private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");

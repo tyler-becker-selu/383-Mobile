@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffffff"
+    android:background="@color/primary_light"
     android:id="@+id/linearLayout2"
     android:minWidth="25px"
     android:minHeight="25px">
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/genreSearch"
-        android:background="@color/primary_light" />
+        android:background="@color/buttonstuff_color" />
     <RadioGroup
         android:id="@+id/radioGroup1"
         android:orientation="horizontal"
@@ -41,14 +41,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gamesToCart"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:background="@drawable/buttonstuff_btn_default_holo_light"
+        android:textColor="@color/icons" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listOfGames"
-        android:divider="#707070"
+        android:divider="@color/divider"
         android:dividerHeight="2px"
-        android:background="#ffffffff" />
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="true"
+        android:listSelector="@drawable/listviewselector" />
 </LinearLayout>

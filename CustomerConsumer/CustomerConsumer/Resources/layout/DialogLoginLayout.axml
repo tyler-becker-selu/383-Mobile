@@ -22,6 +22,7 @@
         android:id="@+id/UserNameText"
         android:background="@android:color/background_light"
         android:textColor="@android:color/black"
+        android:textCursorDrawable="@null"
         android:layout_marginLeft="40.0dp"
         android:layout_marginRight="40.0dp"
         android:layout_marginTop="5.0dp"
@@ -46,6 +47,7 @@
         android:id="@+id/PasswordText"
         android:background="@android:color/background_light"
         android:textColor="@android:color/black"
+        android:textCursorDrawable="@null"
         android:layout_marginLeft="40.0dp"
         android:layout_marginRight="40.0dp"
         android:layout_marginTop="5.0dp"
@@ -53,7 +55,7 @@
         android:requiresFadingEdge="none"
         android:fadingEdge="none" />
     <Button
-        android:text="Log In"
+        android:text="Login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/LoginSubmitBTN"

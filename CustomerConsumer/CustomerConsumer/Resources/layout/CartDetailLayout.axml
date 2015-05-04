@@ -3,21 +3,24 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffff">
+    android:background="@color/primary_light">
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout2">
+        android:id="@+id/linearLayout2"
+        android:background="@color/primary_light">
         <LinearLayout
             android:orientation="vertical"
             android:minWidth="25px"
             android:minHeight="25px"
             android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/primary_light"
+            android:paddingLeft="15dp">
             <TextView
                 android:text="GameName"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -36,34 +39,39 @@
                 android:textColor="#ff000000" />
         </LinearLayout>
         <Space
-            android:layout_width="50dp"
+            android:layout_width="138.0dp"
             android:layout_height="match_parent"
-            android:id="@+id/space2" />
+            android:id="@+id/space2"
+            android:background="@color/primary_light" />
         <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/numberPicker1"
-            android:background="#ffd6d1d1"
+            android:background="@color/accent"
             android:fadingEdge="vertical"
-            android:fitsSystemWindows="true" />
-        <LinearLayout
-            android:orientation="vertical"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:id="@+id/linearLayout4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <ImageButton
-                android:src="@drawable/delete"
-                android:id="@+id/delete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            android:fitsSystemWindows="true"
+            android:orientation="vertical" />
+        <Space
+            android:layout_width="23.8dp"
+            android:layout_height="match_parent"
+            android:id="@+id/space5" />
     </LinearLayout>
     <Space
         android:layout_width="match_parent"
-        android:layout_height="96.5dp"
-        android:id="@+id/space3" />
+        android:layout_height="15.4dp"
+        android:id="@+id/space4" />
+    <ImageButton
+        android:src="@drawable/delete"
+        android:id="@+id/delete"
+        android:layout_width="94.4dp"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_light"
+        android:layout_gravity="right" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="54.7dp"
+        android:id="@+id/space3"
+        android:background="@color/primary_light" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -82,9 +90,10 @@
             android:id="@+id/updateCart"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="#ff337ab7"
+            android:background="@drawable/buttonstuff_btn_default_holo_light"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/icons" />
         <Space
             android:layout_width="match_parent"
             android:layout_height="match_parent"

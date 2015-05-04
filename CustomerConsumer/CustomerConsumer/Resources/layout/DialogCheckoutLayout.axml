@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff8a8a8a"
+    android:background="@color/primary_light"
     android:minWidth="25px"
     android:minHeight="25px">
     <TextView
@@ -15,7 +15,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="top"
         android:layout_margin="20dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:textColor="@color/primary_text" />
     <TextView
         android:text="sdf"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -26,5 +27,6 @@
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:layout_marginBottom="20dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:textColor="@color/accent" />
 </LinearLayout>

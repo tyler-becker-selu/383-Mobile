@@ -99,20 +99,15 @@
     <AndroidResource Include="Resources\layout\Games.axml" />
     <AndroidResource Include="Resources\layout\Cart.axml" />
     <AndroidResource Include="Resources\layout\DialogCheckoutLayout.axml" />
-    <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
     <AndroidResource Include="Resources\drawable-hdpi\huge.png" />
     <AndroidResource Include="Resources\drawable-mdpi\big.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\med.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\small.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\smallMed.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\hugeNoBorder.png" />
     <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
     <AndroidResource Include="Resources\layout\CartDetailLayout.axml" />
-    <AndroidResource Include="Resources\layout\Temp.axml" />
     <AndroidResource Include="Resources\values\style.xml" />
-    <AndroidResource Include="Resources\values-v21\style.xml" />
     <AndroidResource Include="Resources\values\colors_teal_indigo.xml" />
-    <AndroidResource Include="Resources\values-v11\style.xml" />
     <AndroidResource Include="Resources\values\colors_buttonstuff.xml" />
     <AndroidResource Include="Resources\values\styles_buttonstuff.xml" />
     <AndroidResource Include="Resources\values\themes_buttonstuff.xml" />
@@ -178,6 +173,9 @@
     <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_on_focused_holo_light.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_on_holo_light.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\buttonstuff_btn_radio_on_pressed_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\hugeNoBorder.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
+    <AndroidResource Include="Resources\drawable\listViewSelector.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -188,8 +186,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="Resources\values-v21\" />
-    <Folder Include="Resources\values-v11\" />
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
 </Project>
