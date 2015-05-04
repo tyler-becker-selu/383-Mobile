@@ -50,7 +50,11 @@ namespace CustomerConsumer
 			// and attach an event to it
 
 			loginBTN = FindViewById<Button> (Resource.Id.LoginBTN);
+			Button h2g = FindViewById<Button> (Resource.Id.homeToGames);
+			Button h2c = FindViewById<Button> (Resource.Id.homeToCart);
 			if (UserSessionInfo.getUserId () == 0) {
+				h2g.Visibility = ViewStates.Invisible;
+				h2c.Visibility = ViewStates.Invisible;
 				loginBTN.Click += delegate {
 					FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 					DialogLogin loginDialog = new DialogLogin ();
@@ -59,6 +63,16 @@ namespace CustomerConsumer
 				};
 			} else {
 				loginBTN.Text = "Logout";
+				h2g.Visibility = ViewStates.Visible;
+				h2g.Click += delegate {
+					Intent intent = new Intent (this, typeof(GameActivity));
+					StartActivity (intent);
+				};
+				h2c.Click += delegate {
+					Intent intent = new Intent (this, typeof(CartActivity));
+					StartActivity (intent);
+				};
+				h2c.Visibility = ViewStates.Visible;
 				loginBTN.Click += delegate {
 					UserSessionInfo.Logout();
 					Intent intent = new Intent (this, typeof(MainActivity));

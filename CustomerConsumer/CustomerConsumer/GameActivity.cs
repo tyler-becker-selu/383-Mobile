@@ -24,7 +24,6 @@ namespace CustomerConsumer
 		private List<Game> _gamesList;
 		private RadioButton _genreBtn;
 		private RadioButton _tagBtn;
-
 		private void APIHeaders(RestRequest request)
 		{
 			if (UserSessionInfo.getUserId() != 0 && UserSessionInfo.getApiKey() != null)
@@ -48,6 +47,7 @@ namespace CustomerConsumer
 			goToCart.Click += delegate {
 				Intent myIntent = new Intent(this, typeof(CartActivity));
 				StartActivity (myIntent);
+				Finish();
 			};
 			_searchBar = FindViewById<SearchView> (Resource.Id.genreSearch);
 			_genreBtn = FindViewById <RadioButton> (Resource.Id.genre);
