@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ff8a8a8a">
+    android:background="@color/primary_light">
     <TextView
         android:text="Email Address"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -13,7 +13,9 @@
         android:layout_marginLeft="40.0dp"
         android:layout_marginTop="10.0dp"
         android:layout_marginRight="40.0dp"
-        android:layout_marginBottom="5.0dp" />
+        android:layout_marginBottom="5.0dp"
+        android:textColor="@color/primary_text"
+        android:background="@color/primary_light" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50.0dp"
@@ -34,7 +36,9 @@
         android:layout_marginLeft="40.0dp"
         android:layout_marginTop="10.0dp"
         android:layout_marginRight="40.0dp"
-        android:layout_marginBottom="5.0dp" />
+        android:layout_marginBottom="5.0dp"
+        android:textColor="@color/primary_text"
+        android:background="@color/primary_light" />
     <EditText
         android:inputType="textPassword"
         android:layout_width="match_parent"
@@ -45,7 +49,9 @@
         android:layout_marginLeft="40.0dp"
         android:layout_marginRight="40.0dp"
         android:layout_marginTop="5.0dp"
-        android:layout_marginBottom="10.0dp" />
+        android:layout_marginBottom="10.0dp"
+        android:requiresFadingEdge="none"
+        android:fadingEdge="none" />
     <Button
         android:text="Log In"
         android:layout_width="match_parent"
@@ -55,10 +61,6 @@
         android:layout_marginRight="20.0dp"
         android:layout_marginTop="10.0dp"
         android:layout_marginBottom="10.0dp"
-        android:background="#ff149c82" />
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:background="#ff149c82"
+        android:textColor="@color/icons" />
 </LinearLayout>

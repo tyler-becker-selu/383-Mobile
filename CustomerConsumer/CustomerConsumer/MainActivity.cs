@@ -13,7 +13,7 @@ using Android.Util;
 
 namespace CustomerConsumer
 {
-	[Activity (Label = "Game Store 4", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "Game Store 4", MainLauncher = true, Icon = "@drawable/icon", Theme="@style/CustomTheme")]
 	public class MainActivity : Activity
 	{
 		private Button loginBTN;

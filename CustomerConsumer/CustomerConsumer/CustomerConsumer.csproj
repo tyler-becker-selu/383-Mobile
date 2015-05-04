@@ -53,6 +53,12 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\MonoAndroid\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -74,7 +80,7 @@
     <Compile Include="GamesAdapter.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="CartDetailFragment.cs" />
-    <Compile Include="Resources\GamesForCartsAdapter.cs" />
+    <Compile Include="GamesForCartsAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -94,7 +100,6 @@
     <AndroidResource Include="Resources\layout\Games.axml" />
     <AndroidResource Include="Resources\layout\Menu.axml" />
     <AndroidResource Include="Resources\layout\Cart.axml" />
-    <AndroidResource Include="Resources\layout\Test.axml" />
     <AndroidResource Include="Resources\layout\DialogCheckoutLayout.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
     <AndroidResource Include="Resources\drawable-hdpi\huge.png" />
@@ -104,7 +109,9 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\smallMed.png" />
     <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
     <AndroidResource Include="Resources\layout\CartDetailsLayout.axml" />
-    <AndroidResource Include="Resources\layout\Temp.axml" />
+    <AndroidResource Include="Resources\values\colors_teal_yellow.xml" />
+    <AndroidResource Include="Resources\values\style.xml" />
+    <AndroidResource Include="Resources\values-v21\style.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -115,5 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="Resources\values-v21\" />
   </ItemGroup>
 </Project>
