@@ -1,12 +1,11 @@
 ﻿<Properties StartupItem="CustomerConsumer\CustomerConsumer.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TestMachine_API_19" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CustomerConsumer\GameActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CustomerConsumer\CartActivity.cs">
     <Files>
-      <File FileName="CustomerConsumer\MainActivity.cs" Line="64" Column="49" />
-      <File FileName="CustomerConsumer\CartActivity.cs" Line="1" Column="1" />
       <File FileName="CustomerConsumer\GamesDetailFragment.cs" Line="1" Column="1" />
-      <File FileName="CustomerConsumer\Properties\AndroidManifest.xml" Line="1" Column="1" />
-      <File FileName="CustomerConsumer\GameActivity.cs" Line="16" Column="81" />
+      <File FileName="CustomerConsumer\GameActivity.cs" Line="79" Column="27" />
+      <File FileName="CustomerConsumer\GamesAdapter.cs" Line="38" Column="4" />
+      <File FileName="CustomerConsumer\CartActivity.cs" Line="132" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

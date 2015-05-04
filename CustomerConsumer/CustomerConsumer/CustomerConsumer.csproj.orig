@@ -16,8 +16,6 @@
     <AssemblyName>CustomerConsumer</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +42,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="RestSharp.MonoDroid">
+      <HintPath>..\Components\restsharp-105.0.1.0\lib\android\RestSharp.MonoDroid.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -55,7 +57,15 @@
     <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\Cart.cs" />
-
+    <Compile Include="Model\ApiKey.cs" />
+    <Compile Include="UserSessionInfo.cs" />
+    <Compile Include="MenuActivity.cs" />
+    <Compile Include="CartActivity.cs" />
+    <Compile Include="Model\GamesForCart.cs" />
+    <Compile Include="Model\MItem1.cs" />
+    <Compile Include="GamesDetailFragment.cs" />
+    <Compile Include="GamesAdapter.cs" />
+    <Compile Include="DialogCheckout.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -70,11 +80,15 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
-<<<<<<< Updated upstream
-    <AndroidResource Include="Resources\layout\Games.axml" />
-=======
     <AndroidResource Include="Resources\layout\DialogLoginLayout.axml" />
->>>>>>> Stashed changes
+    <AndroidResource Include="Resources\layout\Games.axml" />
+    <AndroidResource Include="Resources\layout\Menu.axml" />
+    <AndroidResource Include="Resources\layout\Cart.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\logo.png" />
+    <AndroidResource Include="Resources\layout\Test.axml" />
+    <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
+    <AndroidResource Include="Resources\layout\DialogCheckoutLayout.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

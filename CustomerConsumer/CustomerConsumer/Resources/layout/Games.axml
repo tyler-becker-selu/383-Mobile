@@ -7,6 +7,35 @@
     android:id="@+id/linearLayout2"
     android:minWidth="25px"
     android:minHeight="25px">
+    <SearchView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/genreSearch"
+        android:background="#ffd1caca" />
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:orientation="horizontal"
+        android:layout_width="173.0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <RadioButton
+            android:text="Genre"
+            android:id="@+id/genre"
+            android:checked="true"
+            android:button="@android:drawable/btn_radio"
+            android:textColor="#ff000000"
+            android:layout_width="94.9dp"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:text="Tags"
+            android:id="@+id/tags"
+            android:button="@android:drawable/btn_radio"
+            android:textColor="#ff000000"
+            android:layout_width="87.7dp"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"

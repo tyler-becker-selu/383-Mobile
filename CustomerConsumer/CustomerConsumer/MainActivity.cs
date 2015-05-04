@@ -9,6 +9,7 @@ using RestSharp;
 using System.Net;
 using RestSharp.Deserializers;
 using Android.Graphics.Drawables;
+using Android.Util;
 
 namespace CustomerConsumer
 {
@@ -49,6 +50,7 @@ namespace CustomerConsumer
 			// and attach an event to it
 
 			loginBTN = FindViewById<Button> (Resource.Id.LoginBTN);
+			loginBTN.TextSize = 50;
 			loginBTN.Click += delegate {
 				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 				DialogLogin loginDialog = new DialogLogin ();
@@ -94,8 +96,6 @@ namespace CustomerConsumer
 					UserSessionInfo.setUserCart (userCart);
 				}
 					
-
-
 				Intent myIntent = new Intent(this, typeof(MenuActivity));
 				StartActivity (myIntent);
 			} else if (response.StatusCode == HttpStatusCode.Forbidden) {
@@ -103,6 +103,25 @@ namespace CustomerConsumer
 			} else {
 				text.Text = string.Format ("An error has occurred");
 			}
+		}
+
+		protected override void OnDestroy ()
+		{
+			var cart = UserSessionInfo.getUserCart ();
+			if (cart != null) {
+				
+				var request = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId(), Method.PUT);
+				APIHeaders (request);
+				RestSharp.Serializers.JsonSerializer serial = new RestSharp.Serializers.JsonSerializer ();
+				var json = serial.Serialize (cart);
+
+				request.AddParameter ("text/json", json, ParameterType.RequestBody);
+
+				var response = client.Execute (request);
+			}
+
+			base.OnDestroy ();
+
 		}
 	}
 }

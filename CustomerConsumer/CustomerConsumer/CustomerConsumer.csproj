@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>x86</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -68,10 +69,12 @@
     <Compile Include="MenuActivity.cs" />
     <Compile Include="CartActivity.cs" />
     <Compile Include="Model\GamesForCart.cs" />
-    <Compile Include="Model\MItem1.cs" />
     <Compile Include="GamesDetailFragment.cs" />
     <Compile Include="DialogCheckout.cs" />
     <Compile Include="GamesAdapter.cs" />
+    <Compile Include="ObjectExtensions.cs" />
+    <Compile Include="CartDetailFragment.cs" />
+    <Compile Include="Resources\GamesForCartsAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -92,7 +95,6 @@
     <AndroidResource Include="Resources\layout\Menu.axml" />
     <AndroidResource Include="Resources\layout\Cart.axml" />
     <AndroidResource Include="Resources\layout\Test.axml" />
-    <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
     <AndroidResource Include="Resources\layout\DialogCheckoutLayout.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
     <AndroidResource Include="Resources\drawable-hdpi\huge.png" />
@@ -100,6 +102,9 @@
     <AndroidResource Include="Resources\drawable-xhdpi\med.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\small.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\smallMed.png" />
+    <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
+    <AndroidResource Include="Resources\layout\CartDetailsLayout.axml" />
+    <AndroidResource Include="Resources\layout\Temp.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

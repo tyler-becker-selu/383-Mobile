@@ -2,33 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <Button
-        android:id="@+id/myButton"
+    android:layout_height="fill_parent"
+    android:background="#ffffffff">
+    <Space
         android:layout_width="match_parent"
+        android:layout_height="366.9dp"
+        android:id="@+id/space1" />
+    <Button
+        android:text="Login"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:id="@+id/LoginBTN"
+        android:background="#ff149c82"
+        android:layout_gravity="center" />
+        android:id="@+id/space1"
+        android:layout_weight="1" />
     <Button
         android:text="Log In"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/LoginBTN" />
-<<<<<<< HEAD
+        android:id="@+id/LoginBTN"
+        android:layout_margin="20dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="#ff149c82"
+        android:layout_weight="1" />
     <TextView
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@android:color/holo_red_dark"
         android:textAppearance="?android:attr/textAppearanceLarge"
-=======
-    <Button
-        android:text="Games"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/GameBTN" />
-    <CheckBox
-        android:text="CheckBox"
->>>>>>> LOST_FOUND_1
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/outputText"
-        android:layout_marginLeft="20.0dp"
-        android:layout_marginTop="10.0dp"
-        android:layout_marginRight="20.0dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="20dp" />
 </LinearLayout>
