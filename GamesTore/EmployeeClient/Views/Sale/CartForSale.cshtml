@@ -2,49 +2,55 @@
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 @Scripts.Render("~/bundles/jquery")
-<script src="~/Scripts/CustomScripts/ListCheckboxes.js"></script>
-    @if (Model.Games != null)
-    {
-        decimal cost = 0;
+<script src="~/Scripts/CustomScripts/SaleModal.js"></script>
 
-        <table class="table">
-            <thead>
+@if (Model.Games != null)
+{
+    decimal cost = 0;
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Game Name
+                </th>
+                <th>
+                    Quantity
+                
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.Games)
+            {
                 <tr>
-                    <th>
-                        Game Name
-                    </th>
-                    <th>
-                        Quantity
-                    </th>
-                    <th>
-                        Price
-                    </th>
-                    <th></th>
+                    <td>
+                        @item.m_Item1.GameName
+                    </td>
+                    <td>
+                        @item.m_Item2
+                    </td>
+                    <td>
+                        @item.m_Item1.Price
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
+                cost += (@item.m_Item1.Price * @item.m_Item2);
+            }
 
-                @foreach (var item in Model.Games)
-                {
-                    <tr>
-                        <td>
-                            @item.m_Item1.GameName
-                        </td>
-                        <td>
-                            @item.m_Item2
-                        </td>
-                        <td>
-                            @item.m_Item1.Price
-                        </td>
-                    </tr>
-                    cost += (@item.m_Item1.Price * @item.m_Item2);
-                }
-
-            </tbody>
-        </table>
-        <h3 class="pull-right" style="padding-right: 15%;">Total for sale : $@cost</h3>
-    }
-    else
-    {
-        <h1 class="text-danger">There is no sale for this sale number!</h1>
-    }
+        </tbody>
+    </table>
+    <h3 class="pull-right" style="padding-right: 15%;">Total for sale : $@cost</h3>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-success pull-left" onclick="makeSale()">Yes</button>
+    </div>
+}
+else
+{
+    <h1 class="text-danger">We can't find a cart that is ready to be checked out with that sale number!</h1>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Ok</button>
+    </div>
+}

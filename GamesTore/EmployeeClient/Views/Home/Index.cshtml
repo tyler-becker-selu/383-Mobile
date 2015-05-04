@@ -1,12 +1,16 @@
-﻿<div class="jumbotron">
+﻿<script src="~/Scripts/CustomScripts/SaleModal.js"></script>
+
+<div class="jumbotron">
     <p class="lead">Make a Sale</p>
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Sale Number" aria-describedby="basic-addon1" id="userID">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saleModal" onclick="partial()">
-            Make Sale
-        </button>
+    <div class="input-group pull-left">
+        <input type="text" class="form-control " placeholder="Sale Number" aria-describedby="basic-addon1" id="userID">
+
+
     </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-md pull-left" data-toggle="modal" data-target="#saleModal" onclick="partial()">
+        Make Sale
+    </button>
 </div>
 
 
@@ -19,43 +23,8 @@
                 <h4 class="modal-title" id="myModalLabel">Is this the correct cart?</h4>
             </div>
             <div class="modal-body" id="textHere">
+            </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-success pull-left" onclick="makeSale()">Yes</button>
-            </div>
         </div>
     </div>
 </div>
-<script>
-    var ID;
-    function partial() {
-        var modal = $("#textHere");
-        ID = $('#userID').val();
-        var ajaxHandler = $.ajax({
-            type: 'Get',
-            url: '/Sale/CartForSale/' + ID,
-        });
-        ajaxHandler.done(function (result) {
-            modal.html(result);
-        });
-        ajaxHandler.fail(function (xhr, ajaxOptions, thrownError) {
-            alert(thrownError.toString());
-        });
-    }
-
-    function makeSale() {
-        $.ajax({
-            type: 'POST',
-            url: '/Sale/CreateSale',
-            data: { 'id': ID },
-            success: function (data) {
-                window.location.href = data.Url
-            },
-            error: function () {
-                console.trace();
-            }
-        });
-    }
-</script>

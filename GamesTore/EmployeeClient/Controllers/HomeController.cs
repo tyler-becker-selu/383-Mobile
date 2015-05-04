@@ -16,7 +16,7 @@ namespace EmployeeClient.Controllers
         [AuthController(AccessLevel = "Employee")]
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to Group 4's Web Portal!";
+            ViewBag.Message = "Welcome to Group 4 Store!";
 
             return View();
         }

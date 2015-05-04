@@ -55,7 +55,7 @@ namespace EmployeeClient.Controllers
         {
             ViewBag.Message = "Genre";
 
-            var request = new RestRequest(" Genres/{id}", Method.GET);
+            var request = new RestRequest("Genres/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
             request.RequestFormat = DataFormat.Json;
