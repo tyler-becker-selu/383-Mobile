@@ -133,7 +133,7 @@ namespace CustomerConsumer
 			{
 				using(var values = results.Values)
 					_gameAdapter._games = values.ToArray<Object>()
-						.Select(r => r.ToNetObject<Game>()).ToList();
+						.Select(r => r.ToNetObject<Game>()).Where(r=>r.InventoryStock > 0).ToList();
 
 				_gameAdapter.NotifyDataSetChanged ();
 

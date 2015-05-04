@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/genreSearch"
-        android:queryHint="Search"
         android:background="@color/buttonstuff_color" />
     <RadioGroup
         android:id="@+id/radioGroup1"

@@ -43,6 +43,7 @@ namespace CustomerConsumer
 			catch (System.Exception ex){
 				string x = ex.Message;
 			}
+				
 			Button goToCart = FindViewById<Button> (Resource.Id.gamesToCart);
 			goToCart.Click += delegate {
 				Intent myIntent = new Intent(this, typeof(CartActivity));
@@ -55,13 +56,12 @@ namespace CustomerConsumer
 
 			_genreBtn.Click += delegate {
 				UserSessionInfo.SetSearchTag(false);
-				_searchBar.SetQueryHint("Genres");
 			};
 
 			_tagBtn.Click += delegate {
 				UserSessionInfo.SetSearchTag(true);
-				_searchBar.SetQueryHint("Tags");
 			};
+
 			Button logout = FindViewById<Button> (Resource.Id.logoutGames);
 			logout.Click += delegate {
 				UserSessionInfo.Logout();
