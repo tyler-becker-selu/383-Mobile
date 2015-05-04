@@ -85,6 +85,7 @@ namespace CustomerConsumer
 				ListView listView;
 				listView = FindViewById<ListView> (Resource.Id.listOfGames);
 				_gamesList = _deserializer.Deserialize<List<Game>> (response);
+				_gamesList = _gamesList.Where (r => r.InventoryStock > 0).ToList();
 				_adapter = new GamesAdapter (this, _gamesList);
 				listView.Adapter = _adapter;
 				listView.ItemClick += OnGameClick;

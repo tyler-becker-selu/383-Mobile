@@ -103,6 +103,7 @@ namespace CustomerConsumer
 					userCart = new Cart ();
 					UserSessionInfo.setUserCart (userCart);
 				}
+
 				Intent intent = new Intent (this, typeof(MainActivity));
 				StartActivity (intent);
 				Finish ();	

@@ -7,12 +7,12 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <TextView
-        android:text="Take this number to a sales associate to complete the sale"
+        android:text="Take this number to a sales associate to complete the sale, and confirm at the end of the sale."
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textViewTest"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="129.9dp"
         android:layout_gravity="top"
         android:layout_margin="20dp"
         android:layout_weight="1"
@@ -22,10 +22,22 @@
         android:id="@+id/cartID"
         android:gravity="center|top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="124.1dp"
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="1"
         android:textColor="@color/accent" />
+    <Button
+        android:text="Confirm"
+        android:layout_width="316.6dp"
+        android:layout_height="78.2dp"
+        android:id="@+id/confirmation"
+        android:layout_gravity="center"
+        android:background="@drawable/buttonstuff_btn_default_holo_light"
+        android:textColor="@color/icons" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="83.3dp"
+        android:id="@+id/space1" />
 </LinearLayout>
