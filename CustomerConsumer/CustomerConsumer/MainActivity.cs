@@ -13,7 +13,7 @@ using Android.Util;
 
 namespace CustomerConsumer
 {
-	[Activity (Label = "Game Store 4", MainLauncher = true, Icon = "@drawable/icon", Theme="@style/CustomTheme")]
+	[Activity (Label = "Game Store 4", MainLauncher = true, Icon = "@drawable/hugeNoBorder", Theme="@style/CustomTheme")]
 	public class MainActivity : Activity
 	{
 		private Button loginBTN;
@@ -50,7 +50,6 @@ namespace CustomerConsumer
 			// and attach an event to it
 
 			loginBTN = FindViewById<Button> (Resource.Id.LoginBTN);
-			loginBTN.TextSize = 50;
 			loginBTN.Click += delegate {
 				FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 				DialogLogin loginDialog = new DialogLogin ();
@@ -84,7 +83,7 @@ namespace CustomerConsumer
 
 				var cartResponse = client.Execute (cartRequest);
 				if (cartResponse.StatusCode != HttpStatusCode.NotFound) {
-					 userCart = _deserializer.Deserialize<Cart> (cartResponse);
+					userCart = _deserializer.Deserialize<Cart> (cartResponse);
 				} else {
 					userCart = null;
 				}
@@ -96,7 +95,7 @@ namespace CustomerConsumer
 					UserSessionInfo.setUserCart (userCart);
 				}
 					
-				Intent myIntent = new Intent(this, typeof(MenuActivity));
+				Intent myIntent = new Intent(this, typeof(GameActivity));
 				StartActivity (myIntent);
 			} else if (response.StatusCode == HttpStatusCode.Forbidden) {
 				text.Text = string.Format ("Incorrect email/password combination");

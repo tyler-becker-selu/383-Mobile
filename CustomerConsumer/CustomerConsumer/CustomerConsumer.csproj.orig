@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>x86</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,6 +47,12 @@
       <HintPath>..\Components\restsharp-105.0.1.0\lib\android\RestSharp.MonoDroid.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
+    <Reference Include="AutoMapper.Android">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\MonoAndroid\AutoMapper.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\MonoAndroid\AutoMapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -62,18 +69,20 @@
     <Compile Include="MenuActivity.cs" />
     <Compile Include="CartActivity.cs" />
     <Compile Include="Model\GamesForCart.cs" />
-    <Compile Include="Model\MItem1.cs" />
-<<<<<<< Updated upstream
     <Compile Include="GamesDetailFragment.cs" />
-    <Compile Include="GamesAdapter.cs" />
-=======
     <Compile Include="DialogCheckout.cs" />
+    <Compile Include="GamesAdapter.cs" />
+<<<<<<< Updated upstream
+    <Compile Include="ObjectExtensions.cs" />
+=======
+    <Compile Include="CartDetailFragment.cs" />
 >>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -87,14 +96,16 @@
     <AndroidResource Include="Resources\layout\Games.axml" />
     <AndroidResource Include="Resources\layout\Menu.axml" />
     <AndroidResource Include="Resources\layout\Cart.axml" />
-    <AndroidResource Include="Resources\drawable-hdpi\logo.png" />
-<<<<<<< Updated upstream
     <AndroidResource Include="Resources\layout\Test.axml" />
-    <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
-=======
     <AndroidResource Include="Resources\layout\DialogCheckoutLayout.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
->>>>>>> Stashed changes
+    <AndroidResource Include="Resources\drawable-hdpi\huge.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\big.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\med.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\small.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\smallMed.png" />
+    <AndroidResource Include="Resources\layout\GamesDetailsLayout.axml" />
+    <AndroidResource Include="Resources\layout\CartDetailsLayout.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

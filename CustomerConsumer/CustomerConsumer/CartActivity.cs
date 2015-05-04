@@ -16,7 +16,7 @@ using Android.Graphics.Drawables;
 
 namespace CustomerConsumer
 {
-	[Activity (Label = "Cart", Theme="@android:style/Theme.Black")]			
+	[Activity (Label = "Cart",  Theme="@android:style/Theme.Black", Icon = "@drawable/hugeNoBorder")]			
 	public class CartActivity : Activity
 	{
 		private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
@@ -34,12 +34,9 @@ namespace CustomerConsumer
 			}
 		}
 
-
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
 			try{
 				SetContentView (Resource.Layout.Cart);
 				decimal total = 0;
@@ -49,6 +46,15 @@ namespace CustomerConsumer
 
 				Button checkoutBTN = FindViewById<Button> (Resource.Id.checkout);
 				checkoutBTN.Click += delegate {
+					Cart cart = UserSessionInfo.getUserCart();
+						var request = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId(), Method.PUT);
+						APIHeaders (request);
+						RestSharp.Serializers.JsonSerializer serial = new RestSharp.Serializers.JsonSerializer ();
+						var json = serial.Serialize (cart);
+
+						request.AddParameter ("text/json", json, ParameterType.RequestBody);
+
+						var response = client.Execute (request);
 					FragmentTransaction transaction = FragmentManager.BeginTransaction ();
 					DialogCheckout checkoutDialog = new DialogCheckout ();
 					checkoutDialog.Show (transaction, "dialog fragment");
@@ -57,7 +63,6 @@ namespace CustomerConsumer
 				goToGamesBTN.Click += delegate {
 					Intent myIntent = new Intent(this, typeof(GameActivity));
 					StartActivity (myIntent);
-
 				};
 
 			}
@@ -72,6 +77,11 @@ namespace CustomerConsumer
 			GamesForCartsAdapter adapter = new GamesForCartsAdapter (this,UserSessionInfo.getUserCart().Games);
 			cartList.Adapter = adapter;
 			cartList.ItemClick += OnGameClick;
+			foreach (GamesForCart game in UserSessionInfo.getUserCart().Games) {
+				for (int i = 0; i < game.m_Item2; ++i) {
+					total = total + (game.m_Item1.Price);
+				}
+			}
 			return total;
 		}
 
@@ -128,7 +138,14 @@ namespace CustomerConsumer
 			FragmentTransaction transaction = FragmentManager.BeginTransaction();
 			CartDetailFragment details = new CartDetailFragment();
 			details.Show(transaction, "dialog fragment");
-			details.setGame(t);
+			details.setGame (t);
+			details.AddedToCart += Details_AddedToCart;
+		}
+
+		void Details_AddedToCart (object sender, EventArgs e){
+			Intent intent = new Intent (this, typeof(CartActivity));
+			StartActivity (intent);
+			Finish ();
 		}
 	}
 }
