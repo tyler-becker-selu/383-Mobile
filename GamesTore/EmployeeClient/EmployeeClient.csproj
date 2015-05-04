@@ -211,6 +211,7 @@
     <Content Include="Views\Sale\Index.cshtml" />
     <Content Include="Views\Sale\CreateSale.cshtml" />
     <Content Include="Views\Sale\SaleList.cshtml" />
+    <Content Include="Views\Sale\CartForSale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

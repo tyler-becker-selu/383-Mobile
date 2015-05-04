@@ -96,6 +96,25 @@ namespace EmployeeClient.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult CartForSale(int id)
+        {  var request = new RestRequest("Carts/" + id, Method.GET);
+                request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+                
+                APIHeaders(request);
+
+                request.AddParameter("checkout", "herdier");
+
+                var APIresponse = client.Execute(request);
+
+                if (APIresponse.StatusCode == HttpStatusCode.OK)
+                {
+                    var cart = JsonConvert.DeserializeObject<Cart>(APIresponse.Content);
+                    return PartialView(cart);
+                }
+                return PartialView(new Cart());
+        }
+
         // POST: Sale/Create
         [HttpPost]
         public ActionResult CreateSale(int id)
@@ -108,7 +127,7 @@ namespace EmployeeClient.Controllers
                 
                 APIHeaders(request);
 
-                request.AddHeader("checkout", "herdier");
+                request.AddParameter("checkout", "herdier");
 
                 var APIresponse = client.Execute(request);
                 
@@ -125,9 +144,9 @@ namespace EmployeeClient.Controllers
 
                     var response = client.Execute(request);
 
-                    if (response.StatusCode == HttpStatusCode.OK)
+                    if (response.StatusCode == HttpStatusCode.Created)
                     {
-                        var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Sale");
+                        var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Home");
                         return Json(new { Url = redirect });
                     }
                 }
