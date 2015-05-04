@@ -16,6 +16,7 @@ namespace EmployeeClient.Controllers
     {
       
 
+
         public List<Cart> GetCart()
         {
             var request = new RestRequest("Carts", Method.GET);
@@ -34,16 +35,49 @@ namespace EmployeeClient.Controllers
                 foreach (var item in cartList)
                 {
                     item.ID = GetID(item.URL);
+
+                    foreach (var game in  item.Games)
+                    {
+                        game.m_Item1.Id = GetID(game.m_Item1.URL);
+                    }
                 }
             }
 
             return cartList;
         }
 
+        public List<Sale> GetSale()
+        {
+            var request = new RestRequest("Sales", Method.GET);
+            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+            APIHeaders(request);
 
 
 
-        // GET: Sale
+            var APIresponse = client.Execute(request);
+            List<Sale> cartList = new List<Sale>();
+
+            if (APIresponse.StatusCode == HttpStatusCode.OK)
+            {
+                cartList = JsonConvert.DeserializeObject<List<Sale>>(APIresponse.Content);
+
+                foreach (var item in cartList)
+                {
+                    item.ID = GetID(item.URL);
+                }
+            }
+
+            return cartList;
+        }
+
+        public ActionResult SaleList()
+        {
+            ViewBag.Message = "Sale";
+
+            var cart = GetSale();
+            return View(cart);
+        }
+
         public ActionResult Index() 
         {
             ViewBag.Message = "Sale";
@@ -51,6 +85,7 @@ namespace EmployeeClient.Controllers
             var cart = GetCart();
             return View(cart);
         }
+
 
 
         // GET: Sale/Details/5
@@ -61,26 +96,49 @@ namespace EmployeeClient.Controllers
             return View();
         }
 
-        // GET: Sale/Create
-        public ActionResult Create()
-        {
-            ViewBag.Message = "Sale";
-
-            return View();
-        }
-
         // POST: Sale/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateSale(int id)
         {
             try
             {
-                // TODO: Add insert logic here
-                return RedirectToAction("Index");
+
+                var request = new RestRequest("Carts/" + id, Method.GET);
+                request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+                
+                APIHeaders(request);
+
+                request.AddHeader("checkout", "herdier");
+
+                var APIresponse = client.Execute(request);
+                
+                if (APIresponse.StatusCode == HttpStatusCode.OK)
+                {
+                    var cart = JsonConvert.DeserializeObject<Cart>(APIresponse.Content);
+
+                    request = new RestRequest("Sales/", Method.POST);
+                    request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+                    request.RequestFormat = DataFormat.Json;
+                    APIHeaders(request);
+
+                    request.AddBody(cart);
+
+                    var response = client.Execute(request);
+
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Sale");
+                        return Json(new { Url = redirect });
+                    }
+                }
+
+                throw new Exception("Couldn't make sale");              
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("", "Could not create a sale.");
+                var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Sale");
+                return Json(new { Url = redirect });
             }
         }
 
