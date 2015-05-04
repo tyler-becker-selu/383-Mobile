@@ -23,12 +23,13 @@ namespace CustomerConsumer
 		private Game _detailedGame;
 		private TextView _priceText;
 		private TextView _gmName;
+		private TextView _genres;
+		private TextView _tags;
+		private TextView _close;
 		private NumberPicker _numPicker;
 		private Button _addToCart;
-		private Boolean _updated;
 		private Context _parentContext;
 		public event EventHandler<EventArgs> ShowMsg;
-		//private Button _closeFragment;
 
 		private void APIHeaders(RestRequest request)
 		{
@@ -46,12 +47,23 @@ namespace CustomerConsumer
 			Dialog.SetTitle ("Details");
 
 			base.OnCreateView (inflater, container, savedInstanceState);
-			_updated = false;
 			var view = inflater.Inflate (Resource.Layout.GamesDetailsLayout,container, false);
 			_priceText = view.FindViewById<TextView> (Resource.Id.itemPrice);
 			_priceText.Text = "Price: $" + _detailedGame.Price.ToString();
 			_gmName = view.FindViewById<TextView> (Resource.Id.gameName);
 			_gmName.Text = _detailedGame.GameName;
+			_genres = view.FindViewById<TextView> (Resource.Id.gameGenres);
+			foreach (Genre g in _detailedGame.Genres) {
+				_genres.Text += g.Name + ", ";
+			}
+			_tags = view.FindViewById<TextView> (Resource.Id.gameTags);
+			foreach (Tag t in _detailedGame.Tags) {
+				_tags.Text += t.Name + ", ";
+			}
+			_close = view.FindViewById<TextView> (Resource.Id.closeGame);
+			_close.Click += delegate {
+				this.Dismiss();
+			};
 			_numPicker = view.FindViewById<NumberPicker> (Resource.Id.numberPicker1);
 			_numPicker.MinValue = 1;
 			_numPicker.MaxValue = _detailedGame.InventoryStock;
@@ -61,7 +73,6 @@ namespace CustomerConsumer
 
 			_addToCart = view.FindViewById<Button> (Resource.Id.addToCart);
 			_addToCart.Click += delegate {
-				_updated = true;
 				Cart tempCart = UserSessionInfo.getUserCart();
 				if(tempCart.Games == null )
 				{
@@ -74,7 +85,9 @@ namespace CustomerConsumer
 					tempGame = _detailedGame;
 
 					List<Game> thisBreaksTheCode = new List<Game>();
-					thisBreaksTheCode.Add(tempGame);
+					for(int i = 0; i < _numPicker.Value; ++i){
+						thisBreaksTheCode.Add(tempGame);
+					}
 					var serializer = new RestSharp.Serializers.JsonSerializer();
 					postRequest.AddParameter("text/json",serializer.Serialize(thisBreaksTheCode), ParameterType.RequestBody );
 
@@ -118,9 +131,6 @@ namespace CustomerConsumer
 				}
 				this.Dismiss();
 				ShowMsg.Invoke (this, new EventArgs ());
-				//this.Dismiss();
-				//g.showToast();
-				//Toast.MakeText (this, "Your cart has been updated", ToastLength.Long);
 			};
 
 

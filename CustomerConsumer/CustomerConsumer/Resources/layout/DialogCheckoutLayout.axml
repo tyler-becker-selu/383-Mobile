@@ -7,6 +7,15 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <TextView
+        android:text=" Close"
+        android:textColor="@color/secondary_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/closeCheckout"
+        android:drawableLeft="@drawable/cancel"
+        android:layout_marginLeft="10dp" />
+    <TextView
         android:text="Take this number to a sales associate to complete the sale, and confirm at the end of the sale."
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textViewTest"
@@ -24,8 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="124.1dp"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:layout_marginBottom="20dp"
         android:layout_weight="1"
         android:textColor="@color/accent" />
     <Button

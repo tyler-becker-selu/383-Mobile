@@ -22,6 +22,9 @@ namespace CustomerConsumer
 		private Game _detailedGame;
 		private TextView _priceText;
 		private TextView _gmName;
+		private TextView _genres;
+		private TextView _tags;
+		private TextView _close;
 		private NumberPicker _numPicker;
 		private Button _addToCart;
 		private ImageButton _delete;
@@ -52,6 +55,18 @@ namespace CustomerConsumer
 			_priceText.Text = "Price: $" + (_detailedGame.Price*game.m_Item2);
 			_gmName = view.FindViewById<TextView> (Resource.Id.gameName);
 			_gmName.Text = _detailedGame.GameName;
+			_genres = view.FindViewById<TextView> (Resource.Id.cartGenres);
+			foreach (Genre g in _detailedGame.Genres) {
+				_genres.Text += g.Name + ", ";
+			}
+			_tags = view.FindViewById<TextView> (Resource.Id.cartTags);
+			foreach (Tag t in _detailedGame.Tags) {
+				_tags.Text += t.Name + ", ";
+			}
+			_close = view.FindViewById<TextView> (Resource.Id.closeCart);
+			_close.Click += delegate {
+				this.Dismiss();
+			};
 			_numPicker = view.FindViewById<NumberPicker> (Resource.Id.numberPicker1);
 			_numPicker.MinValue = 1;
 			_numPicker.MaxValue = _detailedGame.InventoryStock;

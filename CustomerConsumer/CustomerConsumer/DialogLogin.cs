@@ -38,6 +38,7 @@ namespace CustomerConsumer
 		private EditText globUserNameText;
 		private EditText globPasswordText;
 		private Button globLoginSubmitBTN;
+		private TextView _close;
 		public event EventHandler<OnLoginEventArgs> globOnLoginComplete;
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -49,7 +50,10 @@ namespace CustomerConsumer
 			globUserNameText = view.FindViewById<EditText> (Resource.Id.UserNameText);
 			globPasswordText = view.FindViewById<EditText> (Resource.Id.PasswordText);
 			globLoginSubmitBTN = view.FindViewById<Button> (Resource.Id.LoginSubmitBTN);
-
+			_close = view.FindViewById<TextView> (Resource.Id.closeLogin);
+			_close.Click += delegate {
+				this.Dismiss();
+			};
 			globLoginSubmitBTN.Click+= GlobLoginSubmitBTN_Click;
 			return view;
 		}
