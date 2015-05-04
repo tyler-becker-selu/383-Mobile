@@ -74,6 +74,7 @@ namespace CustomerConsumer
 				goToGamesBTN.Click += delegate {
 					Intent myIntent = new Intent(this, typeof(GameActivity));
 					StartActivity (myIntent);
+					Finish();
 				};
 				Button logout = FindViewById<Button> (Resource.Id.logoutCart);
 				logout.Click += delegate {

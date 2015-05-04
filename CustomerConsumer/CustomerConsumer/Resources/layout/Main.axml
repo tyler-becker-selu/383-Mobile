@@ -47,6 +47,30 @@
         android:layout_gravity="center_vertical"
         android:layout_margin="10dp"
         android:background="@color/primary_light" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1">
+        <Button
+            android:text="Go To Games"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/homeToGames"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:textColor="@color/icons"
+            android:background="@drawable/buttonstuff_btn_default_holo_light" />
+        <Button
+            android:text="Go To Cart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/homeToCart"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonstuff_btn_default_holo_light"
+            android:textColor="@color/icons" />
+    </LinearLayout>
     <Space
         android:layout_width="383.9dp"
         android:layout_height="match_parent"
