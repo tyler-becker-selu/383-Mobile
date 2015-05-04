@@ -12,11 +12,9 @@
         android:text="Login"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
         android:id="@+id/LoginBTN"
         android:background="#ff149c82"
         android:layout_gravity="center" />
-=======
         android:id="@+id/space1"
         android:layout_weight="1" />
     <Button
@@ -28,7 +26,6 @@
         android:gravity="center_vertical|center_horizontal"
         android:background="#ff149c82"
         android:layout_weight="1" />
->>>>>>> Stashed changes
     <TextView
         android:gravity="center_vertical|center_horizontal"
         android:textColor="@android:color/holo_red_dark"

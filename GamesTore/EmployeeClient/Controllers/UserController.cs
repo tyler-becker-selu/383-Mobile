@@ -12,26 +12,9 @@ using Newtonsoft.Json;
 
 namespace EmployeeClient.Controllers
 {
-    public class UserController : Controller
+    [AuthController(AccessLevel = "Admin")]
+    public class UserController : BaseController
     {
-        private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/api");
-
-        RestSharp.Deserializers.JsonDeserializer _deserializer = new RestSharp.Deserializers.JsonDeserializer();
-
-        private void APIHeaders(RestRequest request)
-        {
-            if (Session["ApiKey"] != null && Session["UserId"] != null)
-            {
-                request.AddHeader("xcmps383authenticationkey", Session["ApiKey"].ToString());
-                request.AddHeader("xcmps383authenticationid", Session["UserId"].ToString());
-            }
-        }
-
-        private int GetID(string p)
-        {
-            string[] x = p.Split('/');
-            return Convert.ToInt32(x[x.Length - 1]);
-        }
 
         // GET: User
         public ActionResult Index(string message)
@@ -62,6 +45,8 @@ namespace EmployeeClient.Controllers
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
+            ViewBag.Message = "Users";
+
             var request = new RestRequest("Users/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);

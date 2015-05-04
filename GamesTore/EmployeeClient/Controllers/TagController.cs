@@ -10,10 +10,10 @@ using System.Web.Mvc;
 
 namespace EmployeeClient.Controllers
 {
-    public class TagController : Controller
+    [AuthController(AccessLevel = "Admin")]
+    public class TagController : BaseController
     {
-        private RestClient client = new RestClient("http://dev.envocsupport.com/GameStore4/");
-
+        
         #region Algorthms
 
         public List<Game> GetGamesForTag(string tagName)
@@ -27,7 +27,7 @@ namespace EmployeeClient.Controllers
 
         private List<Game> getGames(string tagName)
         {
-            var request = new RestRequest("api/Games", Method.GET);
+            var request = new RestRequest("Games", Method.GET);
             var gameList = new List<Game>();
 
             APIHeaders(request);
@@ -45,26 +45,9 @@ namespace EmployeeClient.Controllers
             return gameList;
         }
 
-
-        private void APIHeaders(RestRequest request)
-        {
-            if (Session["ApiKey"] != null && Session["UserId"] != null)
-            {
-                request.AddHeader("xcmps383authenticationkey", Session["ApiKey"].ToString());
-                request.AddHeader("xcmps383authenticationid", Session["UserId"].ToString());
-            }
-        }
-
-        private int GetID(string p)
-        {
-            string[] x = p.Split('/');
-            return Convert.ToInt32(x[x.Length - 1]);
-        }
-
-
         private dynamic getTags()
         {
-            var request = new RestRequest("api/Tags", Method.GET);
+            var request = new RestRequest("Tags", Method.GET);
             var genreList = new List<Tag>();
 
             APIHeaders(request);
@@ -88,6 +71,9 @@ namespace EmployeeClient.Controllers
         // GET: Game
         public ActionResult Index()
         {
+            ViewBag.Message = "Tag";
+
+
             List<Tag> tagList = new List<Tag>();
             tagList = getTags();
 
@@ -102,13 +88,16 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.Message = "Tag";
+
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(Tag tag)
         {
-            var request = new RestRequest("api/Tags/", Method.POST);
+            var request = new RestRequest("Tags/", Method.POST);
 
             APIHeaders(request);
 
@@ -128,7 +117,9 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Edit(int Id)
         {
-            var request = new RestRequest("api/Tags/" + Id, Method.GET);
+            ViewBag.Message = "Tag";
+
+            var request = new RestRequest("Tags/" + Id, Method.GET);
 
             APIHeaders(request);
 
@@ -153,7 +144,7 @@ namespace EmployeeClient.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var request = new RestRequest("api/Tags/" + tag.Id, Method.PUT);
+            var request = new RestRequest("Tags/" + tag.Id, Method.PUT);
 
             APIHeaders(request);
 
@@ -171,7 +162,9 @@ namespace EmployeeClient.Controllers
 
         public ActionResult Details(int Id)
         {
-            var request = new RestRequest("api/Tags/" + Id, Method.GET);
+            ViewBag.Message = "Tag";
+
+            var request = new RestRequest("Tags/" + Id, Method.GET);
 
             APIHeaders(request);
 
@@ -194,7 +187,9 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult Delete(int Id)
         {
-            var request = new RestRequest("api/Tags/" + Id, Method.GET);
+            ViewBag.Message = "Tag";
+
+            var request = new RestRequest("Tags/" + Id, Method.GET);
 
             APIHeaders(request);
 
@@ -213,7 +208,7 @@ namespace EmployeeClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Tag tag)
         {
-            var request = new RestRequest("api/Tags/" + tag.Id, Method.DELETE);
+            var request = new RestRequest("Tags/" + tag.Id, Method.DELETE);
 
             APIHeaders(request);
 

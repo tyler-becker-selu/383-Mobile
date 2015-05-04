@@ -54,13 +54,24 @@ namespace GamesTore.Controllers
         [HttpGet]
         public HttpResponseMessage Get(int id)
         {
-            var cart = db.Carts.FirstOrDefault(c => c.User_Id == id);
-            if (cart == null)
+            var QString = Request.RequestUri.ParseQueryString();
+            var checkout = QString["checkout"];
+            if (checkout != null)
+            {
+                var cart = db.Carts.FirstOrDefault(c => c.Id == id);
+                if (cart == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "Connot find user's cart");
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, Factory.Create(cart));
+            }
+            var carta = db.Carts.FirstOrDefault(c => c.User_Id == id && c.CheckoutReady);
+            if (carta == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Cannot find User's cart");
 
             }
-            return Request.CreateResponse(HttpStatusCode.OK, Factory.Create(cart));
+            return Request.CreateResponse(HttpStatusCode.OK, Factory.Create(carta));
         }
 
         [HttpPut]

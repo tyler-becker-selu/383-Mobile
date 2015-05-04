@@ -12,11 +12,11 @@ namespace GamesTore.AuthenticationStuff
     public class GamesToreAuth : DelegatingHandler
     {
 
-        ApiDbContext db = new ApiDbContext();
+       ApiDbContext db = new ApiDbContext();
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
-        {
-
+        { 
+            db = new ApiDbContext();
             if (!ValidateApiKey(request))
             {
 
@@ -32,6 +32,7 @@ namespace GamesTore.AuthenticationStuff
 
         private bool ValidateApiKey(HttpRequestMessage request)
         {
+            db = new ApiDbContext();
             var headers = request.Headers;
 
             if (headers.Contains("xcmps383authenticationkey") && headers.Contains("xcmps383authenticationid"))
