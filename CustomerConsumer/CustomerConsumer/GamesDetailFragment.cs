@@ -23,8 +23,6 @@ namespace CustomerConsumer
 		private Game _detailedGame;
 		private TextView _priceText;
 		private TextView _gmName;
-		private TextView _tags;
-		private TextView _genres;
 		private NumberPicker _numPicker;
 		private Button _addToCart;
 		private Boolean _updated;

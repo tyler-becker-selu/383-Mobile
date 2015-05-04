@@ -36,6 +36,14 @@
         android:layout_gravity="center"
         android:background="@drawable/buttonstuff_btn_default_holo_light"
         android:textColor="@color/icons" />
+    <Button
+        android:text="Later"
+        android:layout_width="316.6dp"
+        android:layout_height="78.2dp"
+        android:id="@+id/later"
+        android:textColor="@color/icons"
+        android:background="@drawable/buttonstuff_btn_default_holo_light"
+        android:layout_gravity="center" />
     <Space
         android:layout_width="match_parent"
         android:layout_height="83.3dp"

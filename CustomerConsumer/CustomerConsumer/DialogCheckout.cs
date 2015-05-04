@@ -35,8 +35,14 @@ namespace CustomerConsumer
 			var view = inflater.Inflate (Resource.Layout.DialogCheckoutLayout,container, false);
 			TextView text = view.FindViewById<TextView> (Resource.Id.cartID);
 			text.TextSize = 100;
-			Button button = view.FindViewById<Button> (Resource.Id.confirmation);
-			button.Click += delegate {
+			Button later = view.FindViewById<Button> (Resource.Id.later);
+			later.Click += delegate {
+				Intent myIntent= new Intent(Activity, typeof(CartActivity));
+				Activity.StartActivity(myIntent);
+				Activity.Finish();
+			};
+			Button confirm = view.FindViewById<Button> (Resource.Id.confirmation);
+			confirm.Click += delegate {
 				var cartRequest = new RestRequest ("api/Carts/" + UserSessionInfo.getUserId (), Method.GET);
 				APIHeaders (cartRequest);
 				cartRequest.RequestFormat = DataFormat.Json;
@@ -57,7 +63,7 @@ namespace CustomerConsumer
 					UserSessionInfo.setUserCart (userCart);
 				}
 					
-				Intent myIntent = new Intent(Activity, typeof(GameActivity));
+				Intent myIntent = new Intent(Activity, typeof(CartActivity));
 				Activity.StartActivity(myIntent);
 				Activity.Finish();
 
