@@ -51,6 +51,14 @@ namespace EmployeeClient.Controllers
                 item.ID = GetID(item.URL);
                 item.Cart.ID = GetID(item.Cart.URL);
                 item.User = GetUser(item.Cart.User_Id);
+                if (item.User != null)
+                {
+                    Session["User"] = true;
+                }
+                else
+                {
+                    Session["User"] = null;
+                }
             }
 
             return View(sale);
@@ -72,7 +80,7 @@ namespace EmployeeClient.Controllers
                     return returnVar;
                 }
             }
-            return new GetUserDTO();
+            return null;
         }
 
 
@@ -188,19 +196,58 @@ namespace EmployeeClient.Controllers
                 var APIresponse = client.Execute(request);
 
                 if (APIresponse.StatusCode == HttpStatusCode.OK)
-                { 
+                {
                     var sales = JsonConvert.DeserializeObject<Sale>(APIresponse.Content);
-                   
-                   // sales.
 
+
+                    sales.SalesDate = sale.SaleDate;
+                    sales.Total = sale.Amount;
+                    var list = new List<GamesForCart>();
+                    var y = new GamesForCart();
+
+                    foreach (var game in sales.Cart.Games)
+                    {
+                        game.m_Item1.Id = GetID(game.m_Item1.URL);
+                    }
+
+                    foreach (var item in sale.Games)
+                    {
+
+                        y = sales.Cart.Games.FirstOrDefault(x => x.m_Item1.Id == item.GameID);
+
+                        if (y != null)
+                        {
+                            y.m_Item2 = item.Quaninity;
+
+                            list.Add(y);
+                        }
+                    }
+                    sales.Cart.Games = list;
+
+
+
+
+                    request = new RestRequest("Sales/" + sale.Id, Method.PUT);
+                    request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+
+                    APIHeaders(request);
+
+                    request.AddBody(sales);
+
+                    var response = client.Execute(request);
+
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Sale");
+                        return Json(new { Url = redirect });
+                    }
                 }
-
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                var redirects = new UrlHelper(Request.RequestContext).Action("Edit/" + sale.Id, "Sale");
+                return Json(new { Url = redirects });
             }
-            catch
+            catch (Exception ex)
             {
+                var test = ex.Message;
                 return View();
             }
         }

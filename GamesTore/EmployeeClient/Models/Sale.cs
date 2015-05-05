@@ -19,6 +19,7 @@ namespace EmployeeClient.Models
         public DateTime SalesDate { get; set; }
         public decimal Total { get; set; }
         public Cart Cart { get; set; }
+        public int EmployeeID { get; set; }
 
     }
 }

@@ -29,10 +29,13 @@
 <table class="display nowrap dataTable dtr-inline" id="saleTable">
     <thead>
         <tr>
-            @*@if()
-            <th>
-                User
-            </th>*@
+            @if (Session["User"] != null)
+            {
+                <th>
+                    User
+                </th>
+
+            }
             <th>
                 Sale Number
             </th>
@@ -52,6 +55,12 @@
         @foreach (var item in Model)
         {
             <tr>
+                @if (Session["User"] != null)
+                {
+                    <td>
+                        @item.User.FirstName @item.User.LastName
+                    </td>
+                }
                 <td>
                     @item.Cart.ID
                 </td>

@@ -11,6 +11,9 @@
     <thead>
         <tr>
             <th>
+                Sale Number
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CheckoutReady)
             </th>
             <th>
@@ -24,6 +27,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(m => item.ID)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CheckoutReady)
                 </td>
