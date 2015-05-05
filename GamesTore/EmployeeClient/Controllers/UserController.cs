@@ -114,7 +114,6 @@ namespace EmployeeClient.Controllers
 
         // POST: User/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, SetUserDTO user)
         {
             var request = new RestRequest("Users/{id}", Method.PUT);

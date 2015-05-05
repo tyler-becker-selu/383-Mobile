@@ -28,13 +28,7 @@
 <table class="display nowrap dataTable dtr-inline" id="saleTable">
     <thead>
         <tr>
-            @if (Session["User"] != null)
-            {
-                <th>
-                    User
-                </th>
 
-            }
             <th>
                 Sale Number
             </th>
@@ -47,6 +41,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.Total)
             </th>
+            @if (Session["User"] != null)
+            {
+                <th>
+                    User
+                </th>
+
+            }
             <th></th>
         </tr>
     </thead>
@@ -54,12 +55,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                @if (Session["User"] != null)
-                {
-                    <td>
-                        @item.User.FirstName @item.User.LastName
-                    </td>
-                }
+              
                 <td>
                     @item.Cart.ID
                 </td>
@@ -77,13 +73,18 @@
                 <td>
                     $@Html.DisplayFor(modelItem => item.Total)
                 </td>
+                @if (Session["User"] != null)
+                {
+                    <td>
+                        @item.User.FirstName @item.User.LastName
+                    </td>
+                }
                 <td>
-                    @if (Session["Role"] == "Admin")
-                    {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs" })
-                    }
+                    @*@if (Session["Role"] == "Admin")
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs" })
+                        }*@
 
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-default btn-xs" })
 
                 </td>
             </tr>
@@ -92,6 +93,12 @@
 </table>
 <script>
     $(document).ready(function () {
-        $('#saleTable').DataTable();
+
+        $('#saleTable').dataTable({
+
+            "order": [[1, "desc"]]
+
+        });
+
     });
 </script>
