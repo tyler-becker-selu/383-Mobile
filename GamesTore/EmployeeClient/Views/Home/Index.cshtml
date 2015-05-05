@@ -1,16 +1,45 @@
 ﻿<script src="~/Scripts/CustomScripts/SaleModal.js"></script>
-
-<div class="jumbotron">
-    <p class="lead">Make a Sale</p>
-    <div class="input-group pull-left">
-        <input type="text" class="form-control " placeholder="Sale Number" aria-describedby="basic-addon1" id="userID">
-
-
-    </div>
+<style>
+    a 
+    {
+        color: whitesmoke !important;
+    }
+</style>
+<div class="col-md-12">
+    <div class="jumbotron col-md-8">
+        <p class="lead">Make a Sale</p>
+        <div class="input-group pull-left">
+            <input type="text" class="form-control " placeholder="Sale Number" aria-describedby="basic-addon1" id="userID">
+        </div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-md pull-left" data-toggle="modal" data-target="#saleModal" onclick="partial()">
-        Make Sale
-    </button>
+        <button type="button" class="btn btn-primary btn-md pull-left" data-toggle="modal" data-target="#saleModal" onclick="partial()">
+          Make Sale
+        </button>
+    </div>
+        <div class="btn-group-vertical col-md-4" role="group">
+            <button type="button" class="btn btn-default">@Html.ActionLink("Logout", "Logout", "Home")</button>
+            @{String game;
+              String sale;
+              if (Session["Role"].ToString().Equals("Admin"))
+              {
+                  game = "Manage Games";
+                  sale = "View All Sales";
+              }
+              else
+              {
+                  game = "View Games";
+                  sale = "View My Sales";
+              }
+                }
+            <button type="button" class="btn btn-default">@Html.ActionLink(game, "Index", "Game")</button>
+            <button type="button" class="btn btn-default">@Html.ActionLink(sale, "Index", "Sale")</button>
+            @if (Session["Role"].ToString().Equals("Admin")){
+                <button type="button" class="btn btn-default">@Html.ActionLink("Manage Users", "Index", "User")</button>
+                <button type="button" class="btn btn-default">@Html.ActionLink("Manage Genres", "Index", "Genre")</button>
+                <button type="button" class="btn btn-default">@Html.ActionLink("Manage Tags", "Index", "Tag")</button>
+            }
+
+</div>
 </div>
 
 
