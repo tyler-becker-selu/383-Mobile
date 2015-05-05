@@ -18,6 +18,7 @@ namespace EmployeeClient.Controllers
     public class SaleController : BaseController
     {
 
+
         public List<SaleIndexViewModel> GetSale()
         {
             var request = new RestRequest("Sales", Method.GET);
@@ -41,11 +42,8 @@ namespace EmployeeClient.Controllers
 
             return cartList;
         }
-        public ActionResult SalesPDF()
-        {
-            List<Sale> sales = GetSale();
-            return new Rotativa.ViewAsPdf("SaleListPDF", sales);
-        }
+
+        public ActionResult Index()
         {
             ViewBag.Message = "Sale";
 
