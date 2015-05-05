@@ -1,32 +1,60 @@
-﻿@model IEnumerable<EmployeeClient.Models.Sale>
+﻿@model IEnumerable<EmployeeClient.Models.ViewModels.SaleIndexViewModel>
 
-@{
-    ViewBag.Title = "SaleListPDF";
-    Layout = "~/Views/Shared/_PDFLayout.cshtml";
-}
+<h2 class="pull-right">Sales up to @DateTime.UtcNow</h2>
 
-<h2>Sales since @DateTime.Now.ToUniversalTime()</h2>
+<table class="display nowrap dataTable dtr-inline" id="saleTable">
+    <thead>
+        <tr>
+            @if (Session["User"] != null)
+            {
+                <th>
+                    User
+                </th>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SalesDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Total)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SalesDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total)
-        </td>
-    </tr>
-}
-
+            }
+            <th>
+                Sale Number
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesDate)
+            </th>
+            <th>
+                Games
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (Session["User"] != null)
+                {
+                    <td>
+                        @item.User.FirstName @item.User.LastName
+                    </td>
+                }
+                <td>
+                    @item.Cart.ID
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesDate)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var x in item.Cart.Games)
+                        {
+                            <li>@x.m_Item1.GameName X @x.m_Item2 for $@x.m_Item1.Price</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.Total)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

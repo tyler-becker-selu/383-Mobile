@@ -89,7 +89,8 @@ namespace EmployeeClient.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            ModelState.AddModelError("", "Email is already in use.");
+            return View(user);
         }
 
         // GET: User/Edit/5

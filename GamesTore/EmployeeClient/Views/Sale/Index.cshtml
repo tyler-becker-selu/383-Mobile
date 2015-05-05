@@ -10,8 +10,7 @@
 <button type="button" class="btn btn-primary btn-md pull-left" data-toggle="modal" data-target="#saleModal" onclick="partial()" style="margin-bottom:25px;">
     Make Sale
 </button>
-
-
+@Html.ActionLink("Create PDF","SalesPDF")
 <!-- Modal -->
 <div class="modal fade" id="saleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -71,12 +70,12 @@
                     <ul>
                         @foreach (var x in item.Cart.Games)
                         {
-                            <li>@x.m_Item1.GameName X @x.m_Item2 for @x.m_Item1.Price</li>
+                            <li>@x.m_Item1.GameName X @x.m_Item2 for $@x.m_Item1.Price</li>
                         }
                     </ul>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Total)
+                    $@Html.DisplayFor(modelItem => item.Total)
                 </td>
                 <td>
                     @if (Session["Role"] == "Admin")

@@ -18,6 +18,27 @@ namespace EmployeeClient.Controllers
     public class SaleController : BaseController
     {
 
+        public ActionResult SalesPDF()
+        {
+            List<SaleIndexViewModel> sales = GetSale();
+
+            foreach (var item in sales)
+            {
+                item.ID = GetID(item.URL);
+                item.Cart.ID = GetID(item.Cart.URL);
+                item.User = GetUser(item.Cart.User_Id);
+                if (item.User != null)
+                {
+                    Session["User"] = true;
+                }
+                else
+                {
+                    Session["User"] = null;
+                }
+            }
+
+            return new Rotativa.ViewAsPdf("SaleListPDF", sales);
+        }
 
         public List<SaleIndexViewModel> GetSale()
         {
@@ -139,7 +160,7 @@ namespace EmployeeClient.Controllers
 
                     if (response.StatusCode == HttpStatusCode.Created)
                     {
-                        var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Home");
+                        var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Sales");
                         return Json(new { Url = redirect });
                     }
                 }
