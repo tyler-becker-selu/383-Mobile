@@ -15,8 +15,6 @@ namespace EmployeeClient.Controllers
     public class SaleController : BaseController
     {
       
-
-
         public List<Cart> GetCart()
         {
             var request = new RestRequest("Carts", Method.GET);
@@ -45,14 +43,16 @@ namespace EmployeeClient.Controllers
 
             return cartList;
         }
-
+        public ActionResult SalesPDF()
+        {
+            List<Sale> sales = GetSale();
+            return new Rotativa.ViewAsPdf("SaleListPDF", sales);
+        }
         public List<Sale> GetSale()
         {
             var request = new RestRequest("Sales", Method.GET);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             APIHeaders(request);
-
-
 
             var APIresponse = client.Execute(request);
             List<Sale> cartList = new List<Sale>();

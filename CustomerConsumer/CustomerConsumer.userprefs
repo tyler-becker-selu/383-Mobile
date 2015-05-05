@@ -1,11 +1,18 @@
 ﻿<Properties StartupItem="CustomerConsumer\CustomerConsumer.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TestMachine_21" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CustomerConsumer\obj\Debug\resourcecache\1E030ABCEB2723362295AF62A5E8C02E\res\layout\abc_screen_toolbar.xml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CustomerConsumer\Model\GamesForCart.cs">
     <Files>
       <File FileName="CustomerConsumer\GamesDetailFragment.cs" Line="1" Column="1" />
       <File FileName="CustomerConsumer\GameActivity.cs" Line="1" Column="1" />
       <File FileName="CustomerConsumer\GamesAdapter.cs" Line="1" Column="1" />
       <File FileName="CustomerConsumer\CartActivity.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\UserSessionInfo.cs" Line="88" Column="27" />
+      <File FileName="CustomerConsumer\Model\Game.cs" Line="20" Column="3" />
+      <File FileName="CustomerConsumer\Model\GamesForCart.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\Model\Genre.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\Model\Tag.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\Model\Cart.cs" Line="1" Column="1" />
+      <File FileName="CustomerConsumer\Model\ApiKey.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

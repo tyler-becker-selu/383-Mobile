@@ -47,6 +47,10 @@
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -154,9 +158,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CustomScripts\Game.js" />
     <Content Include="Scripts\CustomScripts\ListCheckboxes.js" />
@@ -212,6 +218,8 @@
     <Content Include="Views\Sale\CreateSale.cshtml" />
     <Content Include="Views\Sale\SaleList.cshtml" />
     <Content Include="Views\Sale\CartForSale.cshtml" />
+    <Content Include="Views\Shared\_PDFLayout.cshtml" />
+    <Content Include="Views\Sale\SaleListPDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

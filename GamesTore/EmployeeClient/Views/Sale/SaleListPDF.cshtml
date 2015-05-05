@@ -1,0 +1,32 @@
+﻿@model IEnumerable<EmployeeClient.Models.Sale>
+
+@{
+    ViewBag.Title = "SaleListPDF";
+    Layout = "~/Views/Shared/_PDFLayout.cshtml";
+}
+
+<h2>Sales since @DateTime.Now.ToUniversalTime()</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SalesDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+    </tr>
+}
+
+</table>
