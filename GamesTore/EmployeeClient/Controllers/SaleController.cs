@@ -110,6 +110,8 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult CartForSale(int id)
         {
+            ViewBag.Message = "Sale";
+
             var request = new RestRequest("Carts/" + id, Method.GET);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
 
@@ -180,6 +182,8 @@ namespace EmployeeClient.Controllers
         // GET: Sale/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.Message = "Sale";
+
             var request = new RestRequest("Sales/" + id, Method.GET);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
 

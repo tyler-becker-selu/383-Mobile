@@ -19,7 +19,7 @@ namespace EmployeeClient.Controllers
         // GET: User
         public ActionResult Index(string message)
         {
-            ViewBag.Message = message;
+            ViewBag.Message = "User";
 
             var request = new RestRequest("Users", Method.GET);
             APIHeaders(request);
@@ -45,6 +45,7 @@ namespace EmployeeClient.Controllers
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
+
             ViewBag.Message = "Users";
 
             var request = new RestRequest("Users/{id}", Method.GET);
@@ -65,6 +66,8 @@ namespace EmployeeClient.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
+            ViewBag.Message = "User";
+
             return View();
         }
 
@@ -96,6 +99,7 @@ namespace EmployeeClient.Controllers
         // GET: User/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.Message = "User";
             var request = new RestRequest("Users/{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             APIHeaders(request);
