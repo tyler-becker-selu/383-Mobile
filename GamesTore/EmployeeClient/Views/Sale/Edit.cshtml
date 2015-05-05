@@ -1,0 +1,108 @@
+﻿@model EmployeeClient.Models.Sale
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Sale</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SalesDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SalesDate, new { htmlAttributes = new { @class = "form-control", @id = "saleDate" } })
+                @Html.ValidationMessageFor(model => model.SalesDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control", @id = "total" } })
+                @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="container" style="margin-top:20px;">
+            <div class="row">
+                <div class="col-xs-6">
+                    <h3 class="text-center">
+                        Games
+                    </h3>
+                    <div class="well" style="max-height: 300px;overflow: auto;">
+                        <ul class="list-group" id="games">
+                            @foreach (EmployeeClient.Models.GamesForCart item in Model.Cart.Games)
+                            {
+                                <li class="list-group-item pull-left" id="@item.m_Item1.Id">
+                                    @item.m_Item1.GameName
+                                    <input type="text" class="form-control" id="@item.m_Item1.Id-Quanity" value="@item.m_Item2" aria-describedby="basic-addon1" class="pull-right" id="@item.m_Item1.Id">
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input value="Save" onclick="editSale(@Model.ID)" class="btn btn-default" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    function editSale(id) {
+        console.log(id);
+        var sale = {};
+        //Fill in the Game
+        fillSale(sale);
+
+        sale.Id = id;
+
+        ajaxEdit(sale);
+    }
+
+    function fillSale(sale) {
+        sale.Amount = $("#total").val();
+        sale.SaleDate = $("#saleDate").val();
+        sale.Games = getSaleGameQuaninty();
+        console.log(sale);
+    }
+
+    function getSaleGameQuaninty() {
+        var gamesInList = [];
+        $("#games li").each(function (idx, li) {
+            var gameID = $(li).attr('id');
+            gamesInList.push({ Quaninity: $('#' + gameID + '-Quanity').val(), GameID: gameID });
+        });
+        console.log(gamesInList);
+        return gamesInList;
+    }
+
+    function ajaxEdit(sales) {
+        console.log(JSON.stringify(sales));
+        $.ajax({
+            url: '/Sale/Edit',
+            type: "POST",
+            contentType: 'application/json;',
+            data: JSON.stringify(sales),
+            success: function (data) {
+                window.location.href = data.Url;
+            },
+            error: function () {
+                console.trace();
+            }
+        });
+    }
+</script>

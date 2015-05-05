@@ -5,6 +5,15 @@
     android:layout_height="fill_parent"
     android:background="@color/primary_light">
     <TextView
+        android:text=" Close"
+        android:textColor="@color/secondary_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/closeLogin"
+        android:drawableLeft="@drawable/cancel"
+        android:layout_marginLeft="10dp" />
+    <TextView
         android:text="Email Address"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"

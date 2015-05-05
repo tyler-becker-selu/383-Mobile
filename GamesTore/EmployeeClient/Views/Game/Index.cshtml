@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<EmployeeClient.Models.Game>
 
-<h2>Games</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
 </p>
@@ -40,7 +38,12 @@
                     @Html.DisplayFor(modelItem => item.InventoryStock)
                 </td>
                 <td>
-                    @Html.ActionLink("Make Sale", "MakeSale", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
+                    @if (Session["Role"] == "Admin")
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                    }
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-xs" })
                 </td>
             </tr>
         }

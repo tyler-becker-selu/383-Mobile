@@ -20,12 +20,12 @@ namespace EmployeeClient.Controllers
         {
             List<Game> gameList = new List<Game>();
 
-            gameList = getGames(tagName);
+            gameList = getGamesTags(tagName);
 
             return gameList;
         }
 
-        private List<Game> getGames(string tagName)
+        private  List<Game> getGamesTags(string tagName)
         {
             var request = new RestRequest("Games", Method.GET);
             var gameList = new List<Game>();
@@ -45,7 +45,7 @@ namespace EmployeeClient.Controllers
             return gameList;
         }
 
-        private dynamic getTags()
+        private dynamic getTagsforController()
         {
             var request = new RestRequest("Tags", Method.GET);
             var genreList = new List<Tag>();
@@ -75,7 +75,7 @@ namespace EmployeeClient.Controllers
 
 
             List<Tag> tagList = new List<Tag>();
-            tagList = getTags();
+            tagList = getTagsforController();
 
             foreach (Tag item in tagList)
             {
@@ -172,10 +172,8 @@ namespace EmployeeClient.Controllers
 
             if (APIresponse.StatusCode == HttpStatusCode.OK)
             {
-                JsonDeserializer deserial = new JsonDeserializer();
-
-                var tag = deserial.Deserialize<Tag>(APIresponse);
-                tag.Games = getGames(tag.Name);
+                var tag = _deserializer.Deserialize<Tag>(APIresponse);
+                tag.Games = getGamesTags(tag.Name);
 
                 return View(tag);
 

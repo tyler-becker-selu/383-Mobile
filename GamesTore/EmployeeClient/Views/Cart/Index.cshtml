@@ -1,0 +1,103 @@
+﻿@model IEnumerable<EmployeeClient.Models.Cart>
+
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+</p>
+<table class="display nowrap dataTable dtr-inline" id="saleTable">
+    <thead>
+        <tr>
+            <th>
+                Sale Number
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckoutReady)
+            </th>
+            <th>
+                Games
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckoutReady)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var thing in item.Games)
+                        {
+                            <li>
+                                @thing.m_Item1.GameName
+                            </li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    @if (item.CheckoutReady)
+                    {
+                        <a class="btn btn-success btn-xs" id="@item.ID" onclick="ChangeID(@item.ID)" data-toggle="modal" data-target="#MakeSale">Make Sale</a>
+                    }
+                    @if (Session["Role"] == "Admin")
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-xs" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#saleTable').DataTable();
+    })
+</script>
+
+<div class="modal fade" id="MakeSale" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Sale</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to make this sale?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="submit" value="Create" onclick="whateverIWantToCallIt()" class="btn btn-primary">Yes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+    var ID;
+    function ChangeID(Id) {
+        ID = Id;
+    }
+    function whateverIWantToCallIt() {
+        $.ajax({
+            type: 'POST',
+            url: '/Sale/CreateSale',
+            data: { 'cartID': ID },
+            success: function (data) {
+                window.location.href = data.Url
+            },
+            error: function () {
+                console.trace();
+            }
+        });
+    }
+</script>

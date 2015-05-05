@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -139,6 +140,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\SaleGameQuaninty.cs" />
+    <Compile Include="Models\ViewModels\EditSaleViewModel.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GamesForCart.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -146,6 +149,7 @@
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\ViewModels\EditGameViewModel.cs" />
+    <Compile Include="Models\ViewModels\SaleIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,8 +168,10 @@
     <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\CustomScripts\EditSale.js" />
     <Content Include="Scripts\CustomScripts\Game.js" />
     <Content Include="Scripts\CustomScripts\ListCheckboxes.js" />
+    <Content Include="Scripts\CustomScripts\SaleModal.js" />
     <Content Include="Scripts\CustomScripts\SideBar.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -220,6 +226,8 @@
     <Content Include="Views\Sale\CartForSale.cshtml" />
     <Content Include="Views\Shared\_PDFLayout.cshtml" />
     <Content Include="Views\Sale\SaleListPDF.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Sale\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

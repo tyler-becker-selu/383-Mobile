@@ -33,6 +33,10 @@ namespace CustomerConsumer
 			Dialog.SetTitle ("Checkout");
 			base.OnCreateView (inflater, container, savedInstanceState);
 			var view = inflater.Inflate (Resource.Layout.DialogCheckoutLayout,container, false);
+			TextView _close = view.FindViewById<TextView> (Resource.Id.closeCheckout);
+			_close.Click += delegate {
+				this.Dismiss();
+			};
 			TextView text = view.FindViewById<TextView> (Resource.Id.cartID);
 			text.TextSize = 100;
 			Button later = view.FindViewById<Button> (Resource.Id.later);

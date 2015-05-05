@@ -107,7 +107,8 @@ namespace GamesTore.Models.Data_Transfer_Objects
                 URL = urlHelper.Link("SaleRoute", new { id = sale.Id }),
                 SalesDate = sale.SalesDate,
                 Total = sale.Total,
-                Cart = Create(sale.Cart)
+                Cart = Create(sale.Cart) ,
+                EmployeeID = sale.EmployeeId
             };
         }
 
