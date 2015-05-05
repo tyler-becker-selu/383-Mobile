@@ -160,7 +160,9 @@ namespace EmployeeClient.Controllers
 
                     if (response.StatusCode == HttpStatusCode.Created)
                     {
+
                         var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Sales");
+
                         return Json(new { Url = redirect });
                     }
                 }
@@ -170,7 +172,7 @@ namespace EmployeeClient.Controllers
             catch
             {
                 ModelState.AddModelError("", "Could not create a sale.");
-                var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Sale");
+                var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Home");
                 return Json(new { Url = redirect });
             }
         }
@@ -275,7 +277,6 @@ namespace EmployeeClient.Controllers
             }
         }
 
-
-
+       
     }
 }
