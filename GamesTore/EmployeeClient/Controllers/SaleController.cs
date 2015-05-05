@@ -25,7 +25,9 @@ namespace EmployeeClient.Controllers
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             APIHeaders(request);
 
+            request.AddQueryParameter("empId", Session["UserID"].ToString());
             var APIresponse = client.Execute(request);
+
             List<SaleIndexViewModel> cartList = new List<SaleIndexViewModel>();
 
             if (APIresponse.StatusCode == HttpStatusCode.OK)
