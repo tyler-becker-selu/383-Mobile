@@ -10,88 +10,90 @@
 <button type="button" class="btn btn-primary btn-md pull-left" data-toggle="modal" data-target="#saleModal" onclick="partial()" style="margin-bottom:25px;">
     Make Sale
 </button>
-@Html.ActionLink("Create PDF","SalesPDF")
-<!-- Modal -->
-<div class="modal fade" id="saleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Is this the correct cart?</h4>
-            </div>
-            <div class="modal-body" id="textHere">
-            </div>
+    @if(Session["Role"].Equals("Admin")){
+        @Html.ActionLink("Create PDF", "SalesPDF", "", new { @class = "btn btn-primary btn-md pull-right" })
+    }
+    <!-- Modal -->
+    <div class="modal fade" id="saleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Is this the correct cart?</h4>
+                </div>
+                <div class="modal-body" id="textHere">
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
-<table class="display nowrap dataTable dtr-inline" id="saleTable">
-    <thead>
-        <tr>
-            @if (Session["User"] != null)
-            {
-                <th>
-                    User
-                </th>
-
-            }
-            <th>
-                Sale Number
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SalesDate)
-            </th>
-            <th>
-                Games
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Total)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="display nowrap dataTable dtr-inline" id="saleTable">
+        <thead>
             <tr>
                 @if (Session["User"] != null)
                 {
-                    <td>
-                        @item.User.FirstName @item.User.LastName
-                    </td>
+                    <th>
+                        User
+                    </th>
+
                 }
-                <td>
-                    @item.Cart.ID
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SalesDate)
-                </td>
-                <td>
-                    <ul>
-                        @foreach (var x in item.Cart.Games)
-                        {
-                            <li>@x.m_Item1.GameName X @x.m_Item2 for $@x.m_Item1.Price</li>
-                        }
-                    </ul>
-                </td>
-                <td>
-                    $@Html.DisplayFor(modelItem => item.Total)
-                </td>
-                <td>
-                    @if (Session["Role"] == "Admin")
-                    {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs" })
-                    }
-
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-default btn-xs" })
-
-                </td>
+                <th>
+                    Sale Number
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalesDate)
+                </th>
+                <th>
+                    Games
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
-<script>
-    $(document).ready(function () {
-        $('#saleTable').DataTable();
-    });
-</script>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (Session["User"] != null)
+                    {
+                        <td>
+                            @item.User.FirstName @item.User.LastName
+                        </td>
+                    }
+                    <td>
+                        @item.Cart.ID
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalesDate)
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var x in item.Cart.Games)
+                            {
+                                <li>@x.m_Item1.GameName X @x.m_Item2 for $@x.m_Item1.Price</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        @if (Session["Role"] == "Admin")
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs" })
+                        }
+
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-default btn-xs" })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function () {
+            $('#saleTable').DataTable();
+        });
+    </script>
