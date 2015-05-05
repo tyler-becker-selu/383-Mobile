@@ -110,6 +110,8 @@ namespace EmployeeClient.Controllers
         [HttpGet]
         public ActionResult CartForSale(int id)
         {
+            ViewBag.Message = "Sale";
+
             var request = new RestRequest("Carts/" + id, Method.GET);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
 
@@ -160,7 +162,9 @@ namespace EmployeeClient.Controllers
 
                     if (response.StatusCode == HttpStatusCode.Created)
                     {
+
                         var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Sales");
+
                         return Json(new { Url = redirect });
                     }
                 }
@@ -170,7 +174,7 @@ namespace EmployeeClient.Controllers
             catch
             {
                 ModelState.AddModelError("", "Could not create a sale.");
-                var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Sale");
+                var redirect = new UrlHelper(Request.RequestContext).Action("Index", "Home");
                 return Json(new { Url = redirect });
             }
         }
@@ -178,6 +182,8 @@ namespace EmployeeClient.Controllers
         // GET: Sale/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.Message = "Sale";
+
             var request = new RestRequest("Sales/" + id, Method.GET);
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
 
@@ -275,7 +281,6 @@ namespace EmployeeClient.Controllers
             }
         }
 
-
-
+       
     }
 }

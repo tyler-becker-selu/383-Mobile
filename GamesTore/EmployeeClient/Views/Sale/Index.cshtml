@@ -36,7 +36,6 @@
                         User
                     </th>
 
-                }
                 <th>
                     Sale Number
                 </th>
@@ -49,6 +48,13 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Total)
                 </th>
+            @if (Session["User"] != null)
+            {
+                <th>
+                    User
+                </th>
+
+            }
                 <th></th>
             </tr>
         </thead>
@@ -79,13 +85,18 @@
                     <td>
                         $@Html.DisplayFor(modelItem => item.Total)
                     </td>
+                @if (Session["User"] != null)
+                {
                     <td>
                         @if (Session["Role"] == "Admin")
+                    </td>
+                }
+                <td>
+                    @*@if (Session["Role"] == "Admin")
                         {
                             @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs" })
-                        }
+                        }*@
 
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-default btn-xs" })
 
                     </td>
                 </tr>
@@ -94,6 +105,12 @@
     </table>
     <script>
         $(document).ready(function () {
-            $('#saleTable').DataTable();
+
+        $('#saleTable').dataTable({
+
+            "order": [[1, "desc"]]
+
+        });
+
         });
     </script>

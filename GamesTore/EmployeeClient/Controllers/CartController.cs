@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace EmployeeClient.Controllers
 {
-
+    [AuthController(AccessLevel = "Employee")]
     public class CartController : BaseController
     {
 
