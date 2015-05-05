@@ -128,7 +128,7 @@ namespace EmployeeClient.Controllers
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                return RedirectToAction("Details", new { id = id });
+                return RedirectToAction("Index", new { id = id });
             }
 
             return HttpNotFound();
